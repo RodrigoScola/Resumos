@@ -4,6 +4,15 @@ altering the password
     alter user username with password 'newpasswordname'
 acess to properties on the database
     grant delete on loan to sgold
+    you can grant all privileges 
+        grant all privileges on tablename.* to username
+you can remove acess
+    revoke delete from tablename from username
+    revoke insert from tablename from username
+revoking all priveleges
+    revoke all privileges on finances from username
+revoking users from groups 
+    revoke groupname from username
 making someone the owner
     alter table loan owner sgold
 grant usage on a schema
@@ -14,7 +23,6 @@ you can create groups
     grant select, insert , update, delete on all tables in schema public to family
 add users to group 
     alter group family add user username
-
 
 to create a database
     create database db_name;

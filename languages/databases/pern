@@ -1,0 +1,70 @@
+npm i express pg cors
+    express
+        quicly create a server in nodejs
+    cors 
+        different domain applications to interact with each other 
+    pg 
+        connection between all
+
+on index.js
+importing express and cors
+    const express = require ("express");
+    const cors = require ('cors');
+initialize the variables
+    const app = express()
+whenever you want your server to start, you need to add this function and the port number, you can also add a function to execute when the server starts
+    app.listen(portnum,()=> {
+        console.log('started')
+    });
+    // middleware
+    app.use(cors())
+    app.use(express.json());
+
+
+to create a database is just by creating a file and adding .sql
+    create database databasename
+    create shcema db
+    create table db.todos (
+        id serial primary key,
+        title varchar(50),
+        content text not null
+    )
+
+connecting database with the server
+on a js file 
+importing pg 
+    const pool = require ('pg').Pool;
+initializing server
+    const pool = new Pool ({
+        user : "username"
+        password : "password",
+        host: "localhost",
+        port: portnum,
+        database : "databasename"
+    })
+exporting server
+    export default pool;
+    on index.js
+        const pool = require("./db");
+
+    create something
+    using app.post() the information will go  into the database that you specified when you defined app.listen()
+        app.post('/todos', async  (req,res)=> {
+            try {
+this makes so everything that is written on the .body will become the description
+                const {description} = req.body;
+this adds the description that we want on the database
+and the returning is just for debug purposes (i think)
+                const newtodo = await pool.query("INSERT INTO todo (description) values($1) returning *",[description]);
+            res.json(newtodo.rows[])
+            }catch (err) {
+                console.log(err.message);
+            }
+        })
+    get all things
+
+    get only one thing
+
+    update only a thing
+
+    delete only one thing
