@@ -62,3 +62,8 @@ using text in PostgreSQL
         author_last_name varchar(50) not null,
         content text not null
     )
+restriction can be imposed on column values
+    char ( n ) <- is the exact number of characters stored
+    varchar ( n ) <- n is the maximum number of characters stored
+
+    
