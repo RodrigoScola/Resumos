@@ -1,3 +1,21 @@
+adding a user 
+    crete user username with password 'passwordname'
+altering the password
+    alter user username with password 'newpasswordname'
+acess to properties on the database
+    grant delete on loan to sgold
+making someone the owner
+    alter table loan owner sgold
+grant usage on a schema
+    grant usage on schema schemaname to username
+you can create groups 
+    creat group groupname
+    grant usage on shcema public to family
+    grant select, insert , update, delete on all tables in schema public to family
+add users to group 
+    alter group family add user username
+
+
 to create a database
     create database db_name;
 tables 
@@ -66,4 +84,45 @@ restriction can be imposed on column values
     char ( n ) <- is the exact number of characters stored
     varchar ( n ) <- n is the maximum number of characters stored
 
+    chars with a single character can be written with char or char(1)
     
+integer types 
+    smallint small-range integer -32768 to 32767
+    integer typical choice of int -2147483648 to 2147483647
+    bigint large-range integer      fuck ton of numbers
+    serial autoincrementing integer 1 to 2147484647 <- each time that the thing is called the number increments
+    bigserial large autoincrementing integer 1 to 9223372036854775807
+    
+    decimal (precision, scale) 
+
+the boolean datatype
+    true state
+    false state
+    null (unknown state)
+
+temporal datatype 
+    timestamp represents a date and time 2010-09-21 15:47:16
+    date represents a date 1972-09-02
+    time represents a time 05:40:02
+
+
+references
+    are a way to add data when that condition is met 
+        you add the name that you want and the datatype you want, add a references tag, add the table you want to take from and the thing you want to take in parenthesis
+        place_id char(5) references place(zip_code)
+
+altering a table 
+    adding content
+        first you type alter table 
+            then specify the table name  and then the name of the collumn and the datatype
+    alter table client add contact_id integer 
+    adding a foreign key constraint
+        first you type alter table
+            then you specify the table that you want to alter
+            then type add constraint
+                specify the constraint name and type foreign key and the name , references contact (id);
+    alter table client add constraint fk_c_const foreign key (contact_id) references contact(id);
+    removing content    
+        type drop collumn and collumn name
+            drop collumn name 
+
