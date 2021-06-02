@@ -1,0 +1,47 @@
+always include the #include <stdio.h>
+variables always need to be specified the type of it
+    float
+    int 
+    double
+    char
+    string 
+arrays
+    will need to be specified the length first of how many things will be stored in there
+        then y ou can manually set the data on each one 
+            to set an array
+                int arrayName [10];
+on multidimensional arrays you have to specify the value for each
+    and declaring you have to declare the maximum value on each
+        int grades[2][5];
+        it will take 2 main arrays and 5 elements on each array
+you can calculate averages by making a for loop and adding the result in an variable then divide that variable by the indexnumber
+
+to define strings 
+    char * name = "John Smith" ;
+that method cannot be altered, to make a string that can be altered
+    char name[] = "John Smith";
+    to print string 
+        char name[] = "Jogn string";
+        printf("%s",name);
+using the function strlen(name) returns the string length
+the function strncmp() compares two strings are returns 0 if its equal or a different number if they are different 
+    char * name = "John";
+    if (strncmp(name,"John",4)== 0 ) {
+        printf("Hello,John\n");
+    } else {
+        printf("you are not john");
+    }
+
+string concatenation 
+    the function strncat appends first n characters of src string to the destinationstring where n is mun (n, length (src)) the arguments 
+    passed are destinantion string, source string and n - maximnun number of characters to be appended 
+
+        char dest[20] = "Hello";
+        char src = "World";
+        strncar(dest,src,3);
+        printf("%s",dest)
+        strncat(dest,src,20);
+        printf("%s\n",dest)
+
+when you are trying to divide a number by an integer, you have to put (float ) first
+    result = 1/(float)i

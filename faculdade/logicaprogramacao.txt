@@ -1,0 +1,364 @@
+
+logica e o estudo de argumentos 
+    estudo do raciocinio dedutivo 
+todos os homens sao mortais.
+socrates e um homem                 premissas
+---------------------------------------------------------
+protanto, socrates e mortal         conclusao
+
+enunciados ou proposicoes, Sentencas declarativas. Sem ambiguidade, nem tempo verbal
+e portadoras de verdade ou falsidade
+
+logica proposicional
+    representacao formal de enunciados (discurso), de maneira precisa e sem ambiguidades
+
+socrates e um homem         proposicao Simples
+                        Verdadeira ou falsa
+            Principio de identidade
+Uma proposicao verdadeira e verdadeira, uma falsa e falsa
+            principio da nao contradicao
+Nenhuma proposicao pode ser verdadeira e falsa ao mesmo tempo.
+            pricipio do terceiro excluido
+Uma proposicao e verdadeira ou falsa, nao ha outra possibilidade
+
+Representacao formal de enunciados (discurso), de maneira precisa e sem ambiguidades.
+p: socrates e um homem.
+q: socrates e mortal            proposicao Simples
+
+                                proposicoes Compostas
+
+Socrates e um homem e socrates e mortal
+
+p ^ q 
+  | 
+conectivo logico
+
+Conectivos logicos 
+Negação(não)    ~P
+    expressao: socrates nao e um homem
+conjunção(e) ^  P^P
+    expressao: socrates e um homem e e um homem mortal
+Disjunção(ou) (invertido do ^) P(-^)P
+    expressao: socrates e homem ou e mortal
+implicacao condicao suficiente: ->  p->p 
+    se socrates e homem entao e mortal
+equivalencia (condicao necessaria): <-->    q<-->p
+    expressao: Socrates e mortal, se e somente se, e homem
+---------------------------------------------------------------------------------------------
+
+Regras: 
+
+1 - Toda proposicao e uma formula 
+2 - Se A e uma formula, entao sua negacao (~A) tambem e.
+3 - Se A e B sao formulas, entao tambem sao formulas:
+            a conjunção ( A^B) e a equivalencia (A<-->B)
+        a implicacao (A-->B) e a equivalencia (A<-->B)
+    As formulas bem formadas (wwf) sao obtidas a partir dessas Regras
+
+
+exemplos
+
+    Esta quente                            formula: P
+    Nao esta quente                        formula: ~p
+    esta quente e esta ensolarado          formula P^Q 
+    se esta ensolarado entao esta quente   formula P-->Q 
+    nao esta quente mas esta ensolarado    formula ~P^Q
+    esta quente ensolarado                 formula PQ     (riscado)
+    esta quente e ensolarado ou chovendo   formula Q^E-^C (riscado)
+
+logica proposicional 
+
+sentenças 
+
+    a = é verão  b = é inverno  c = Faz frio    d = Faz calor
+    e = Neva     f = Chove
+
+    1 = É inverno                                               B 
+    2 = Nãp é inverno                                           ~B
+    3 = É verão                                                 A-^b
+    4 = é inverno mas faz calor                                 A^D
+    5 = Nãp é o caso de fazer frio                              ~C
+    6 = Se é verão então faz calor                              a-->D
+    7 = Não é o caso de fazer frio                              ~C->A  
+    8 = Neva se e somente se é inverno e faz frio               e<->(b^C)
+    9 = Se chove e não faz calor então é inverno                (f^~d)->b    
+    10 = Se neva então é inverno e não chove                    e->(b~f)
+    11 = Ou faz calor, ou faz frio e chove                      d-^(c^f)
+    12 = Ou chove e faz frio, ou não chove mas neva             (f^c)-^(~f^e)
+
+    1 = Pancho contem pão e salsicha                               p^s 
+    2 = Pancho não contem milho e ervilha                          ~m^e 
+    3 = Hoje é segunda-feira ou hoje é terça feira                  s-^t
+    4 = Hoje é segunda-feira se hoje não é terça feira              e<-->-^t
+    5 = A comida é deliciosa, porém a porção é pequena              d^p 
+    6 = Para de fumar, caso contrário morrerás de câncer            f-^m 
+    7 = Embora não esteja gelada, a cerveja está muito boa          ~g^b 
+    8 = A menos que saias, essa discussão não se encerrará          ~s^c 
+    9 = Não é verdade que essa música acalma ou agita               ~c-^a 
+    10 = Dirigir rápido e sem atenção é perigoso, assim como o é dirigir sem cinto de segurança (r^a)^sc 
+    11 = ela está felis com o presente, embora preferisse sair para jantar ou ter 
+    uma festa
+    12 = Se esse assunto fosse tratado em outro momento, os alunos estariam  mais
+dispostos e participativos
+
+13. Toda vez que vou viajar, chove.
+14. Supondo que chova, planeja voltar e ficar por aqui.
+15. Teus parentes virão, se ganhares na loteria.
+16. Se ganhar pouco ou gastar muito, então vai falir.
+17. Não é o caso de reprovar se estás dormindo agora.
+18. É aprovado, se e somente se, tiver frequência e nota.
+19. Pode sair e ter presença, desde que termine a tarefa.
+20. Nem a Honda e nem a Toyota são brasileiras.
+21. Não é verdade que Honda e Toyota são brasileiras.
+22. Considerando que eu não conclua o curso,
+ eu vou abrir um negócio ou fazer intercâmbio.
+23. Meu negócio terá sucesso, se e somente se,
+ desenvolver a ideia e conseguir um patrocinador.
+24. A lógica é fácil e interessante, a menos que
+ eu esteja enganado ou o professor esteja mentindo.
+
+venn diagram
+
+<   p   >   <   q   >
+<   p    <>     q   > - intersection
+
+
+negacao p  ~p 
+        v   f
+        f   v 
+
+conjunção e  ^               disjuncao ou -^ 
+    p q  p^q                    p q p-^q  
+    v v   v                     v v   v 
+    v f   f                     v f   v 
+    f v   f                     f v   v 
+    f f   f                     f f   f 
+
+<   p   <>      q   >
+Na disjunção exclusiva, a verdade de uma exclui outra 
+    p q p^q
+    V V F
+    V F V
+    F V V
+    F F F
+
+interpretacao
+
+p q (p˅q) ˄ ~ (p˄q)
+    V V V F F V
+    V F V V V F
+    F V V V V F
+    F F F F V F
+
+Dupla Negação
+    ~ (~p) ≡ p
+Negação
+    p ˅ ~p ≡ V
+    p ˄ ~p ≡ F
+Identidade
+    p ˅ F ≡ p
+    p ˄ V ≡ p
+Idempotência
+    p ˅ p ≡ p
+    p ˄ p ≡ p
+Limite Universal
+    p ˅ V ≡ V
+    p ˄ F ≡ F
+Absorção
+    p ˅ (p ˄ q) ≡ p
+    p ˄ (p ˅ q) ≡ p
+Comutatividade
+    p ˅ q ≡ q ˅ p
+    p ˄ q ≡ q ˄ p
+Associatividade
+    (p˅q) ˅ r ≡ p ˅ (q˅r)
+    (p˄q) ˄ r ≡ p ˄ (q˄r)
+Distributividade
+    p ˅ (q˄r) ≡ (p˅q) ˄ (p˅r)
+    p ˄ (q˅r) ≡ (p˄q) ˅ (p˄r)
+Implicação Material
+    p → q ≡ ~p ˅ q
+
+condicao suficiente
+    é a condição que satisfaz o requisito minimo suficiente para assegurar a ocorrencia 
+    efetiva de um outro evento      (... SE H ENTAO A ...)
+condição necessaria
+    é uma condição requerida (obrigatória) para que um outro evento possa ocorrer 
+            (...H SOMENTE SE A )
+
+<   p <q> >
+
+Três meninas, Bia, Mariana e Joanna, estão brincando.
+    Sabe-se que algumas são irmãs. Algumas pessoas,
+    conversando sobre as meninas, fizeram as seguintes
+afirmações, aceitas como verdadeiras por todos:
+ (1) Bia e Mariana não são irmãs.
+ (2) Bia não tem irmã, ou Bia e Joanna são irmãs.
+ (3) Mariana e Joanna são irmãs.
+É possível chegar a alguma conclusão?
+Um exemplo
+Afirmações: (1) Bia e Mariana não são irmãs.
+    (2) Bia não tem irmã, ou Bia e Joanna são irmãs.
+    (3) Mariana e Joanna são irmãs.
+Proposições: (B) Bia tem irmã.
+    (M) Mariana tem irmã.
+    (J) Joanna tem irmã.
+B M J (1) ~(B˄M) (2) ~B˅(B˄J) (3) (M˄J) (1)˄(2)˄(3)
+    V V V F (V) V (F)+(V) V F
+    V V F F (V) F (F)+(F) F F
+    V F V V (F) V (F)+(V) F F
+    V F F V (F) F (F)+(F) F F
+    F V V V (F) V (V)+(F) V V
+    F V F V (F) V (V)+(F) F F
+    F F V V (F) V (V)+(F) F F
+    F F F V (F) V (V)+(F) F F
+
+proposições contingentes
+    A verdade ou falsidade não se baseia na formula logica 
+        A proposição pode ser verdade ou falsa, de maneira que e necessario investigar o mundo.
+proposições nao contingentes 
+    A verdade ou falsidade se baseia apenas na formula logica
+        A proposicao é verdadeira ou é falsa, independente do conteudo
+Tautologia 
+    A proposição é necessariamente verdadeira devido a sua formulaçãológica
+        Ex hoje e sexta feira ou hoje nao e sexta feira
+autocontradicao
+    A proposição é necessariamente falsa devido a sua formulação lógica
+        Ex Ontem foi domingo e ontem nao foi domingo. 
+Proposições Contraditorias 
+    Os valores verdades sao opostos em toda tabela verdade  
+        ex Hoje nao chove e amanha nao faz calor    
+proposições logicamente equivalentes
+    Os valores verdades sao iguais em toda tabela verdade
+        ex nao é verdade que chove ou faz calor
+proposicoes consistentes
+    ao menos um valor verdade e verdadeiro em ambas as tabelas
+        vou abrir um negocio ou vou viajar
+proposicoes inconsistentes
+    nao ha nenhum valor verdade verdadeiro em ambas as tabelas 
+        vou abrir um negocio e nao vou viajar 
+
+exercicio
+    Três meninos, Paulo, Roberto e Silvio, foram acusados de
+    mentir em um situação. O investigador, responsável por
+    apurar quem mentiu, conversou com cada um em separado.
+    Eles afirmaram o seguinte:
+    Paulo: Eu não menti .
+    Roberto: Paulo ou Sivio mentiram, mas eu não menti .
+    Silvio: Se eu não menti , então Paulo também não mentiu.
+    Qual a conclusão do investigador?
+        1. se todos falam a verdade..
+        2. se nenhum está falando a verdade..
+    Desafio
+        Proposições: (P) Paulo mentiu.
+            (R) Roberto mentiu.
+            (S) Silvio mentiu.
+        Afirmações: (P) Paulo não mentiu.
+            (R) Paulo ou Silvio mentiram, e Roberto não mentiu.
+            (S) Se Silvio não mentiu, então Paulo não mentiu.
+        P R S (P) ~P (R) (P˅S)˄~R (S) (~S→~P)
+            V V V F (V) F (F) (F) V (F)
+            V V F F (V) F (F) (V) F (F)
+            V F V F (V) V (V) (F) V (F)
+            V F F F (V) V (V) (V) F (F)
+            F V V V (V) F (F) (F) V (V)
+            F V F V (F) F (F) (V) V (V)
+            F F V V (V) V (V) (F) V (V)
+            F F F V (F) F (V) (V) V (V)
+                Todos falam a verdade.
+eG
+
+
+file:///C:/Users/dodid/Downloads/LCoAp01+L%C3%B3gica+Proposicional+(proposi%C3%A7%C3%B5es+verofuncionais).pdf
+
+deducao natural
+metodo de demonstração de validade de inferencias que utiliza inferencias validas ja demonstadas
+
+regras de inferencias 
+    conjunto de inferencias validas (argumento) usados no procedimento de demonstralçao (prova)
+
+prova ou derivação
+    procedimento de demonstraçãop da validade ,ou nao, de uma inferencia em uma serie de etapas de raciocinio;
+
+calculo propsicional e de predicados 
+    sistema de regras para prova de argumentos validos (regras basicas, hipoteticas, teoremas e equivalencias)
+
+calculo proposicional   
+    regras nao hipoteticas de inferencia
+    
+    modus ponens (mp)
+        de uma condicional verdadeira, pode-se inferir que se o antecedente for verdadeiro o consequente também E
+            p -> Q
+            p 
+            -
+            Q
+    ex considerando que me alimento bem, e quem tem saude pe mais longevo, e quem se alimenta bem tem saude, posso concluir que devo ter longevidade
+
+        a 
+        s -> L
+        a -> s 
+        ------
+        L
+
+        a,s -> a -> s == L
+
+        1. a 
+        2. s -> L
+        3. a -> s  
+        ---------
+        4. s 1,3 MP
+        5. l 2,4 MP <- derivação instancia da regura de inferencia usada para deduzir uma linha em uma demonstração
+
+Regras nao hipoteticas de inferencia
+
+    eliminação da negação (~~p == p)
+    introdução da conjuncao (^i, conjuncao) p   q  == p^q
+    Eliminacao da conjuncao (^e, simplificacao) p^q == P
+    introdução da disjuncao (-^I,adicao) p == p-^Q
+    eliminação da disjuncao (-^E,dilema construtivo) p^q   p->r q->r == r
+    introducao do bicondicional (<->I) p -> q  q -> p  == p <-> q 
+    eliminação do bicondicional (<-> E) p <-> q == p -> Q
+
+prova do condicional (PC, demonstração condicional);
+
+suposicao de uma hipotese verdadeira para o condicional com o objetivo de demonstrar a conclusao desse argumento
+    ex se me alimento bem ent sou saudavel, quem tem saude, tem mais longevidade, logo se me alimento bem tenho longevidade.
+    a -> s, s -> l = a -> l 
+    
+    1. a -> s 
+    2. s -> L  == a -> L
+    3. a    hipotese    <- suposicao de que o antecedente da conclusao e verdadeiro
+    4. s    1.3 MP
+    5. l    2,4 MP
+    6. a -> l 3-5 PC
+
+    Reducao ao absurdo (RAA, prova indireta);
+    suposicao da negacao da conclusao para obter uma contradicao e, por reduction ad absurdum, demonstrar indiretamente ser verdadeira
+        ex quem se alimenta bem e saudavel, eu nao tenho boa saude, logo nao tenho me alimentado bem
+        a -> s , ~s == ~A
+        1. a -> s 
+        2. ~s  == ~a 
+        3. a  hipotese  <- suposicao que a conclusao e falsa 
+        4. s  1,3 MP
+        5. s ^ ~s 2,4 ^i <- Contradicao 
+        6. a      4-5 RAA
+        
+    Regras derivadas
+    toda a instancia de um argumento valido e tambem uma formulacao validada
+
+    se esta covendo ou nevando, entao o cau nao esta aberto;
+    nao e o caso que o ceu nao esta aberto, logo nao e o caso que esta chovendo ou nevando
+    a -> s, ~s == ~A
+    *provada anteriormente por RAA
+    (C -^ n) -> ~B
+    ~~b  == ~(C -^ N);
+    instancia substituitiva
+        substituicao de algumas proposicoes por outras formulas bem formadas 
+
+    modus tollens (MT)
+    1(c -^ n ) -> ~B
+    2. ~~b == ~(c -^n);
+    3. (c -^ n) hipotese
+    4. ~b   1,3 MP
+    5. ~b ^ ~~b  2,4 ^I
+    6. ~(c -^ n) 3-5 RAA

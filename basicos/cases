@@ -1,0 +1,93 @@
+if ()
+else if()
+else()
+switch
+  switch(input) {
+    case input1:
+    var inputvariable = 1;
+    break;
+    case input2:
+    var inputvariable = 2;
+    break;
+    default:
+    inputvariable = default
+  }
+  you can have the same answers with the same input:
+    case 4:
+    case 5:
+    case 8:
+      result = input 2;
+      break;
+shortened if statements
+    if you know that the input will always be the same, you can return without doing any if statements
+     funciton isless(a,b) {
+        return a< b;
+  }
+
+  if you are to lazy to write if statements, you can use conditional statements if one is true or false
+    return a > b ? "a is greater" : "b is greater";
+    to do else ifs 
+    return (a === b) ? "a is equal to b"
+      (else if) : (a > b) ? "a is greater than b"
+      : "b is greater";
+let
+  let makes it so you cant overrwrite an variable
+  let is automatically a local variable 
+  you can overwrite the same  variable you just declared by using let
+      function checkScope() {
+    let i = "function scope";
+    if (true) {
+      let i = "block scope";
+      console.log("Block scope i is: ", i);
+      }
+    console.log("Function scope i is: ", i);
+    return i;
+    }
+const 
+  const variables are read only
+    a common practice when naming constants is to use all uppercase letters with words separated by an underscore
+    its common for developers to use uppercase variable identifiers for immutable values and lowercase or camelCase for mutable values
+    you can alter a value on a constant array by being one at a time 
+        const s = [5, 7, 2];
+  
+     s[2] = 7;
+     s[0] = 2;
+     s[1] = 5 
+     console.log(45);
+promise
+  when the task completes you fufill your promise or fail to do so. promise is a constructor, so you need to use the new keyword
+    const makeServerRequest = new Promise((resolve,reject) => {
+    });
+  promises with if and else statements 
+    const makeServerRequest = new Promise((resolve, reject) => {
+    let responseFromServer;
+    if(responseFromServer) {
+      resolve ("We got the data")
+    } else {  
+       reject ("Data not received");
+       }
+   });
+  Promises are most useful when you have a process that takes an unknown amount of time in your code
+  (i.e. something asynchronous), often a server request. When you make a server request it takes some
+  amount of time, and after it completes you usually want to do something with the response from the server.
+  This can be achieved by using the then method. The then method is executed immediately after your promise is
+  fulfilled with resolve. Here’s an example:
+
+  myPromise.then(result => {
+    // do something with the result.
+  });
+  result comes from the argument given to the resolve method.
+  catch is the method used when your promise has been rejected. its executed immediately after a promise's reject method is called
+  mypromise.catch(error => {
+    // do something with the error
+  });
+
+
+
+
+
+
+
+
+
+  

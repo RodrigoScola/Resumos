@@ -1,0 +1,171 @@
+programacao 1
+
+c
+print to console is 
+printf("hello World");
+
+interpretador pode transformar uma linguagem em outra?
+
+codigo fonte em c manda pra linguagem em x e agora roda em todos os sistemas linkeditor/linkedicao
+
+codigo font eh 
+#include <studio.h>
+
+inteiros char 1 byte   -128 a 127
+inteiros int  4 bytes   -2bi a 2 bi
+float 4 bytes 
+doouble 8 bytes
+
+you can do this
+    int nota1, nota2, nota3;
+    nota1 = 3;
+    nota2 = 1;
+    nota3 = 3;
+
+pra chamar um float dentro de um dialogo se utiliza %f dentro da caixa
+    printf("a media eh %f", media)
+to call for multiple values
+    printf("a media do aluno eh %f, %f, %,f",1,2,3);
+
+
+
+scanf() 
+
+%d ou %i = inteiros
+%d = flutuante
+
+0 = base octal
+    047 = 39
+0x = hexadecimal
+    0x47 = 71
+
+media Arithmeticae
+    #include <stdio.h>
+
+    void main() {
+         int nota1 = 3;
+         int nota2 = 4;
+         int nota3 = 5;
+         float resultado = (nota1+nota2+nota3)/3;       
+         printf("%f",resultado);
+
+        }
+div = %
+
+char n1, n2;
+n1 = 5;
+n2 = 3;
+printf("quociente %d - resto %d",n1/n2,n1%n2 )
+
+exercicios
+ 200 
+ 300
+ 400
+ 800
+ 900
+ 1200
+
+
+ 200
+    #include <stdio.h>
+
+    void main()
+    {
+             int base,altura;
+             base = 2;
+             altura = 3;
+
+             float area = (base * altura)/2;
+
+             printf("O resultado e %f",area);
+
+         
+    }
+300
+        #include <math.h>
+        #include <stdio.h>
+
+    void main()
+        {
+            float a,b,c,quociente;
+            a = 30;
+            b = 32;
+            c = 23;
+            quociente = (b * b) - (4 * a * c);
+            float pos = (-b + quociente)/ (2 * a);
+            float neg = (-b - quociente) / (2 * a);
+            printf("%f  %f",pos,neg);
+
+        }
+400
+            #include <stdio.h>
+        #include <math.h>
+
+        void main()
+        {
+                
+                float a1 = 8;
+                float a2 = 39;
+
+                if ( a1 > a2) {
+                        printf("%f",a1);
+                } 
+                if (a2 > a1) {
+                        printf("%f",a2);
+                }
+        }
+800 
+        #include <stdio.h>
+    #include <math.h>
+
+    void main()
+    {
+
+    int input = 9098;
+    int minutos = input /  60; // 1
+    int segundos = minutos / 60; // 0
+    int horas = minutos / 60; // 0
+    printf("%i horas, %i minutos, %i segundos",horas,minutos,segundos);                
+    }
+900
+        #include <stdio.h>
+    #include <math.h>
+
+    void main()
+    {
+            int a,b,c,s, area;
+            a = 3;
+            b = 4;
+            c = 5;
+            s = (a + b + c)/2;
+            area = sqrt(s * (s - a) * (s - b) * (s - c));
+            printf("%i",area);
+    }
+1200
+        #include <stdio.h>
+    #include <math.h>
+
+    int main(void)
+    {
+
+            int Hi,Mi,Hf,Mf,Th,Tm;
+
+            Hi = 2;
+            Hf = 4;
+            Mi = 23;
+            Mf = 12;
+
+            Th  = Hf - Hi;
+            Tm = Mf - Mi;
+
+            if (Tm < 0) {
+                Tm *= -1;
+            }
+
+            printf("%i %i",Th,Tm);
+            
+
+    }
+
+
+d

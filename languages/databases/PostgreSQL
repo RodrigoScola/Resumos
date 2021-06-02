@@ -1,0 +1,64 @@
+to create a database
+    create database db_name;
+tables 
+    variable number of rows
+    fixed number of collumns (structure can be altered)
+    columns have a specific data type
+    each row is a record
+    to create a table 
+        create table table_name (
+            column_name column1_datatype [col1_constrains],
+            column_name column2_datatype [col2_constrains],
+        )
+            example
+                create table records (
+                    id serial primary key,
+                    name text not null,
+                    mascot_name text
+                )
+                create table topic (
+                    id serial primary key,
+                    description text not null
+                );
+two tables and a foreign key connection
+    you can add a reference to another table by 
+    creating a name, explaining what datatype you want and what field you want to take
+        example
+            business_type_id integer references business_type(id)
+
+creating schemas
+    schemas are different variations of the same database
+        one can modify their schema without modifying others,
+    a database can have multiple schemas
+    the public schema is the default schema in PostgreSQL
+    to create a schema 
+        create schema schema_name;
+        create schema division1;
+        create table  division1.school (
+            id serial primary key,
+            name text not null,
+            mascot_name text,
+            num_scholarshipts integer default 0
+        )
+data categoris in postgresql
+    text 
+    numeric 
+    temporal
+    boolean
+create table project (
+    id serial primary key,
+    is_franchise boolean default false,
+    franchise_name text default null, 
+    project_state text,
+    project_county text 
+    congressional_district numeric,
+    jobs_supported numeric
+    )
+
+using text in PostgreSQL
+    create table book (
+        isbn char (13) not null,
+        author_first_name varchar(50) not null,
+        author_last_name varchar(50) not null,
+        content text not null
+    )

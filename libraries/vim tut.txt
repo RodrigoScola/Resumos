@@ -1,0 +1,70 @@
+j = move up
+h = move left
+k = move down
+l = move right 
+{ = goes to the beginning of the code block
+} = goes to the end of the code block
+yy = copies
+dd = deletes a line & copies to the clipboard
+Num X Action = performs the same action the num of times
+o = adds a line below and puts you into editing mode
+i = puts you in editing mode
+Esc = takes you out of editing mode
+w = goes forward a word
+b = goes backward a word
+:Num = goes to the line you commanded
+. = performs the same action again
+u = undo
+^r = redo
+0 = goes to the beginning of the line
+$ = goes to the end of the line 
+enter = goes to the beginning of a line 
+% = takes you to the finishing part of a {|(
+d$ = deletes a line without copying to the clipboard
+command & Esc = cancels the chain of commands
+# = takes you to the next time that word appears
+c = changing
+cw = change word
+dw = delete a word
+D = deletes the rest of the line
+C = delete & put you in insert mode
+ct = deletes the rest of the line until a certain word and puts you into editing mode
+dt = deletes the rest of the line but doestn put you in editing mode
+* = teleports you to the next time that word is used
+( = takes you to the middle of the code
+) = takes you to the middle of the code
+z = centers the screen to the cursor 
+a = goes to the right and puts you ro insert mode
+A = takes you to the end of the line & puts you on insert
+x = deletes the letter that the cursor is on
+I = takes you to the beginning of the line & puts you in insert mode
+rt = replaces a letter
+<> = tabs to each direction
+q + keys = creates a macro and assign that macro to the key
+@ + keys = replays that macro
+
+
+
+REACT_APP_FIREBASE_API_KEY = AIzaSyD7i-pnGNVeNDD9iAQyhoxUVHNN3TJ_EKY
+REACT_APP_FIREBASE_AUTH_DOMAIN = droom---test.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID = droom---test
+REACT_APP_FIREBASE_STORAGE_BUCKET = droom---test.appspot.com
+REGV9Jm2u7rmsCe65wKzPTw5jtS38n2tVEGiID = 1098064259229
+REACT_APP_FIREBASE_APP_ID = 1:1098064259229:web:459cabe652fb1a28044c74
+
+
+
+import firebase from "firebase/app";
+import "firebase/auth";
+
+const app = firebase.initializeApp({
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REGV9Jm2u7rmsCe65wKzPTw5jtS38n2tVEGiID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+});
+
+const auth = app.auth();
+export default app;

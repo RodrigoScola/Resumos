@@ -1,0 +1,205 @@
+to select a result from a table in sql
+    SELECT {property} FROM {tableName};
+to just select an data 
+    SELECT 'datainfo';
+each time you run your code, the data will be added and not changed
+to select more than 1 data  
+    SELECT name , age FROM people;
+to select every property use the *
+    SELECT  * FROM people
+if you want a certain number of results
+    SELECT * FROM people LIMIT 10;
+you can select every distinct thing in a collumn
+    SELECT DISTINCT language FROM films
+to count the number of rows 
+    SELECT COUNT (*) FROM people 
+WHERE is a statement that will only return true where the where is true 
+    select dateYear from films where dateYear = 1809
+AND is a statement that returns true if where and and returns true
+    select dateYear from films where dateYear = 1809 and film = 'good';
+or is the opposite of and, because is one or the other
+instead of using and for numeric values in range, use between 
+if you have a lot of or, that can be cumbersome, then use the in operator
+    select name
+    from kids
+    where age in (2,4,5,6,7,8);
+when you want to search for null values use the null notation 
+to match patterns you use like and not like
+you can have functions that can return the value such as
+    avg (average);
+    max (max value);
+    min (minimum value);
+    sum (sum of all values);
+you can perform basic operations by using signals
+    +
+    -
+    *
+    /
+when you are asking the same thing but for different collumns as
+    select max(budget), 
+            max(release_year)
+    from films
+    that can give you 2 collumns with the name max, to make the code more understandable, you can use aliasing by putting as at the end of it
+        select max(budget) as maxBudget
+                max(release_year) as maxReleaseYear
+        from films
+you can sort data by using order by something adn desc or asc
+you can sort by multiple columns using sort it will sort byt the first column specified, then sort by the next and so on
+you can group by a collumn
+you cant use aggregate , so you use having 
+
+joining two tables
+
+first you select what you want
+
+from the first table
+
+then you use inner join {second table} 
+
+then you match the content of both tables for example cities.country.code is the same data as countries.code
+
+instead of using c.code = e.code , you can just use 
+    using(code);
+you can join the same database twice, you can do that to compare stuff
+    select p1.size as size2019,
+           p2.size as size2020
+    from populations as p1
+        inner join populations as p2
+            on p1.code = p2.code
+using if and else 
+    if = when
+    then = if when is true
+    else = else
+    end = end of command
+
+
+how a left join differs from an inner join 
+in an inner join, it just joins the collumns that have the same value
+left join takes the column on the left and combines with the right, but the values that dont match, show missing 
+duplicate rows will happen the same thing, adding a row on the final product
+    select p1.country , prime_minister , president 
+    from prime_minister as p1 
+    left join presidents as p2
+    on p1.country = p2.country
+
+full join
+    select * 
+    from left_table
+    full join right_table 
+    using (id);
+
+cross join joins every possible thing
+    select prime_minister , president 
+    from prime prime_minister as p1 
+    cross join as p2 
+    where p1.continent in ('North America', 'Ocenania')
+
+set theory venn diagrams 
+
+union = includes every record in both tables
+    left    right 
+    1       1
+    2       4
+    3       5
+    4       6
+      union
+        1
+        2
+        3
+        4
+        5
+        6
+union all= includes every record in both tables and duplicates the records that are in both tables
+    left    right
+    1       1
+    2       4   
+    3       5
+    4       6
+    union all
+        1
+        1
+        2
+        3
+        4
+        4
+        5
+        6
+    select prime_minister as leader , country
+    from prime_minister as pm
+    union 
+    select monarch , country
+    from monarchs
+    order by country
+
+intersectional is just whats in the left and the right one
+    left    right
+    1       1
+    2       4
+    3       5
+    4       6
+    intersectional
+        1
+        4
+
+intersect looks for key fields and not just the same thing
+
+except only in one table but not the other
+    left    right 
+    1       1
+    2       4
+    3       5  
+    4       6
+    except
+    2
+    3
+
+semi joins 
+    select president , country , continent
+    from presidents
+    where country in (select name from states where indep_year < 1800);
+        this selects the president, country and continent where the country was freed before 1800
+
+the semi join chooses the record in the first table where the conditions are met in the second table 
+
+anti-join
+    is the same thing but instead of joining, it selects the inverse
+
+case
+contains a when , then and else statement, finished with end
+    case when x = 1 then 'a'
+        when x = 2 then 'b'
+        else 'c' end as new_column
+        
+case when and then some 
+
+add multiple logical conditions to your when clause
+ select season , date 
+    case when hometeam_id = 9857 and homegoal > awaygoal then 'bologna win'
+         when awayteam_id = 9857 and awaygoal > homegoal then 'bologna win'
+         end as outcome 
+ from matches_italy
+
+case when with aggregate functions 
+    case statements are great for 
+        categorising data
+        filtering data
+        aggregating data
+
+        select season , count (case when hometeam_id = 9260 and homegoal > awaygoal then id end) as home_wins 
+        from matches_italy;
+
+you can round numbers with the round function and specifying the number to round to 
+    select winter_games 
+    round(count(case when hometeam_id = 9012 and homegoal > awaygoal then 'hello world' end as outcome),2)
+    from games;
+
+percentages 
+    select season,
+    avg (case when hometeam_id = 8455 and home_goal > awaygoal then 1
+              when hometeam_id = 8455 and home_goal < awaygoal then 0
+              end ) as oct_wins
+    avg( case when awayteam_id = 8455 and away_goal > home_goal then 1 
+              when awayteam_id = 8455 and away_goal < home_goal then 0
+              end ) as pct_awaywins
+    from match 
+    group by season
