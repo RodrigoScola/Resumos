@@ -1,0 +1,40 @@
+to comment use the #
+exponentials use ** and the number you want it to be powered by
+
+creating variables
+    no need to say const or let... just say the name
+        variablename = 'im the content of a variable'
+you can convert string to float just by using float()
+    pi_float = float(pi_string)
+
+array slicing
+arrayName[startIntdex(inclusive),endIndex(exclusive)]
+    if you dont specify the beginning index, python will start at the beginning
+    if you dont specify the end index, python will start at the end
+
+    to remove an element from a list 
+        del(fam[index])
+
+if you want to add something to a list 
+    listname.extend(['name']);
+if you want to find the position of an element  
+    listname.index('name');
+if you want to remove that 
+    listname.pop('name');
+    
+    
+if you want to check if something is true or false you can just use ==
+    question = 12 * 8 
+    solution = 96
+    question == solution <- returns true
+
+you can use a for leep to iterate through all the items in a list
+    you can use the .sorted() wich will sort the data in a list from lowest to highest in the case of numbers and alphabetical order if the list contains strings
+        the sorted() returns a new list and does not affect the list you passed 
+            /// looping 
+                for row in records :
+                    baby_names.append(row[3]);
+            /// sorting the name in alphabetical order 
+                for name in sorted(baby_names):
+                    print(name)
+

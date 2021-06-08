@@ -18,12 +18,7 @@ objects
         this.name = name
         this.color = color
         this.num
-        
 
-
-
-
-        
 arrays
     arr.splice()
         replace data in a directory
