@@ -54,6 +54,8 @@ adding some style
         plt.style.use('default')
     changing a transparency
         plt.plot(x,y,alpha=0.2);
+    you can make a grid
+        plt.grid(True)
 making scatter plot
     they are unordered points
         plt.scatter(x,y)
@@ -70,6 +72,7 @@ making bar charts
         plt.bar(x,y,yerr='df.error');
     you can stack two bars
         plt.bar(x,y,bottom=x)
+
 making a histogram
     plt.hist(dataset);
     plt.show();
@@ -79,4 +82,8 @@ if you want to zoom in , use range,
     plt.hist(data,range(min,max));
 if you dont care about the absolute number, you can use percentages by using 
     plt.hist(data, density= true);
+
+sizes
+    you can change the size based on the value, the bigger the value the bigger the size
+        plt.scatter(gdp_cap, life_exp, s=np_pop)
     

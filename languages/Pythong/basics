@@ -21,7 +21,12 @@ if you want to find the position of an element
     listname.index('name');
 if you want to remove that 
     listname.pop('name');
-    
+
+if you want to copy a list you can use the list() method or the x[:];
+    x = ['a','b','c'];
+    y = list(x);
+    y = x[:];
+
     
 if you want to check if something is true or false you can just use ==
     question = 12 * 8 
@@ -37,4 +42,86 @@ you can use a for leep to iterate through all the items in a list
             /// sorting the name in alphabetical order 
                 for name in sorted(baby_names):
                     print(name)
+
+functions 
+    if you see  a [] in a function, it means that is an optional argument
+    to get the max number in a list 
+        max(x);
+    to get the min number in a list 
+        min(x);
+    to round a num
+        round(num,how many numbers after .)
+    to convert something 
+        int(x) <- converts to an integer 
+        float(x) <- converts to an float 
+        Bool(x) <- converts to a boolean 
+        str(x) <- converts to an string 
+        
+methods
+lists methods
+    functions that belong to objects
+    if you want an index of an element on a list    
+        listname.index(element);
+    you can count how many times the same element happens on the list
+        listname.count(element);
+str methods
+    you can capitalize stuff
+        sister = 'liz'
+        sister.capitalize(); <= returns "Liz"
+    you can make everything capitalized 
+        sister.upper();
+    you can replace stuff   
+        sister.replace('z','sa') <= returns 'lisa'
+
+dictionaries or Objcects
+
+    creating a dictionary
+        world = {'afganistan':30.55,'albania':2.77,'algeria':39.21}
+    finding something  
+        world['albanina'];
+
+
+packages
+       import numpy
+    using numpy
+        numpy.array([])
+        or import numpy as np
+    if you want a specific function 
+        from numpy import array
+        array([]);
+
+numpy
+    import numpy as np 
+creating arrays
+    np_height = np.array(height)
+remarks 
+    python_list = [1,2,3]
+    python_list + python_list
+        [1,2,3,1,2,3]
+    numpy_array = np.array([1,2,3])
+    numpy_array + numpy_array
+        [2,4,6]
+    getting an result == or >= or > 
+        bmi[bmi < 10]
+        array([2]);
+
+type of numpy arrays
+    2d numpy array
+        np_2d = np.array([[1.43,3.12,3.12][1.23,12.33,1245.4]])
+        np_2d.shape <- returns (2,5) # 2 rows, 5 collumns
+
+statistics
+    to calculate the average
+        np.mean(array);
+    calculate the median
+        np.median(array[:,0]);
+    to check if numbers are correlated
+        np.corrcoef(array[:,0],array[:,1]);
+    to check for the deivation
+        np.std(array[:,0])
+    to check for the sum
+        np.sum(array[:,0]);
+    to sort 
+        np.sort(array[:,0]);
+
 
