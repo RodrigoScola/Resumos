@@ -79,6 +79,11 @@ dictionaries or Objcects
         world = {'afganistan':30.55,'albania':2.77,'algeria':39.21}
     finding something  
         world['albanina'];
+    to access the keys of the objects   
+        world.keys(); <- for this to work, the keys have to be unique
+    to add data to the object 
+        world[key] = value
+        
 
 
 packages

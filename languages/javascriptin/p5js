@@ -1,0 +1,131 @@
+The canvas and Setup Functions
+
+canvas is the thing that you show stuff, to create a canvas
+    createCanvas(width,height);
+        if the canvas is not explicity called, the element will be created with 100px width,100px height;
+    change the canvas color 
+        background(num) (number is between 0 and 255);
+            to change the canvas to a random gray color
+                background(Math.floor(Math.random() * 256))
+
+
+you can change the framerate of the canvas by using the frameRate() function
+    frameRate(1);
+
+the draw() function is similar to the setup() function in that p5.js will automatically execute it at the right time. the draw() function will run after all 
+the code in the setup() function is complete. Unlike the draw() function will repeatedly execute in what is known as the draw loop. the draw() function will 
+execute indefinetelly until the sketch ends by closing the browser window or navigating away from the sketch.
+    the draw loop will also terminate when the noLoop() function is called 
+
+Drawing and coloring Shapes
+    Point and line
+        the point() function draws a single pixel to the canvas. requires an x and a y position 
+            point(x,y);
+        the line draws a line between two points, requires the x and y for the 1 and 2 point
+            line(x1,y1,x2,y2);
+    Square and Rectangle 
+        you can draw a rectangle by determining the starting pos and the height and width   
+            rect(x,y,height,width);
+        you can draw a square with determining the x, y and the width;
+            square(x,y,width);
+    Circle and Elipse
+        you can draw an Ellipse by determining the center with x and y, then adding the width and height 
+            ellipse(x,y,width,height)
+        you can draw an circle by determining the x and y and the width 
+            circle(x,y,width);
+    Triangle and Quad
+        you can draw an triangle by determining the x and y of each point   
+            triangle(x1,y1,x2,y2,x3,y3)
+        and you can draw an quad by determining each x and y 
+            quad(x1,y1,x2,y2,x3,y3,x4,y4);
+
+the height and width variables get set whenever you use the createCanvas() function 
+
+Background Colors
+    by using just one value, you can make the background a grayscale, the value is between 0 and 255, 0 being pure black and 255 pure white.
+        background(50);
+    by adding 2 values, it transforms into an rgb value
+        background(100,50,255);
+    by using an string, you can add css color 
+        background('DodgerBlue');
+    by adding an # on that string, you can use an hex Code
+        background('#ff00ff');
+    by having 2 numbers you add an alpha value
+        background(50,120);
+    by adding 4 numbers you add an alpha value to the rgb 
+        background(0,255,0,23);
+
+Fill and noFill
+    the fill() allows us to set the fill color, or the inside color of a shape
+    the noFill() makes so the shape doesnt have color;
+stroke() and noStroke()
+    its the same thins as the fill but its the outside of the shape;
+        stroke(color)
+    the thickness of strokes can be set with the strokeWeight(), the function takes a numeric value as input for the width of pixels
+        strokeWeight(num);
+   
+Animation In p5js
+    you can see how many frames the animation is on with the frameCount built in variables
+    you can change the frameRate with the framerate function
+        frameRate(num);
+    since the framerate is the number of time per second that the draw function is executed, you can increment positions and sizes and whatever 
+        color += 1;
+        alpha += 1;
+        size += 0.5;
+
+Speed And Direction
+    they alter the position of the element, and thats what will happen
+    everytime that draw() is called, the shape is created again, and what changed is the position, speed and direction are factor that change that
+       let speed = 0;
+       let direction = 0;
+       let xpos,ypos;
+       function draw() {
+           cicle(xpos,yPos,height/2)
+           xpos += speed; <- the higher the speed the further from the last point will be 
+       }
+
+Random 
+    the random() returns a random value everytime it is called
+        random() <- returns a value between 0 and 1 
+        random(max) <- returns a value between 0 and the max value, excluding the max value;
+        random(min,max) <- returns a value between min and max
+
+Noise 
+    when the random() is too random, theres a thing for that
+        the noise() returns a random value based on the perlin noise,
+    the noise() selects values that produce a more harmonic sequence of numbers
+        https://static-assets.codecademy.com/Courses/Learn-p5/animation/random_ball_movement.gif
+            this is with the random function 
+        https://static-assets.codecademy.com/Courses/Learn-p5/animation/noise_ball_movement.gif
+            this is with the noise function 
+
+Origin
+    the origin of the shape determines which point the shape is transformed from. for example, some built-in p5.js drawing functions such as rect() are oriented,
+    the RectMode and EllipseMode() functions allow you to modify the location from which the shape is drawn by changing how the x and the y arguments are passed to 
+    rect and ellipse
+    When the rectMode(CENTER) is called, the x and y coordinates passed to the rect() changes to represent the center of the rectangle, instead of the 
+    top left corner
+        rectMode(CENTER);
+            https://static-assets.codecademy.com/Courses/Learn-p5/grouping-transforming-shapes/rect_mode_center_2.png
+        rectMode(CORNER);
+            https://static-assets.codecademy.com/Courses/Learn-p5/grouping-transforming-shapes/rect_mode_corner_2.png
+        ellipseMode(CENTER);
+            https://static-assets.codecademy.com/Courses/Learn-p5/grouping-transforming-shapes/ellipse_mode_center_2.png
+        ellipseMode(CORNER);
+            https://static-assets.codecademy.com/Courses/Learn-p5/grouping-transforming-shapes/ellipse_mode_corner_3.png
+
+Translate
+    there are two ways to move a shape across the canvas. you can add the coordinates when you draw the shape, or you can use the Translate()
+        one thing to be careful is that using translate() will move the entire sketch, to go around it, you use inside a function
+        translate(x,y);
+
+Rotate
+    rotating an element in p5js means rotating the canvas from the top left at (0,0) , you can rotate with the rotate();
+        rotate(angle)
+            https://static-assets.codecademy.com/Courses/Learn-p5/grouping-transforming-shapes/rotation_grid_5.gif
+    you can rotate using angles or using PI
+        π = PI
+        π / 2 = HALF_PI
+        π / 4 = QUARTER_PI
+        2 π = TWO_PI
+        
