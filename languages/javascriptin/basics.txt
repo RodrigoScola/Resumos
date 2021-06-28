@@ -1169,12 +1169,55 @@ and values in the object passed as second parameter
           });
 Array.isArray() returns true if an object is in an array 
  
+Datacamp 
+
+to see if a number is an int 
+  Number.isInteger(numb);
+
+you can use if statements on variable assignments
+  let tool = newVar || 'string'
+    if newVar is empty, tool contains 'string'
+
+  helper functions you can return value of a function inside another function. these functions are refered to as helper functions 
+  fucntion multiplyByNineFifths(number) {
+    return number * (9/5);
+  }
+  function getFahrenheit(celsius) {
+    return multiplyByNineFifths(celsius) + 32;
+  }
+  getFahrenheit(15) // returns 59;
+
+ you can use default parameters on functions 
+  const function = (fruit = 'apple') => console.log(`hmmmm i love ${fruit}`)
+  function() // returns hmmmm i love apple
+  
+if the property of an object is the same as the variable you want to assign to 
+  const {variableName} = object
+    its the same as
+  const variableName = object.variableName;
+if you want to see the keys of an object 
+  Object.keys(objname);
+if you want to see the entries (everything that the object has (returns an array for each property)) 
+  Object.entries(objname);
+if you want to assign a property to an object 
+  Object.assign({
+    item1 : value1,
+    item2 : value2
+  })
  
  
- 
- 
- 
- 
- 
- 
- 
+functions as data 
+    you can assign functions as variables for example 
+      function checkThatTwoPlusTwoIsFourAMillionTimes () {
+        let i =0;
+        while(i <= 100000) {
+          if (2 + 2 != 4) {
+            console.log('Something is not right')
+          }
+        }
+      }
+      const 2p2e4 = checkThatTwoPlusTwoIsFourAMillionTimes
+  you can also see the properties 
+    function.name // returns the original name of the function if you reassigned
+    function.length // returns the number of arguments 
+    function.
