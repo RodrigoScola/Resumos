@@ -42,3 +42,32 @@ backtracking
                if the code is 5d692065cf51a2f50ea8e7b19b5a7ae512f633ba, use
                     git reset 5d69206
                          HEAD is now set to that previous commit
+
+what is a markdown
+     is a text to html converter
+     example
+          #what is a markdown?
+          **List of tips**
+          1. **Two asterisk emphasize**
+          2. *One asterisk Italicizes*
+     big text heading 
+          #heading 
+     medium size text 
+          ##heaidng
+     small heading 
+          ###heading 
+     italics
+          *italics*
+     bold
+          **bold**
+     strikethrough
+          ~strikethrough~
+     unordered lists
+          * | + | - 
+     ordered lists
+          n.
+to make it work, save it as .md
+     
+          
+
+      

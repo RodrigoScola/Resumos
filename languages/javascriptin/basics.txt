@@ -1220,4 +1220,17 @@ functions as data
   you can also see the properties 
     function.name // returns the original name of the function if you reassigned
     function.length // returns the number of arguments 
-    function.
+    function.apply // calls a function and set its this to the provided this Arg. Arguments can be passes as an array object 
+    function.bind // creates a new function which when called has its this set to the provided thisArg. optionally a given sequence of arguments will be prepended to arguments provided the newly bound fucntion is called
+functions as parameters 
+	if you dont use the () in a func assignment in a function you can use it as an parameter
+		const funcName = (func) => {
+			console.log(func.name);
+		}
+
+javascript Error Types 
+     SyntaxError <- this error will happen when someone makes an invalid code, code that cannot be interpreted by the compiler. When the error is thrown, scan your code to make sure
+          you properly opened and closed all brackets, braces, and parentheses and that you didnt include any invalid semicolons.
+     RefereceError <- this error will happen when you use a variable that does not exists, make sure that the variables are properly declared
+     TypeError <- this error will happen if you attempt to perform an operation on a value of the wrong type.
+     
