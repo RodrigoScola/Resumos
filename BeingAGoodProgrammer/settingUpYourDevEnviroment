@@ -1,0 +1,30 @@
+the command line
+     ls
+          when you type ls, the command line looks at the directory you are in, and then lists all the files and directories inside of it.
+               $ ls 
+               2014 2015 hardware.txt
+     pwd
+          pwd stands for print working directory
+     cd
+          cd stands for change directory
+          you can chain going to directories using / and the new directory
+          if you want to go back to the original dir and go to another file
+               ../filename
+          if you want to go back more than one directory 
+               ../../../../
+     mkdir
+          make a directory
+               mkdir dirName
+          if you want to make a dir inside a new dir
+               mkdir dirName/dirName2
+     touch
+          you can create new files with the touch
+               touch filename.txt
+     helper Commands
+          clear
+               clears the console of all the commands (doesnt delete them just clears them)
+          tab <- key
+               can be used to autocomplete your command whey you are typing the name of an existing file or directory
+               up and down arrows 
+
+
