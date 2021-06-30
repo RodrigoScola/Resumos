@@ -1,6 +1,16 @@
 {
-    "compile-hero.disable-compile-files-on-did-save-code": false,
-    "vim.changeWordIncludesWhitespace": true,
-    "vim.autoindent": false,
-    "vim.autoSwitchInputMethod.enable": true
+  "compile-hero.disable-compile-files-on-did-save-code": false,
+  "vim.changeWordIncludesWhitespace": true,
+  "vim.autoindent": false,
+  "vim.autoSwitchInputMethod.enable": true,
+  "editor.tabSize": 5,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.tabCompletion": "on",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.comments.insertSpace": false,
+  "editor.detectIndentation": false,
+  "editor.find.addExtraSpaceOnTop": false,
+  "editor.fontFamily": "Fira Code",
+"editor.fontLigatures": true,
+"editor.defaultFormatter": "esbenp.prettier-vscode"
 }
