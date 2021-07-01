@@ -447,4 +447,58 @@ you can make a simple router on html
 styling text
      <strong></strong> <- makes text bold
      <em></em> <- italicizes text
+     <video src="#" width="320" height="480" constrols> Video not supported</video>
+if you want to open a link on another tab
+     <a href="blank" target="_blank">Learn More</a>
+     
+
+links
+     linking to relative Page
+          if you are linking to a page on straight html you have to import from the directory
+               <a target="_blank" href="../../filename.html"> hyperlink</a>
+     linking at will
+          you can add links to images 
+               <a href="#" target="_blank"><img src="#" alt="this is a bear" /></a>
+     link to the same page
+          <a href="#id"><a>
+
+HTML tables
+     to create a table 
+          <table>
+          </table>
+     to create a row
+          <table>
+                <tr>
+               </tr>
+          </table>
+     to add data
+          <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+               </tr>
+          </table>
+     table headings 
+         make a new tr  above or below the actual table
+          using the scope you can define if its a collumn or a row
+               <table>
+                    <tr>
+                         <th scope="col">name1</th>
+                         <th acope="col" >name2</th>                         
+                    </tr>
+                    <tr>
+                         <td>thing1</td>
+                    </tr>
+                    
+               </table>
+spanning collumns
+     what if the table contains data that spans multiple collumns
+          example: a personal calendar could have events that span across multiple hours or days
+     colspan makes an item uses 2 collumns
+     rowspan makes an item uses 2 rows
+
+organizing the table
+     long tables can be sectioned off using the table body element <tbody>
+     the <tbody> element should contain all of the tables data excluding the table headings
+     <thead> is the same as tbody
      
