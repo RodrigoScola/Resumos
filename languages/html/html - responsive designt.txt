@@ -441,3 +441,10 @@ inset - Defines a 3D inset border. The effect depends on the border-color value
 outset - Defines a 3D outset border. The effect depends on the border-color value
 none - Defines no border
 hidden - Defines a hidden border 
+
+you can make a simple router on html
+     <a href="filename.file"></a>
+styling text
+     <strong></strong> <- makes text bold
+     <em></em> <- italicizes text
+     
