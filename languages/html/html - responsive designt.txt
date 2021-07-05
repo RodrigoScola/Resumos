@@ -12,8 +12,6 @@ a (anchor) elements can also be used to create internal links to jump to differe
             below is an example of an internal anchor link and its target element   
                   <a href="#meme>jump to something</a>
                   ...
-
-
                   <p id='meme'>hello there</p>
 to add text to a link = <a href="link" >cat photos</a>
 to add a dead link 
@@ -382,28 +380,28 @@ you can create flexible layouts when combining auto-fill with minmax
       auto-fit works almost the same as auto-fill. but auto-fit stretches to the size of the container
 
   types of input
-  <input type="button">
-<input type="checkbox">
-<input type="color">
-<input type="date">
-<input type="datetime-local">
-<input type="email">
-<input type="file">
-<input type="hidden">
-<input type="image">
-<input type="month">
-<input type="number" name='age' id='number' min='' max=''>
-<input type="password">
-<input type="radio">
-<input type="range">
-<input type="reset">
-<input type="search">
-<input type="submit">
-<input type="tel">
-<input type="text">
-<input type="time">
-<input type="url">
-<input type="week">
+     <input type="button">
+     <input type="checkbox">
+     <input type="color">
+     <input type="date">
+     <input type="datetime-local">
+     <input type="email">
+     <input type="file">
+     <input type="hidden">
+     <input type="image">
+     <input type="month">
+     <input type="number" name='age' id='number' min='' max=''>
+     <input type="password">
+     <input type="radio">
+     <input type="range">
+     <input type="reset">
+     <input type="search">
+     <input type="submit">
+     <input type="tel">
+     <input type="text">
+     <input type="time">
+     <input type="url">
+     <input type="week">
 dropdown Menu
       <select name='' id=''>
       <option value=''><option>
@@ -501,4 +499,74 @@ organizing the table
      long tables can be sectioned off using the table body element <tbody>
      the <tbody> element should contain all of the tables data excluding the table headings
      <thead> is the same as tbody
+
+     <header> <- see what is on the top
+     <nav> <- shows that its navigational links 
+     <main> <- the dominant content 
+     <footer> <- bottom of the content 
+     <section> <- defines elements in a document such as chapters, headings or any other area of the document 
+     <article> <- holds content that makes sense on its own, ex articles, blogs, comments,magazines
+     <aside> <- mark additional information that can enhance another element but isnt required to understand the main content
+     <figure> <- is the same thing as an section but for images
+     <figcaption> <-  captions the images and if the figure moves, the figcaption moves with it
+     <embed /> <- plays whatever media
+
+CSS
+
+linking the css file on an html element
+     you can use the <link> element to link html and css files together, the <link> element must be placed within the head of the html file,
+     <link href="" rel=''>
+          rel <- describes the relashionship between the html file and the css file.
+               examples 
+                    stylesheet
+if you want to select everything in a css tag
+     * {
+     }
+
+to make the text uppercase on css
+     .uppercase {
+          text-transform : uppercase
+     }
+
+attributes 
+     you can style based on any atribute
+          img[src*='name'] {
+               border-color : black;
+               border-width : 20px;
+          }
+Specificity 
+     is the order by which the browser decides which css styles will be displayed. A best practice in css is to style elements
+     while using the lowest degree of specificity so that if an element neeeds a new style it is easy to override
+chaining
+     when you have elements inside elements, when you want to alter a bunch of elements inside another element you can just chain them togheter
+          header.div.h1 {
+
+          }
+descendand combinator 
+     selecting elements that are nested withing other html elements,
+          example 
+               <ul class='main-list'>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+               </ul>
+          in the css would be 
+               .main-list li {
+
+               }
+text
+     style {
+          font-family: font-name;
+          font-size: sizepx;
+          font-weight: bold;
+     }
+     align {
+          text-align: right; <- aligns the text to the right of its parent 
+          text-align: left ; <- aligns the text to the left of its parent
+          text-align: center; <- centers text inside of its parent element
+          text-align: justify; <- spaces out text in order to align with the right and left side of the parent
+     }     
      
+
+the manderville dance
