@@ -567,6 +567,111 @@ text
           text-align: center; <- centers text inside of its parent element
           text-align: justify; <- spaces out text in order to align with the right and left side of the parent
      }     
+     font weight {
+          bold <- bold font weight;
+          normal <- normal font weight (the default value);
+          lighter <- one font weight lighter than the element parent value;
+          bolder <- one font weight bolder than the element parent value;
+     }
+     text transform {
+          uppercase;
+          lowercase;    
+     }
+     text layout {
+          letter-spacing: 2px;
+          word-spacing: 3px;
+          line-height: 1.4;
+          text-align: center;
+     }
+     @font-face
+          fonts can also be added using a @font-face ruleset in your css stylesheet instead of using a <link> element in your html document.
+               @font-face {
+                    font-family: "my font"
+                    src :  url('fonts/Roboto.woff2') format('woff2'),
+                           url('fonts/Roboto.woff') format('woff'),
+                           url('fonts/Roboto.ttf') format('truetype');
+               }
+     the box model {
+          width and height <- the dith and height of the content area
+          padding <- the amount of space between the content area and the border
+          border <- the thickness and style of the border surrounding the content area and padding 
+          margin <- the amount of space between the border and the outside edge of the element
+     }
+               
+     borders {
+          width <- the thicness of the border. can be set in pixels or with the keywords thin, medium , thick
+          style <- The design of the border. you can render 10 different styles 
+               hidden <- displays no border
+               dotted <- displays a series of rounded dots. the spacing of the dots is not defined by the specification and is implementation-specific. 
+                    the radius of the dots is half the computed value of the same side`s border-width;
+               dashed <- display a series of short square-ended dashes or line segmanes. the exact size and length of the segments are not defined by the
+                    specification and are implementation specific
+               solid <- display one solid straight line
+               double <- displays two straight lines that add up to the pixel size defined by border-width
+               groove <- siplays a border with a carved appearance. it is the opposite of ridge.
+               ridge <- displays a border with an extruded appearance
+               inset displays a border that makes the element appear embedded when appplied to a table cell with border-collapse set co collapsed, this value behaves like groove
+               outset <- displays a border that makes the element appear embossed it is the opposite of inset. when applied to a table cell with
+                    border-collapse set to collapsed, this value behaves like ridge
+     }
      
+     miniumum and maximum height and width
+          min-width <- ensures a minimum width of an elements box
+          max-width <- ensures a maximum width of an elements box
 
+     overflow 
+          controls what happens to content that spills or overflos, outside its box. the most commonly used values are
+               hidden <- when set to this value, any content that overflows will be hidden
+               scroll <- a scrollbar will be added to the elements box so that the rest of the content can be viewd by scrolling
+               visible <- when set to this value, the overflow content will be displayed outside of the containing element. note, this is the default value
+
+     visibility 
+          hidden <- hides an element
+          visible <- displays an element
+          collapse <- collapses an element
+           
+     the new box model
+          * {
+               box-sizing: border-box;
+          }
+     posititon {
+          static <- the default value (does not to be specified) 
+          relative <- allows you to position an elemetn relative to its default static positon on the web page
+               top <- moves the elemetn down from the top
+               bottom <- moves the element up from the bottom
+               left <- moves the element away from the left (to the right);
+               right <- moves the element away from the right (to the left )
+                    selector {
+                         position: relative;
+                         top: 50%;
+                         left: 120px;
+                    }
+               
+          absolute <- all other elements on the page will ignore the element and act as if the element is on the background
+          fixed <- stays on the browsers screen no matter what 
+               selector { 
+                    position: fixed;
+                    top: 0px;
+                    left: 0px;
+               }
+
+          sticky <- is the better one if you are doing multiple of something because when you want the sticky the elements have their own positions
+          but the absolute they stack on each other
+          
+     }
+     z-index
+          it makes so that one is in front 
+
+     float 
+          is used for wrapping text around an image while moving elements left and right for layout purposes is better left to tools like css grid and flexbox,          
+          left <- moves the element as far as possible
+          right <- moves the element as far as possible
+
+     clear 
+          if the element hits the side that its the side specified by the clear notation, it will move downwards
+               left <- the left side of the element will not touch any other element within the same containing element
+               right <- the right side of the element will not touch any other element within the same containing element
+               both <- neither side of the element will touch any other element within the same containing element
+               none <- the element can touch either side
+     
 the manderville dance

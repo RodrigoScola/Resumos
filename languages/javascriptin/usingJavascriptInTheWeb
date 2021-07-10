@@ -1,0 +1,21 @@
+to add code to an html file use the <script> tag
+     <script> 
+          function continue () {
+               return 'continue'
+          }
+     </script>
+if the script is too long, you can link it to a file using the src notation
+     <script src="filename"></script>
+when you want your script to be executed after the html loads you use the defer attribute
+     <script src="javascript.js" defer></script>
+
+with the async attribute it will only execute when the script is fully downloaded
+     <script src="file.js" async></script>
+
+DOM 
+     is like a tree structure , in css if you want to make a change to a nested element you
+          html body head nav li {
+               font-family: "Comic Sans";
+          }
+     its the same thing in the DOM 
+     
