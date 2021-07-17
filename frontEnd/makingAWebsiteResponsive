@@ -1,0 +1,111 @@
+Sizing Elements
+     em <- the font-size of the current element or the default base font-size set by the browser
+          the default is 16px. so if you want the font size to be 32px
+               font-size: 2em;
+          you alter the default by specifying it and then changing it
+               * {
+                    font-size: 18px;
+               }
+               selector {
+                    font-size: 1.5em;
+               }
+     rem <- root em, instead of checking, checks the html element
+          html {
+               font-size: 20px;
+          }
+          selector {
+               font-size: 2rem;
+          }
+
+min and max
+     min-property <- the minimum width that will be set on the browser
+     max-property <- the maximum width that will be set on the browser
+
+to scale an image 
+     selector {
+          overflow: hidden;
+          max-width: 100%;
+          height: auto;
+          display: block;
+     }
+Scaling background Images 
+     selector {
+     }
+Media Queries
+     example 
+          @media only screen and (max-width: 480px) {
+               body {
+                    font-size: 12px;
+               }
+          }
+
+               @media <- begins a media query rule and instructs the CSS compiler on how to parse the rest of the rule
+               only screen <- indicates what types of devices should use this rule, in early attempts to target different devices 
+range
+     if you dont know the size of the screen you can use in range
+          @media only screen and (min-width: 320px) and (max-width: 480px) {
+          }
+DPI
+     to target by resolution, you can use the min-resolution and max-resolution, these media features accept a resolution value in either dots
+     per inch or dots per centimeter.
+
+     @media only screen and (min-resolution: 3999dpi) {
+          // css for high resolution
+     }
+if only one condition on the media query is true you use an comma 
+     @media only screen and (min-width: 560px), (orientation: landscape) {
+
+     }
+
+flexbox
+     inline-flex <- if you want to use flex but just by the parent element 
+
+justify-content
+     flex-start <- all items will be positioned in order, starting from the left, with no space between before them
+     flex-end <- all items will be positioned in order, starting from the right, with no space between before them
+     center <- the content will be centered to the center of the screen 
+     space-around <- all items will be spaced with equal space between elements, with double the space between the first and the last elements
+     space-between <- all items will be spaced with equal space between elements, without extra space between the first and the last elements
+
+align-items 
+     flex-start <-  all elements will be positioned at the top of the parent container.
+     flex-end <-  all elements will be positioned at the bottom of the parent container.
+     center <- the elemtn will be positioned between the top and the bottom of the container
+     baseline <- the bottom of the content of all items will be aligned with each other
+     stretch <- the items will stretch from top to bottom of the container, elements with specified height will not stretch
+
+flex-grow
+     the browser will adjust to whenever the window is growing or shrinking, if you want your items to adjust to that, you can use flex-grow
+     using flex-grow, you can adjust how much your elements are stretched from the original screen value
+          flex-grow: 1; <- the size will percentually be the same
+          flex-grow: 2; <- the size will be 2x as wide;
+     the same thing are with flex-shrink
+          flex-shrink: 1; <- the size will percentually be the same
+          flex-shrink: 2; <- the size will be 2x as wide;
+
+flex-basis
+     is the setter of the base stretch for the flex-grow and flex-shrink
+
+using the flex you can bypass using the -basis,-grow,-shrink. by declaring one time, and specifying the first one (grow) second (shrink) third (basis);
+
+flex-wrap 
+     wrap <- child elements of a flex container that dont fit into a row will move to the next line
+     wrap-reverse <- same thing as wrap, but the first line is going down, instead of the second one
+     nowrap <- prevents items from wrapping, they will only shrink
+
+align content
+     flex-start <-  all elements will be positioned at the top of the parent container.
+     flex-end <-  all elements will be positioned at the bottom of the parent container.
+     center <- the elemtn will be positioned between the top and the bottom of the container
+     baseline <- the bottom of the content of all items will be aligned with each other
+     stretch <- the items will stretch from top to bottom of the container, elements with specified height will not stretch
+
+flex-direction
+     row <- from left to right starting from the top left corner
+     row-reverse <- from right to left starting from the top right corner
+     column <- from top to bottom starting from the top left corner
+     column-reverse <- from bottom to top starting from the bottom left corner
+
+flex-flow 
+     to declaer flex-wrap and flex-direction
+          

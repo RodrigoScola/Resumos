@@ -27,11 +27,26 @@ label
 
 type 
      password <- doesnt show anything, just dots
-     text <- just text?
+     text <- text
+          minlength <- the minimum length of the text
+          maxlength <- the maximum length of the text
      number <- only numbers 
           step <- if the user clicks on the arrow, how many numbers you want it to go up by
+          min <- minimum number that is in range
+          max <- maximum number that is in range
      range <- number but between a range
           min <- minimum number that is in range
           max <- maximum number that is in range
      checkbox <- its a check, you can have multiple checked at once
-     
+     radio <- like checkbox but there can only be one checked
+     select <- dropdown list
+          option <- option for the dropdown 
+     datalist <- if the select has too many options you can use a search bar
+          first you need an text input with the property lists to an datalist id, then just add stuff to the datalist
+               <input type='text' name='name' id='name' list='listid'>
+     textarea <- when the input needs a lot more detail 
+          rows <- number of rows
+          cols <- number of collumns
+          minlength <- the minimum length of the text
+          maxlength <- the maximum length of the text
+     submit <- submits the form 
