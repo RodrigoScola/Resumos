@@ -1234,3 +1234,26 @@ javascript Error Types
      RefereceError <- this error will happen when you use a variable that does not exists, make sure that the variables are properly declared
      TypeError <- this error will happen if you attempt to perform an operation on a value of the wrong type.
      
+classes
+     constructor
+          constructor is called when you use the new keyword, its creating a new instance of the class
+               class Dog {
+                    constructor(name) {
+                         this.name = name;
+                         this.behavor = 0;
+                    }
+               }
+               dog <- name of the class. capitalize and camelCase class names
+               constructor <- we invoke the constructor() every time you create a new instance of that class
+               this. <- this makes so we can use the new name of the class for example: const obj = new Object;
+                                                                                          obj.name;
+
+instance
+     you are able to make new classes instances by using the new keyword
+          const doggie = new Dog('good dog');
+
+inheritance
+     extends <- makes the methods of the main class also works on the subclass
+     super <-passes the argument of the subclass to the constructor of the main class;
+          if you create something in the main class, youll be able to use it on the sub class;
+          however, if you create something in the subclass, it will not be able to be used in the main class
