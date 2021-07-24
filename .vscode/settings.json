@@ -10,7 +10,11 @@
   "editor.comments.insertSpace": false,
   "editor.detectIndentation": false,
   "editor.find.addExtraSpaceOnTop": false,
-  "editor.fontFamily": "Fira Code",
-"editor.fontLigatures": true,
-"editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.fontFamily": "'monospace'",
+  "editor.fontLigatures": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "vim.argumentObjectOpeningDelimiters": ["["],
+  "vim.useCtrlKeys": false
 }
