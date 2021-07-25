@@ -12,7 +12,7 @@ real text vs text within images
           users can scale or magnify the text for better legibility without losing image quality
           its less taxing on the browser to load real text versus requesting a large image assets from a server
 
-semantic html elements https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+
 
 head / metadata tags
      head <- machine-readable information (metadata) about the document, like metatags, title, style sheets, scripts...
@@ -48,11 +48,32 @@ content sectioning
      pre <- preformatted text which has to be represented exactly as written
 
 inline text semantics 
-     a <- link
+     a <- link1212
      abbr <- abreviation or acronym (hovering the mouse on it shows the complete thing)
           <abbr title='Cascading Style Sheets'>CSS</abbr>
      b <- bold text 
      br <- line break
      cite <- the author of something, used as the author in a <blockquote>
      code <- text styled as code
-     data <- 
+     data <- time related content, machine readable
+     em <- tilted text
+     kbd <- the keyboard input element (letters are in a box simulating the keys);
+     mark <- highlighted text
+     q <- quotation syntax
+     s <- strikethrough text
+     small <- small text representing side-comments 
+     span <- is like a div (its element doesnt do anything until you use css or another similar thing)
+     strong <- bold text
+
+
+
+roles
+     people using screen readers are not able to use the site properly if the site doesnt have the roles property
+          <a href='#' role='link'>link</a>
+     when using ol, ul or stuff like that, its quite confusing for the reader, if we dont want the screen reader to read it, use the role presentation
+          <ul role='presentation'>
+               <li>something</li>
+               <li>something else</li>
+          </ul>
+
+aria label 

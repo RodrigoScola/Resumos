@@ -675,3 +675,6 @@ text
                none <- the element can touch either side
      
 
+if you want to make a pop up box on the browser
+     window.alert('message');
+

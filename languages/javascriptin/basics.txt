@@ -1257,3 +1257,17 @@ inheritance
      super <-passes the argument of the subclass to the constructor of the main class;
           if you create something in the main class, youll be able to use it on the sub class;
           however, if you create something in the subclass, it will not be able to be used in the main class
+
+sometimes you want a class that have methods that arent available in individual instances but can call directly from the class
+     class Animal {
+          constructor(name) {
+               this._name = name;
+               this._behavior = 0;
+          }
+          static generateName() {
+               const names = ['angelica','robert','camila']
+               return names[Math.round(Math.random() * names.length )]
+          }
+     }
+     now you can use the .generateName in the Animal class but if you want to create an instance of it, you wont be able to
+

@@ -10,7 +10,7 @@
   "editor.comments.insertSpace": false,
   "editor.detectIndentation": false,
   "editor.find.addExtraSpaceOnTop": false,
-  "editor.fontFamily": "'monospace'",
+  "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
