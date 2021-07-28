@@ -50,6 +50,12 @@ to create a new function the syntax is
 to create a new parameter just add it to the right of the function
     functionwithargs(x, y);
     console.log(x + y)
+you can return multiple values in a function and destructure later 
+     const weather_data = () => { return [1, 2, 3 , 4]}
+     [ dayOne , dayTwo , dayThree, dayFour ] = weather_data()
+you can do it with objects too 
+     const getName = (firstName , lastName) => { return { firstName , lastName }}
+     { firstName , lastName } = getName()
 loc = local variable = its only visible on that function
 function example with a parameter
      var num = 5;

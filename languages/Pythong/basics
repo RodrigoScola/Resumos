@@ -57,6 +57,14 @@ functions
         Bool(x) <- converts to a boolean 
         str(x) <- converts to an string 
         
+     multiple returns
+          you can return multiple values and return them in a function
+               def weather_data() {
+                    return 1,2,3,4
+               }
+          day_one , day_two , day_three, day_four = weather_data()
+
+
 methods
 lists methods
     functions that belong to objects
