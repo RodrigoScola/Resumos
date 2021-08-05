@@ -298,3 +298,4 @@ The Pixels array
         img.loadPixels()
         console.log(img.pixels);
 Manipulating the pixels array
+

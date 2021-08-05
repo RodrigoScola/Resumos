@@ -135,4 +135,81 @@ to transform an json file to a javascript object, use JSON.parse(file);
 to transform an javascript object to a json file JSON.stringify();
 
 http requests
+     GET <- getting information from some source (usually a website);
+     POST <- posting information to a source that will process the information and send it back 
+     
+xhr requests
+     async javascript xml (ajax) enablex requests to be made after initial page load, ajax was used only for xml formatted data
+     boilerplate from a get request
+          const xhr = new XMLHttpRequest();
+          const url = 'https://api-to-call.com/endpoint';
+          xhr.responseType = 'json';
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              return xhr.response
+                 }
+               }
+               xhr.open('GET',url);
+               xhr.send()
+     boilerplate from a post request
+          const xhr = new XMLHttpRequest()
+          const url = 'https://api-to-call.com/endpoint'
+          const data = JSON.stringify({id: '200'});
+          xhr.responseType = 'json';
+          xhr.onreadystatechange = () => {
+                 if (xhr.readyState === XMLHttpRequest.DONE) {
+                   return xhr.response
+            }
+          }
+          xhr.open("POST",url);
+          xhr.send(data)
+     
+requests with es6
+     a request returns a promise
 
+the fetch function
+     creates a request object that contains relevant information that an apin key needs
+     sends that request object to the api endpoint provided
+     returns a promise that ultimately resolves to a response object, wich contains the status of the promise with information the api sent back
+
+         fetch(url).then(response => {
+              if (response.ok) {
+                   return response.json()
+              }
+              throw new Error('Request failed');
+         },networkError => {
+              console.log(networkError.message)
+         }).then(jsonResponse => {
+              return jsonResponse
+         })
+         1 - we fetch all the api things on the fetch stuff
+         2 - if the fetch is succesfull we return the response in json, if the fetch is not succesfull we throw the error
+         3 - if the fetch is denied, we console the message
+         4 - then when the fetch is succesfull we return the response
+     the post function 
+          fetch(url,{method: "POST", headers: {
+               "content-type": 'application/json',
+               'apikey': apiKey,
+
+          }, body: data,
+          }).then(response => {
+               if (response.ok) {
+                    return response.json()
+               }
+               throw new Error('connection failed!');
+          }, networkError => {
+               console.log(networkError.message);
+          })
+async function boilerplate
+     const functionName = async () => {
+          try {
+          const response = await fetch(url);
+          if (response.ok) {
+               const jsonResponse = await response.json()
+               return jsonResponse
+          }
+          throw new Error('request failed');
+     }} catch(error) {
+          console.log(error.message);
+     }
+     
