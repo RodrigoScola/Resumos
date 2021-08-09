@@ -199,4 +199,90 @@ useState
           const addfunction = (item) => {
                setArray(currentArray => [...currentArray,item]);
           }
+
+     to keep the elements the same in the array
+          const [array, setArray] = useState([]);
+          setArray(currentArray => [...currentArray + newElement]);
+
+     to keep the elements the same in an object
+          const [object, setObject] = useState({})
+          setObject(currObj => ({...currObj,[name]:value}))
+          (name and value its to just change what has been changed and not resave everything else);     
+
+useEffect 
+     will do the functions each time the component is rendered
+     to control when the useEffect is called, use the [] afther the first param on the function, if a component changes and is not
+     on that array, it will not call the useEffect, but if it is, it will call useEffect
+          useEffect(()=> {
+
+          },[]);
+          if you use [], it will only call it once, when that component is being rendered for the first time
      
+
+     1957
+rules of hooks
+     only call hooks at the top level
+     only call hooks from react functions
+
+     because you cant call hooks that are not on the top of the function, instead of using if statements to see if an useEffect can happen
+     you can do the conditions on the [] array and setting the values to null or undefined
+
+  useEffect(() => {
+    setMenu(getMenu('/menu').then(menuResponse => {}))
+    Promise.all([setMenu('/menu'), setNewsFeed('/news-feed'), setFriends('/friends')]).then(
+      ([menuResponse, newsFeedResponse, friendsResponse]) => {
+        setMenu(menuResponse.data);
+        setNewsFeed(newsFeedResponse.data)
+        setFriends(friendsResponse.data)
+
+      }
+    );
+  }, []);
+
+Advanced React 
+
+styles
+     inline styles
+          if you want to do some css styles in the react component youll have to do {{}}
+               the outer curly braces inject javaScipt into the jsx  and the inner curly braces create a javaScript object literal
+                    they make this a valid javascript object
+     object literal is an object that is not defined by any variable
+
+     if you want to make styles in javascript youll need to use '' but in react you dont need to do that
+          javascript
+               const object = {
+                    'background-color': 'black',
+                    'margin-top': '20px'
+               }
+          react
+               const object = {
+                    backgroundColor: 'black',
+                    marginTop: '20px';
+               }
+     style value syntax
+          in javascript the values are always strings, you can do it in react aswell but if the value is in px, you dont need to make it
+          a string and add the pc, the value is already assumed if its a number
+
+     share styles across multiple components
+          you can create an object on a file with the properties
+               const properties = {
+                    background: background,
+                    fontSize: 20,
+               }
+          and when you want to use it in a file
+               import { properties } from './props.js'
+               <div style={{background: properties.background, fontSize: properties.fontSize}}></div>
+
+separate container components from prsesntational components
+     maybe one container has too many responsabilities and you cant use it in other parts of your site as easilym so you need to 
+     separate the components
+the presentational components only job is to contain html like jsx. it should be an exported component and will not render itself because a presentational component will always get rendered by a 
+container component
+
+propTypes 
+     are useful for two reasons
+          prop validation
+               they are to ensure that your props are doing what they are needed to do
+          documentation
+               documentating props makes it easier to glance at a file and quickly understand the components class inside
+               
