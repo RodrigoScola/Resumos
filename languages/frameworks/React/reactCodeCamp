@@ -279,10 +279,40 @@ separate container components from prsesntational components
 the presentational components only job is to contain html like jsx. it should be an exported component and will not render itself because a presentational component will always get rendered by a 
 container component
 
-propTypes 
+propTypes // they are made so that the prop only accept a variable type (string, number, bool);
      are useful for two reasons
           prop validation
                they are to ensure that your props are doing what they are needed to do
           documentation
                documentating props makes it easier to glance at a file and quickly understand the components class inside
-               
+
+apply proptypes 
+     you need to import prop-types
+          import PropTypes from 'prop-types'
+     then you can declare propTypes as a static property for your component after the component has been defined
+     for each prop that the component class expects to receive, there can be one property on your propTypes object
+          ComponentName.propTypes = {
+               propName: PropTypes.string
+          }
+     if you add the property isRequired, you will get a console warning that the prop wasnt sent
+
+PropTypes in Function Components
+     its the same thing...
+          Component Way => {
+               class ComponentName extends Component {
+                    render() {
+                         return <h1>{this.props.name}</h1>
+                    }
+               }
+               ComponentName.propTypes = {
+                    name: PropTypes.string
+               }
+          }
+          functional way => {
+               const ComponentName = props => {
+                    return <h1>{props.name}</h1>
+               }
+               ComponentName.propTypes = {
+                    name: PropTypes.string
+               }
+          }

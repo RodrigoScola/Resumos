@@ -1,0 +1,29 @@
+redux is used with react to manage application state
+
+one way data flow
+     in most applications there are three parts
+          state - the current data used in the app
+          view - the user interface displayed to users
+          actions - events that a user can take to change the state
+     the flow of information would go like this 
+          the state holds the current data used by the apps components
+          the view components display that state data
+          when a user interacts with the view like clicking a button the state will be updated to display that new state
+     with plain react, these three parts overlap quite a bit. components not only render the user interface but they also may manage their own state.
+     when actions that may change the state occur, components need to directly communicate these changes to each other
+     redux helps separate the state, the view and actions by requiring that the state be managed by a single source. requests to change the state are sent to this single source by view components in the form of an action,
+     any components of the view that would be affected by these changes are informed by this single source. by imposing this structure redux maces our code more readable reliable and maintainable
+
+state     
+with redux, a state can be any js type, including number string boolean, array and object
+     const state = ['this is state 1','This is state 2','this is state 3']
+actions 
+     they are a separate components that take the state and transfer it to somewhere else
+          const action = {
+               type: 'todos/addTodo',
+               payload: state
+          }
+     every action MUST have a type with a string value, it describes the action
+     an action has a payload with an obj value
+     when an action is generated and notifies other parts of the application, we say that the action is dispatched
+     
