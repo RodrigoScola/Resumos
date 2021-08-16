@@ -1,4 +1,6 @@
 redux is used with react to manage application state
+ installing redux
+     npm i redux
 
 one way data flow
      in most applications there are three parts
@@ -26,4 +28,109 @@ actions
      every action MUST have a type with a string value, it describes the action
      an action has a payload with an obj value
      when an action is generated and notifies other parts of the application, we say that the action is dispatched
-     
+
+reducers
+     is a plain js function that defines how the current state and an action are used in combination to create the new state
+          heres an example for a todo app
+               const toDoReducer = (state = initialState, action) => {
+                    switch(action.type) {
+                         case 'todos/addTodo': {
+                              return [ ...state, action.payload];
+                         }
+                         case 'todos/removeAll: {
+                              return [];
+                         }
+                         default: {
+                              return state
+                         }
+                    }
+               }
+     there are a few things about this reducer that are true for all reducers
+          its a plain javascript function
+          defines the application next state given a current state and a specific action
+          it returns a default initial state if no action is provided
+rules of reducers   
+     they should only calculate the new state value based on the state and action arguments
+          there should not be a variable holding the state that you want, what you can do is make another prop on the object that you want to use
+     they are not allowed to modify the existing state. instead they mus copu the existing state and make changes to the copied values
+          they cant use .push to push to the array, instead they must return [...array, action.newState];
+     they must not do any async logic or do anything else than returning a value;
+          they cant have operations inside the reducer, they must be on the object
+               instead of using this
+                    const obj = {
+                         type: 'hello there',
+                         payload: '2'
+                    }
+                    const reducer = (obj) => {
+                         switch(obj.type) {
+                              case 'hello there': {
+                                   return obj.payload + Math.random()
+                              }
+                         }
+                    }
+               you should use this 
+                    const obj = {
+                         type: 'hello there',
+                         payload: '2' + Math.random(); 
+                    }
+                    const reducerName = (obj) => {
+                         switch(obj.type) {
+                              case 'hello there' : {
+                                   return obj.payload
+                              }
+                         }
+                    }
+
+store 
+     where in js the reducer take place
+     the state is set of data values that describes the application it is used to render the user interface (ui)
+     users interact with the ui wich dispatch actions to the store. an action is an object that expresses a desired change to the state
+     the store generates its next state using a reducer function which receibes the most recent action and the current state as inputs 
+
+instead of calling the reducer everytime you want to use a function, you can use the store
+     before the store
+          let reducer = reducerFunction(state,{type: 'command',payload:'payload'})
+     after the store
+          let store = createStore(reducerFunction);
+               store.dispatch(action);
+creating a store
+     importing 
+          import { createStore } from 'redux';
+
+the store object returned by the createStore() provides a number function it was created with
+store.dispatch() it updates the state, its only argument is an action object, which must have a type prop describing the desired state change
+     const action = { type: 'actionDescriptor'};
+     store.dispatch(action);
+store.getState() returns the current value of the store state.
+
+instead of writing the same code multiple times, you can make a function
+     const returnFunction = () => {
+          return {type: "typeDescriptor"};
+     }
+     store.dispatch(returnFunction());
+
+in an application an user triggers an event listener (click, hover...), same thing in redux, actions dispatched to the store can be listended for an responed to using the
+     store.subscribe() - accepts one method, a function (listener) that is executed when the store state changes
+
+     const count = () => console.log(store.getState)
+     store.subscribe(count) // now everytime theres a change, this function will be called
+
+you can combine reducers with the method combineReducers(reducers) 
+     first you create the rootReducer and assign it with the result of the combineReducers
+          const reducers = {
+               todos: todosReducer,
+               filter: filterReducer,
+          }
+          const rootReducer = combineReducers(reducers);
+          const store = createStore(rootReducer);
+
+if the reducers are on different files, you import them and them you put them in an object     
+     const obj = {
+          reducerA: firstReducer,
+          reducerB: secondReducer,
+          reducerC: thirdReducer
+     }
+you can destruct props as a variable in a react component
+     const functionName = props => {
+          const {propName1,propName2} = props
+     }
