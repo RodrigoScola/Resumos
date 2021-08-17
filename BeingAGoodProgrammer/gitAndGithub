@@ -68,6 +68,34 @@ what is a markdown
           n.
 to make it work, save it as .md
      
-          
+if you want to have multiple states of project ( one that you can test stuff and not matter )
+to check on which branch youre on 
+     git branch
+will return the name of the branch
 
-      
+to create a new branch   
+     git branch branchName
+
+you can switch to the new branch with
+     git checkout branchName
+
+to merge branchs
+     git merge
+this will merge the masters branch with the new branch
+
+to delete branch 
+     git branch -d branchName
+
+engenheiro dev ops
+     o que e 
+     o que faz
+     o que precisa pra suceder
+     onde atua
+
+
+git teamwork
+
+git clone
+     git clone remote_location clone_name
+     remote_location - tells git where to go to find the remote ( this coule be a web address/filepath );
+     clone_name - is the name you give to the directory in which git will clone the repository
