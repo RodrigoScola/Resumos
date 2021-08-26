@@ -1,0 +1,19 @@
+what is backend
+the front end is what happens in the browser, the backend is what happens on the server
+
+DNS 
+     hte dns stands for domain name system and its a backbone technology that makes the www possible. at the most basic level DNS provides a  key/value
+     lookup from a domain name (google.com) to an ip address (932.234.23) which is required in order for your computer to route a request to the appropriate server. analogizing to phone numbers the difference between a domain name and ip address is the difference between 
+     call Joe and call 129-349-1233.
+
+scaling
+     horizontal scaling means that you add more machines into your pool 
+     vertical scaling means that you scale by adding more power (cpu, ram) to an existing machine
+
+load balancers
+     they re magic sauce that makes scaling horizontally possible. they route incoming requests to one of many application servers that are typically clones/mirror images of each other
+     and send the response from the app server back to the client. any one of them should process the request the same way so its just a matter of distributing the requests across the set of servers so none of them are overloaded
+
+web application servers  
+     they execute the core business logic that handles a users requests and sends back html to the users browser to do their job they typically communicate with a variety of backend infrastructure
+     such as databases, cathing layers job queeues searching 

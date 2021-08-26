@@ -99,3 +99,9 @@ git clone
      git clone remote_location clone_name
      remote_location - tells git where to go to find the remote ( this coule be a web address/filepath );
      clone_name - is the name you give to the directory in which git will clone the repository
+
+git fetch 
+     to fetch the new stuff from the repository and make your project up to date
+          git fetch
+     that doesnt meant that the changes are available, to that you need to merge the repository
+          git merge origin/master
