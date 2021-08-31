@@ -3,7 +3,8 @@ the front end is what happens in the browser, the backend is what happens on the
 
 DNS 
      hte dns stands for domain name system and its a backbone technology that makes the www possible. at the most basic level DNS provides a  key/value
-     lookup from a domain name (google.com) to an ip address (932.234.23) which is required in order for your computer to route a request to the appropriate server. analogizing to phone numbers the difference between a domain name and ip address is the difference between 
+     lookup from a domain name (google.com) to an ip address (932.234.23) which is required in order for your computer to route a 
+     request to the appropriate server. analogizing to phone numbers the difference between a domain name and ip address is the difference between 
      call Joe and call 129-349-1233.
 
 scaling
@@ -11,9 +12,132 @@ scaling
      vertical scaling means that you scale by adding more power (cpu, ram) to an existing machine
 
 load balancers
-     they re magic sauce that makes scaling horizontally possible. they route incoming requests to one of many application servers that are typically clones/mirror images of each other
-     and send the response from the app server back to the client. any one of them should process the request the same way so its just a matter of distributing the requests across the set of servers so none of them are overloaded
+     they re magic sauce that makes scaling horizontally possible. they route incoming requests to one of many application servers 
+     that are typically clones/mirror images of each other
+     and send the response from the app server back to the client. any one of them should process the request the same way so its
+      just a matter of distributing the requests across the set of servers so none of them are overloaded
 
 web application servers  
-     they execute the core business logic that handles a users requests and sends back html to the users browser to do their job they typically communicate with a variety of backend infrastructure
+     they execute the core business logic that handles a users requests and sends back html to the users browser to do their job they 
+     typically communicate with a variety of backend infrastructure
      such as databases, cathing layers job queeues searching 
+
+database servers    
+     every modern web application leverages one or more databases to store information. databases provide ways of defining your data 
+     structures, inserting new data, finding existing data...
+
+caching service 
+     a caching service provides a simple key baalue data store that makes it possible to sabe and lookup information in close to o(1) time 
+     applications typically leverage caching services to save the results of expensive computations so that its possible to retreive
+     the results from the cache instead of recomputing them the next time theyre needed.
+     an application might cache results from a database query calls to external services html for a given url and many more
+
+job queue & servers
+     most web applications need to do some work asynchronously behind the scenes thats not directly associated with responding the
+      entire internet in order to return search results it does not do this every time you search. instead it crawls the web asynchonously 
+      updating the search indexes along the way,
+     while there are different architectures that enable asynchronous work to be done, the most ubiquitous is the job queue
+     they store a list of jobs that need to be run asynchronously the simplest are first in first out queuest through most applications
+      end up needing some sort of priority queuing system.
+
+full text search service
+     many if not most web apps support some sort of search feature where a user provides a text input (often called query) and the app 
+     returns the most "relevant" results the technology powering this functionality is typically referred to as full-text search which 
+     leverages an inverted index to quickly look up documents that contain the query keywords 
+
+services
+     once an app reaches a certain scale there will likey be certain services that are carved out to run as separate appliccations they 
+     are not exposed to the external world but the app and other services interact with them
+          account service stores user data across all the site. which allows the developer to easily offer cross sell opportunities and 
+               create a more unified user experience
+          content service stores metadata for all of the site. provides interfaces for downloading the content and viewing download history
+          payment service provides an interface for billing customer credit cards
+          html pdf service provides a simple interface that accepts html and returns a corresponding pdf document
+data 
+     today companies live and die based on how well they harness data. almost every app these days once it reaches a certain scale, leverages a data pipeline to ensure that data can be collected store and analyzed
+          sends data
+          the raw data as well as the final transformed/augmented data are saved to cloud storage
+          the transformed/augmented data is often loaded into a data warehouse for analysis
+
+cloud storage  
+     is a simple and scalable way to store acess and share data over the internet
+
+CDN 
+     stands for content delivery network and the technology provides a way of serving assets such as static html css javascript and 
+          images over the web much faster than serving them from a single origin server. it works by distributing the content across many 
+          edge servers around the worldso that users end up downloading asssets from the edge servers instead of the origin server
+
+what is a web server 
+     on the hardware side a web server is a computer that stores web server softeare and a websites component files (html, css, images, js files)
+          a wev server connects to the internet and supports physical data intercchange with other devices connected to the web
+     on the software side a web server includes several parts that control how web users access hosted files. at minimum this is an http server,
+     static web server
+          consists of a computer with an http server (software) we call it static because the server sends its hosted files as is to your browser
+     dynamic web server
+          consists of a static web server plus extra software most commonly an application server and a database. we call it dynamic because the application
+          server updates the hosted files before sending content to your browser bia the http server
+
+Communication between client and server
+     in the rest architecture clients send requests to retriedve or modify resources and servers send responses to these requests. lets take a look at the standard ways to make requests and send responses
+MAKING requests     
+     rest requires that a client make a request to request or  modify data on the server. a request generally consists of 
+          an http verb, which definest what kind of operation to perform
+          a header which allows the client to pass along information about the request, a path to a resource. an optional message body containing data
+http verbs
+     GET - retreive a specific resource by id or a collection of resources
+     POST - create a new resource
+     PUT - update a specific resource (by id)
+     DELETE - remove a specific resource by id 
+
+Headers and accept parameters
+     in the header of the request the client sends the type of content that it is able to receive from the server. this is called the accept field, and it ensures that the server does not send data that cannot be understood or processed by the client.
+     for example a text file containing html would be specified as 'text/html'. if the text contained css it would be specifies as 'text/css'
+     a generic file would be 'text/plain'
+
+     text - 'text/filetype'
+     image - 'image/imageType'
+     video - 'video/videoType' 
+     application - 'application/applicationType'
+     for example a client accessing a resource with an id and an article resource would be like this
+     GET /articles/id
+     accept: text/html, application/xhtml
+Paths
+     requests must follow a path to a resource that the operation should be performed on. in restful apis paths should be designed to help the client know what is going on
+
+sending responses
+     in cases where the server is sending a data payload to the client, the server must include a content-type in the header of the response, this content type header field 
+          alerts the client to the type of data it is sending in the response body 
+
+response codes
+     responses from the server contain status codes to alert the client to information about the success of the operaion. 
+          200 - ok - standard response for succesfull http requests
+          201 - created - standsrd response for an http request that resulted in an item being created 
+          204 - no content - standar http request where it doesnt return anything
+          400 - bad request
+          403 - forbidden
+          404 - not found 
+          500 - internal server error
+
+examples  
+     POST - {
+          fetch(link, {method: "POST",
+          body: {
+               "customer": {
+                    "name": 'customerName',
+                    "email': 'customerEmail'
+               }
+          }})
+     }
+     GET - {
+          fetch(link, {method: "GET", Accept: 'application/json'})
+     }
+     PUT - {
+          fetch(link, {method: "PUT", 
+          "customer": {
+               "name": 'customerName',
+               'email':'customerEmail',
+          }})
+     }
+     DELETE - {
+          fetch(link, {method: "DELETE"});
+     }
