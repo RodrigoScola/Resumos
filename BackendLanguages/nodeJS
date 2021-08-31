@@ -177,4 +177,5 @@ routing in nodeJS
      about? = path
      name=Victor = queryString
 
-     
+learnyounode is a node package that contains a series of workshop lessons which will teach you the basics of writing node applications
+     https://github.com/workshopper/learnyounode
