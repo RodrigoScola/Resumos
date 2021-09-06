@@ -1,0 +1,17 @@
+is a gui that aids in the development of apis by making it easy to test requests and their responses in an organized way
+
+download
+     https://www.postman.com/
+to make a get request
+     the dropdown item is set to get
+     the url that your server is running on and the path
+          https://localhost:3000/users
+     hit send
+the response should be all the users if your code is correct and it should be like this
+     app.get('/users',(req,res) => {res.send(users)});
+if you want to get a specific user you just alter the url
+     app.get('/users/:id',(req,res) => { res.send(users[req.param.id].name)});
+making a post request
+     change the type of request from get to post and add the url
+     in order to create a new resource in the database, we need to supply a user obj to create in the body of post request. select the body tab and the raw radio button
+     the input should be json obj so select the dropdown that says text and change to application/json
