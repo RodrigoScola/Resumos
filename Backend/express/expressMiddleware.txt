@@ -41,4 +41,35 @@ middleware stacks
                console.log(req.body);
           }
           app.use(expressMiddleware);
-     that makes it able that we can have multiple functions per app.
+     that makes it able that we can have multiple functions per app.getData
+
+open source middleware: logging
+     instead of logging stuff on the console and adding a bunch of console.log, you can use morgan and use morgan('tiny');
+
+open-source middleware: body parsing 
+     makes so that will only look at json requests
+          const bodyParser = require('body-parser');
+          app.use(bodyParser.json());
+Error handling middleware
+     when an error is thrown somewhere in the code, we want to be able to communicate that there was a problem to the user.
+     error handling middleware needs to be the last app.use in the file, because if an error happens, it will stop the whole process
+     the basic error handler 
+          app.use((err,req,res,next) => {
+               console.error(err.stack);
+               res.status(500).send('Something Broke');
+          });
+     if we anticipate an operation might fail, we can invoke the error-handling middleware. you do it by passing an error obj as an argument to next();
+     when called with an error will call any applicable error-handling software
+          app.use((req,res,next) => {
+               const newValue = problematicFunction();
+               if (newValue == undefined) {
+                    let undefinedError = new Error('newValue is not defined');
+                    undefinedError.status = 400;
+                    return next(undefinedError);
+               }
+               next()
+          });
+          app.use((err,req,res,next) => {
+               const status = err.status || 500;
+               res.status(status).send(err.message);
+          })

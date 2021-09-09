@@ -1,0 +1,60 @@
+when programming interface, you will expect certain information in a requested url.
+     an example
+          app.get('/sorcerers/:sorcererName',(req,res,next) => {
+               const sorcerer = Sorcerers[req.params.sorcererName];
+               res.send(sorcerer.info);
+          })
+          app.get('/sorcerers/:sorcererName/spellhistory',(req,res,next) => {
+               const sorcerer = Sorcerers[req.params.sorcererName];
+               const spellhistory = Spells[sorcerer.id].history;
+               res.send(spellhistory);
+          })
+          in the code above we need to extract the request parameter :sorcererName from the url in both instances, and end up duplicating the necessary code so that it appears in both routes. when working with routes that require params we might find ourselves in a position where multiple different routes require the same parameters and use it to identify the same data 
+router.param()
+     express is mindful of the pain point of replicated parameter matching code and has a method specifically for this issue, when a specific parameter is present on a route, we can write a function that will perform the necessary lookup and attach it to the req in subsequent middleware that is run
+     app.param('spellId',(req,res,next,id) => {
+          let spellId = Number(id);
+          try {
+               const found = spellBook.find(spell => {
+                    return spellId == spell.id
+          });
+               if (found) {
+                    req.spell = found;
+                    next()
+               } else {
+                    next(new Error('your magic spell was not found in any of our tomes'))
+               }
+          }
+          catch (err) {
+          next(err);
+          }
+     });
+     in the code above we intercept any request to a route handler with the :spellId parameter. note that in the app.param spellId does not have the : and the actual id is passed on the 4th argument
+     inside the app.param, you should use the fourth argument as the params value, not a key from the req.params obj
+
+merging parameters
+     when you want to create something complex in software you model out the base components and use composition to create the relashionships
+     when youre biulding web endpoints we might want to access some property of a complex obj. in order to do it in express we can design a nested router,
+     innvoked within another router, to pass params the parent router has acces to, we pass a special config when defining the router
+          const sorcererRouter = express.Router();
+          const familiarRouter = express.Router({mergeParams: true});
+          sorcererRouter.use('/:sorcererId/familiars", familiarRouter);
+
+          sorcererRouter.get('/',(req,res,next) => {
+               res.status(200).send(sorcerers);
+               next()
+          });
+          sorcererRouter.param('sorcererId',(req,res,next) => {
+               const sorcerer = getSorcererById(id);
+               req.sorcerer = sorcerer;
+               next();
+          });
+          familiarRouter.get('/',(req,res,next) => {
+               res.status(200).send(`Sorcerer ${req.sorcerer} has familiars ${getFamiliars(req.sorcerer)})
+          });
+          app.use('/sorcerer',SorcererRouter)
+     in the code above we define two endpoints the /sorcerer and /sorcerer/:sorcererId/familiars. the familiars are nested into the sorcerer endpoint, indicating the relashionship that a sorcerer has multiple familiars;
+     take careful note of the { mergeParams: true } argument tells express that the familiarRouter should have access to parents passed into its parentRouter, the sorcererRouter. we then tell express that the path for the familiarRouter is the same as the path for the 
+     sorcererRouter with the additional path /:sorcererId/familiars;
+     we can create a family of routes (router) biult by appending routes to familiarRouter`s base /sorcerer/:sorcererId/familiars;
+     
