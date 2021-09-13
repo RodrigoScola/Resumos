@@ -1,0 +1,25 @@
+headless testing is a way of running browser ui tests without the "head" wich is no browser ui or gui
+by using headless testing, youre guaranteed a more lightweight, less resource intensive and scripted automation.
+with healdess testing, you can generate screenshots and pdfs of websites scrape content from websites, automate form submisssion and simulate keyboard input
+
+headless testing tools
+     phantomJS
+     nightmare
+     headless Chrome
+     puppeteer 
+
+tdd feature level tests
+     the hardest part of creating a full stack web application is knowing where to start. 
+
+feature test toolbelt
+     to write the most effective feature tests, you are going to need some additional tools, in this lesson well use Chai, phantomJS, Webdriverl/o
+     the first feature we want to right is to see if the state of the application is empty, to do that we 
+          describe('poetry web app',() => {
+               describe('user visits root',() => {
+                    it('page starts blank',() => {
+
+                    });
+               });
+          });
+          the 2 describes is just to organize stuff and the it is the individual test.
+     
