@@ -203,3 +203,50 @@ percentages
               end ) as pct_awaywins
     from match 
     group by season
+
+CODECADEMY
+
+sql for backEnd Development
+
+what is a database
+    database is a set of data stored in a computer. this data is usually structured in a way that makes the data easily accessible
+
+what is a relational database? 
+    is a type of database. it uses a structure that allows us to identify and access data in relation to another piece of data in the database
+
+tables
+    tables can have hundreds, thousands or millions rows of data, they are called records 
+    they can also have many columns of data. they are labeled with a descriptive name (age, name, height) and have a specific data type;
+
+that is an RDBMS
+    relational database management systems
+    is a program that allows you to create, update,administer a relational database.
+
+statements
+    is a text that the database recognizes as a valid command, they end in a ;
+
+to create a table 
+    create table table_name (
+        colName dataType,
+        colName2 dataType,
+        colName3 dataType...
+    );
+
+insert 
+    the insert statement inserts a new row into a table;
+    you can use the insert statement when you want to add new records
+        insert into tableName (id,name,age)
+        values (1,'justin Bieber', 22);
+            insert into is a clause that adds the specified row or rows
+            (id, name , age) is a param identifying the columns that data will be inserted into 
+            values is a clause that indicates the data being inserted
+    you have to manually do the first value (insert into tableName (id,name,age)) for every entry if you are hardcoding it
+
+alter 
+    the alter table statement adds a new collumn to the table 
+    to add a new collumn or row you add 
+        alter table table_name
+        add column/row column/row name dataType;
+
+update  
+    
