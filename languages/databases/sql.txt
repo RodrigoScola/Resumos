@@ -249,4 +249,107 @@ alter
         add column/row column/row name dataType;
 
 update  
+    the update statement edits a row in a table
+    you also use set to change the information to 
+    if you want to query you can use the where statement
+        update table_name
+        set row_name = 'thingYouWantToTest'
+        where id = 4;
     
+delete
+    deletes one or more rows from a table, you can use the statement when you want to delete existing records.
+        delete from table_name
+        where row_name is null;
+            this deletes every row that the row_name is null
+
+constraints 
+    that add information about how a column that can be used are invoked after specifying the data type for a column
+        create table table_name (
+            id integer primary key,
+            name text unique,
+            date_of_birth text not null,
+            date_of_death text default 'not applicable'
+        );
+    primary key is a constraint that if someone were to insert a row with an identical value to a row, it will result in a constraint violation
+    unique - a table can have many unique collumns but only one primary key
+    not null - they need to have a value
+    default - if a value is not met, the following value should be the default one
+
+PostgreSQL data types
+    boolean - true or false;
+    varchar or varchar(n) - text with variable length
+    date - calendar date
+    integer - whole number 
+    numeric(a,b) - decimal with total digits (a) and digits after the decimal point (b)
+    time - time of day 
+
+    to create a table with those types of data
+        create table volunteers (
+            id integer, 
+            name varchar,
+            hours_available integer,
+            phone_number varchar(12),
+            email varchar,
+        );
+improving tables with constraints 
+    sometimes weve planned the data model and inserted data before realizing that the model could benefit from the addition of a constraint
+    if that happens you just need to alter the table and alter the column to set it to the constraint
+        alter table table_name
+        alter column column_name set not null;
+    if you later decide that you dont want it you just drop the constraint
+        alter table table_name
+        alter column_name drop not null;
+    but if you alter the constraint and there was some null values, sql will throw an error, so first you need to add something and then change the constraint
+        update table_name
+        set title = 'TBD'
+        where title is null;
+
+        alter table table_name
+        alter column column_name set not null;
+    if you want to add an unique constraint
+        alter table table_name
+        add unique(thing[,thing2[,thing3...]]);
+
+intro to check constraints
+    in some situations you dont every value to be valid, and even with the base constraints that might not be enough 
+        for example you want an email, but sql will accept everything that is a text, meaning that it accepts asdb, 123, butts...
+        thats why you use the check 
+            alter table table_name
+            add check (count ( thing ) > 10 );
+        if you and thing1 and thing2 to be true you use the and, if you need at least one of them to be true, you use or
+            alter table table_name
+            add check(estimated_length > 0 and estimated_length < 120);
+
+            alter table table_name
+            add check(estimated_length = 12 or estimated_length = 1);
+        
+primary keys 
+    an important part of biulding a relational data model requires defining relationships between tables. Primary keys are essential to defining these relationships
+    they are a collumn or set of columns that uniquely identifies a row within a database table
+    implementing a primary key is simultaneously enforcing an unique and not null constraints through the whole database
+
+    to add an primary key after the table was created
+    alter table attendees
+    add primary key (id);
+
+foreign keys 
+    when discussing relations between tables, you may see the terms parent table and child table to describe two tables that are related. more specifically, calues inserted into child table must be validated by data thats already present in a parent table
+    this prop that ensures data can be validated by referencing another table in the data model is called referential integrity, it can be enforced by adding a foreign key on the child table that references the primary key of a parent table
+    if the prent table doesnt contain the data a user is attempting to insert PostgreSQL will reject the insert or update and throw an error.
+        alter table table_name 
+        add foreign key (talk_id)
+        references another_table_name (id)
+    suppose that we now want to enter a registration for talk_id = 100, which does not yet exist in the talks table. trying to insert a registration for this yields an error because there is not a corresponding entry in talks to reference yet. the error lets us know that the constraint is working 
+        insert into registrations values (100,1,'2020'08-15 9:00:00',1);
+            SQL Error [23503]: ERROR : insert or update on table "registrations"
+            violates foreign key constraint "registrations_id_fkey"
+            Detail: Key (talk_id)=(100) is not present in table "talks"
+
+by default a foreign key will prevent everyone from deleting or updating a row of a parent table that is referenced by a child table.
+you can circumvent that by adding an cascade clause( on update cascade, on delete cascade) cause the updates or deletes to automatically be applied to any child tables
+for example suppose wed like to set up the databse to automatically unregister attendees from a talk thats been cancelled. to do this we could apply on delete cascade to the foreign key constraint
+    alter table registrations
+    add foreign key (talk_id)
+    references talk (id) on delete cascade
+when we try to delete a value from talks, we notice that all registration for talk_id = 1 are removed aswell. this preserves referential integrtity by removing any row associated with the talk
+
