@@ -353,3 +353,4 @@ for example suppose wed like to set up the databse to automatically unregister a
     references talk (id) on delete cascade
 when we try to delete a value from talks, we notice that all registration for talk_id = 1 are removed aswell. this preserves referential integrtity by removing any row associated with the talk
 
+queries     
