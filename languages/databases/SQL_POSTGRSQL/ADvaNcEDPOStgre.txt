@@ -1,0 +1,15 @@
+acid 
+     atomicity
+     consistency
+     isolation
+     durability
+
+acid is a set of propertis of database transactions intended to guarantee data validity despite errors, power failures and other mishaps
+
+characteristics
+     atomicity 
+          transactions are often composed of multiple statements. atomicity guarantees that each transactions is treated as a single unit 
+     consistency 
+          a transaction can only bring the database from one valid state to another, maintaining database invariants. any data written to the database must be valid according to the definad rules. 
+     isolation 
+          
