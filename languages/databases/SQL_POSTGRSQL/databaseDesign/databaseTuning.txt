@@ -1,0 +1,12 @@
+group of activities used to optimize and homogenize the performance of a database. usually overlaps with query tuning, but refers to design of the database files 
+
+i/o tuning 
+     hardware and software configuraion of disk subsystems are examined: raid levels and configuration
+     frequently joined tables and indexes are placed so that as they are requested from file storage, they can be retrueved in parallel from separate disks simultaneously
+
+dbms tuning 
+     setting the recovery interval, time needed to restore the state of data to a particular point in time, assigning the breaking up of work from a single query into tasks assigned to different processing resources 
+
+database maintnance 
+     includes backups, column statistics updates and defragmentation of data inside the database files 
+     
