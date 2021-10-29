@@ -27,3 +27,5 @@ nodeJS documentation
      https://nodejs.org/en/docs/
 express documentation
      http://expressjs.com/en/4x/api.html
+how to enable server side rendering in a react app 
+     https://www.digitalocean.com/community/tutorials/react-server-side-rendering
