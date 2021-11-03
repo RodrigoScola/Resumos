@@ -38,10 +38,8 @@ a = goes to the right and puts you ro insert mode
 A = takes you to the end of the line & puts you on insert
 x = deletes the letter that the cursor is on
 I = takes you to the beginning of the line & puts you in insert mode
-rt = replaces a letter
+r = replaces a letter
 <> = tabs to each direction
 q + keys = creates a macro and assign that macro to the key
 @ + keys = replays that macro
 
-
- 

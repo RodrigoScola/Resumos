@@ -259,3 +259,29 @@ app.route
                     res.send('updateBook')
                })
                
+express application generator 
+     npx express-generator
+
+consuming webhooks with node.js and express 
+     is there a way for the app to know when x happens? thats where webhooks come in
+
+how they work 
+     they are a way to send a notification. they are essentially one-way, the sender doesnt care what you do with it, or in some cases even who you are,
+     if this sounds familiar, thats because it is. a webhook ends up looking like an api call, but in reverse. rather than you calling the api and requesting data, 
+     the api is calling you to let you know something happened
+     the flow looks like this
+          web service sends payload to the apps endpoint 
+          app receives payload.
+          the app responds and confirms receipt 
+          apps acts upon the payload data 
+     {
+          app.use(bodyParser.json());
+          app.post('/hook',(req,res) => {
+               res.sendStatus(200);
+          })
+     }
+What can you do with this information?
+     Each API provides different types of events. Webhooks shine when dealing with some event that needs your app to take action. 
+     This is valuable when data stored by your application relies on data that might change outside of your app’s interface, or when you need to know 
+     that an action occurred. Webhooks are popular for connecting services to chat applications,like Slack or Discord, because they can send messages when an event occurs.
+
