@@ -31,3 +31,9 @@ how to enable server side rendering in a react app
      https://www.digitalocean.com/community/tutorials/react-server-side-rendering
 node-postgres docs 
      https://node-postgres.com/
+heroku postgres 
+     https://devcenter.heroku.com/categories/postgres-basics
+sequelize orm 
+     https://sequelize.org/master/
+nextjs router 
+     https://nextjs.org/docs/api-reference/next/router
