@@ -1,0 +1,17 @@
+cookies
+     session cookie 
+          exists only in temp memory while the user navigates a website. they are identified by the browser by the absence of an expiration date assigned to them 
+     persistent cookie 
+          expires at a specific date or after some time. they can be used by advertisers to record information about a user
+     secure cookie 
+          can only be transmitted over an encrypted connection, they cannot be transmitted over unencrypted connections
+     http-only cookie 
+          cannot be accessed by client side apis
+     same-site cookie 
+          cookie that is only the same domain to the website
+     third-party cookie 
+          belongs to a domain different from the one shown in the address bar 
+
+sessions and cookies 
+          
+     

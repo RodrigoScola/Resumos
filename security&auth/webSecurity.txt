@@ -73,3 +73,13 @@ basic authentication
 hmac 
      one of the downsides of basic authentication is that we need to send over the password on every request. also it does not safeguard against tampering of headers or body
 
+managing security in psql 
+     when dealing with security, it makes sense to keep those levels in mind in order to approach security-related issues in an organized way 
+          bind addresses: listen_addresses in the psql.conf file 
+          host based access control: the pg_hba.conf file 
+          instrance level permissions - users roles, db creation, login and replication 
+          database-level permissions - connecting, creating schemas, and so on 
+          schema level permissions - using schema and creating objects inside a schema 
+          table level permissions - allowing or restricting access to columns 
+          row-level security - restrict access to rows 
+          

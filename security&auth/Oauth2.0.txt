@@ -1,0 +1,29 @@
+enpoints
+     the token endpoint is used by clients to get an access token and optionally refresh token from the auth server 
+tokens 
+     access token 
+          used to for auth and authorization to get access to the resources from the resource server
+     refresh token
+          used to get new access token, when the old one expires. instead of the normal grant type, the client provides the refresh token and receives a new access token
+          suing refresh tokens allows for having a short expiration time for access token to the resource server, and a long expiration time for access to the authorization server 
+token types 
+     bearer    
+          uses https security and the request is not signed or encrypted
+     mac tokens 
+          more secure than bearer tokens, similar to signatures, in that they provide a way to have partial cryptographic verification of the request 
+     
+grants 
+     methods to get access tokens from the auth server are called grants. the same method used to request a token is also used by the resourcce server to validate a token 
+
+     authorization code 
+          the resource owner allows access. an authorization code is then sent to the client via vrowser redirect and the auth is used to get the access token 
+     implicit 
+          similar to auth code, instead of using the code as intermediary, the token is sent directly as a browser redirect 
+     resource owner credentials 
+          grants takes the uses the resource owner password to obtain the access token
+     client credentials
+          are used instead of the resource owners
+
+grant type extensions 
+     are used by clients through an absolute uri together with a grant type parameter and adding any additional params to the endpoint 
+
