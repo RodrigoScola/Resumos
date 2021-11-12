@@ -42,3 +42,14 @@ postgre auth docs
      https://www.postgresql.org/docs/current/client-authentication.html
 roles in psql 
      https://severalnines.com/database-blog/postgresql-privileges-user-management-what-you-should-know
+     DO APOLLO STUFF https://www.apollographql.com/docs/tutorial/introduction/
+dotenv docs
+     https://github.com/motdotla/dotenv#readme
+same origin docs 
+     https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
+cross origin docs 
+     https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS (COOL COURSE BRO! VERY COOL)
+csrf stuff & how to do it 
+     https://portswigger.net/web-security/csrf
+permission levels for a user account repository  
+     https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-user-account-settings/permission-levels-for-a-user-account-repository
