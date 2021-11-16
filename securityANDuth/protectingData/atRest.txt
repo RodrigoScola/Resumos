@@ -67,7 +67,8 @@ check a user entered password
 managing env variables in node with dotenv
     why use them
         they are excellent for decoupling application configurations. typically applications require many variables to be set in order for them to work
-        by relying on external config, the app can easily be deployed on different enviroments, these changes are independent of code changes so they do not require the application to be rebiult to change
+        by relying on external config, the app can easily be deployed on different enviroments, these changes are independent of code changes so they do
+        not require the application to be rebiult to change
         some data that should be stored as env variables
             http and port address
             database, cache and other storage info
@@ -83,4 +84,5 @@ dotenv
         HOST=localhost
         PORT=3000
     the variables are declared just as if you were entering them in the shell before running the node command
-when using env variables, a new person using the code will not know the variables that are in the .env file, thats why you create an .sample-env file where you just add the variables but dont fill in the values
+when using env variables, a new person using the code will not know the variables that are in the .env file, thats why you create an .sample-env file where you
+just add the variables but dont fill in the values
