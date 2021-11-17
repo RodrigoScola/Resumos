@@ -1,0 +1,31 @@
+code coverage 
+     unit testing practices that have to target all areas of the code at least once and is done by devs 
+test coverage 
+     testing every requirement at least oce and is done by the QA team 
+
+how to adopt a proper test coverage method?
+     you must know how much work is involved and where the design tasks are at. this way they are going to be aware if more tests are to be added. to do this, you could use an rtm as is the typical practice 
+how to make sure everything is tested 
+     - every tester should be aware of the requirements and the testing methods 
+     - prioritize the requirements and focus the energy where its most needed 
+     - be informed about how a certain release is different from the previous one so you can identify critical requirements more accurately and focus on maximum positive coverage 
+     - adapt test automation 
+     - use test management tools to always stay in the know 
+     - smart work assignment 
+     - maintaining a cheklist for all tasks and miscellaneous activities 
+     - interact more with the team to get insight into the application behaivour
+     - identify most impacting problems in the initial builds itself so the later ones can work for better stiability and reach those areas blocked by prior problems 
+
+critical areas and methods for effective testing 
+     resource jumbling 
+          exchange tasks between the team members. this helps improve engagement and prevent knowledge concentration 
+     compatibility coverage 
+          make sure you are aware and including the different browsers platforms to test the application 
+     ownership 
+          make testers accountable and give them a free rein for the module/task that they are working on. this helps build responisbility and lets them try creative ways instead of following the beaten down the road 
+     deadlines
+          knowing the release deadlines prior to the commencement of testing phase helps with effective planning 
+     communication
+          stay in touch with the dev and other teams in between release cycles to know whats going on
+          
+     

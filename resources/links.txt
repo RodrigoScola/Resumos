@@ -53,3 +53,7 @@ csrf stuff & how to do it
      https://portswigger.net/web-security/csrf
 permission levels for a user account repository  
      https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-user-account-settings/permission-levels-for-a-user-account-repository
+sanitize html
+     https://github.com/apostrophecms/sanitize-html#readme
+How to Escape/Sanitise Untrusted Data/Params in SQL Queries to avoid SQL Injection in node.js?
+     https://github.com/dwyl/learn-postgresql/issues/64
