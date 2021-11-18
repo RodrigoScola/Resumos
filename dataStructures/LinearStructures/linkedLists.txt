@@ -1,0 +1,21 @@
+the list is comprised of a series of nodes as shown in the diagram. the head node is the node at the beginning of the list
+the list is terminated when a nodes link is null (called the tail node)
+common operations on a linked list may include 
+     adding nodes 
+     removing nodes
+     finding a node
+     traversing 
+adding a new node   
+     adding a new node to the beginning of the list requires you to link your new node to the current head node 
+removing a node 
+     if you remove a link to a node, that nodes data and following node could be lost to the application, leaving you with orphaned nodes 
+     to properly maintain the list when removing a node you need to be sure to adjust the link on the previous node so that it points to the following one 
+
+linked lists 
+     are comprised of nodes
+     the nodes contain a link to the next node (and the previous for bidirectional linked lists)
+     can be unidirectional or bidirectional
+     are a basic data structure and form the basis for many other data structures 
+     have a single head node, which serves as the first node in the list 
+     require soma maintenance in order to add or remove nodes 
+     

@@ -57,3 +57,9 @@ sanitize html
      https://github.com/apostrophecms/sanitize-html#readme
 How to Escape/Sanitise Untrusted Data/Params in SQL Queries to avoid SQL Injection in node.js?
      https://github.com/dwyl/learn-postgresql/issues/64
+jest mock functions docs 
+     https://jestjs.io/docs/mock-functions
+selenium browser automation docs 
+     https://www.selenium.dev/documentation/
+axios 
+     https://www.npmjs.com/package/axios#example

@@ -1,0 +1,58 @@
+what are nodes?
+     they are fundimental building blocks of many computer science data structures 
+     an individual node contains data and links to other nodes. each data structure adds additional constraints or behavior to these features to create the desired structures 
+the data contained within a node can be a variety of types, depending on the language you are using
+
+node linking 
+     often due to the data structure, nodes may only be linked from a single other node, this makes it very important to consider how you implement modifying or removing nodes from a data structure 
+     if you remove the single link to a node. that nodes data and any linked nodes could be lost to the application. when this happens to a node, its called an orphaned node 
+
+nodes :
+     contain data, which can be a variety of data types 
+     contain links to other nodes. if a node has no links or they are a null, you have reached the end of the path you were following
+     can be orpahned if there are no existing links to them
+
+creating a node 
+     its just a class, the data and new node are in the constructor 
+          {
+               class Node {
+                    constructor(data, next = null) {
+                         this.data = data,
+                         this.next = next || null;
+                    }
+               }
+          }
+setNext node 
+     {
+          class Node {
+               constructor(data,next){
+                    this.data = data,
+                    this.next = next || null
+               }
+               setNextNode(node) {
+                    this.next = node;
+               }
+          }
+          const firstnode = new Node('hello there');
+          const secondNode = new Node('also hello there');
+          firstnode.setNextNode(secondNode);
+     }
+setNextNode Node validation 
+     right now the node accepts everything and everything can be put there, this can be a problem because everything can be in there an easily can cause a crash 
+     to prevent unnecessary complications, lets add a check that only allows arguments that are instanceof nodes or null 
+     {
+          setNextNode(node) {
+               if (node instanceof Node || node == null) {
+                    return this.next = node
+               }
+               throw new Error('this is not accepted')
+          }
+     }
+loop through nodes
+     with the getNext node (only returns the this.next) you can loop through the data 
+     {
+          while (currentNode) {
+               console.log(currentNode)
+               currentNode = currentNode.getNextNode()
+          }
+     }
