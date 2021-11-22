@@ -19,3 +19,277 @@ linked lists
      have a single head node, which serves as the first node in the list 
      require soma maintenance in order to add or remove nodes 
      
+     creating a linked list
+     {
+          class Node {
+               constructor(data, next = null) {
+                    this.data = data;
+                    this.next = next
+               }
+               selectNextNode(node) {
+                    if (!(node instanceof Node)) {
+                         throw new Error('not an instance of node')
+                    }
+                    this.next = node
+               }
+               getNextNode () {
+                    return this.next
+               }
+          }
+          class LinkedList {
+               constructor() {
+                    this.head = null
+               }
+               addToHead (data) {
+                    const newHead = new Node(data)
+                    const currentHead = this.head
+                    this.head = newHead;
+                    if (currenthead) [
+                         this.head.setNextNode(currentHead)
+                    ]
+               }
+          }
+     }
+adding to a tail 
+     now that you can add to the head of the list, the next step is to be able to add to the tail
+     to do this, start with a temporary tail variable that will be set to the lists head, if there is none, the list is empty 
+     we will iterate through the list until we find the last node. once weve found the current tail, we will add a pointer from that node to the tail 
+     {
+          addToTail(data) {
+               let tail = this.head;
+               const dataNode = new Node(data)
+               if (!tail) {
+                    this.head = dataNode
+               } else {
+                    while(tail.getNextNode() !== null) {
+                         tail = tail.getNextNode()
+                    }
+                    tail.setNextNode(dataNode)
+               }
+          }
+     }
+removing head 
+     {
+          removeHead () {
+               const removedHead = this.head
+               if (!removedHead) return 
+               this.head = removedHead.getNextNode()
+               return this.head.data;
+          }
+     }
+swapping elements in a linked list 
+     given an input of a linked list, data1 and data2 
+          iterate through the list looking for the node that matches data1 to be swapped, keeping track of the nodes previous node as you iterate
+          repeat step1 looking for the node that matches data2 (giving you node2 and node2prev)
+          if node1prev is null, node1 was the head of the list, so set the lists head to node2 
+          otherwise set node1prev next node to node2 
+          if node2prev is null, set the lists head to node1 
+          otherwise set node2prev next node to node1 
+          set node1 next node to node2 next node 
+          set node2 next node to node1 next node 
+finding the matching and preceding node 
+     we will start by setting node1 equal to the head of the list, and then creating a while loop that runs while node1 isnt null. inside the loop we will check if node1 data matches data1
+     if so we break out of the loop as we have found the correct node, if theres no match, we update node1prev to be node1 
+          {
+               function swapNodes (list1,data1,data2) {
+                    let node1 = list.head 
+                    let node2 = list.head 
+                    let node1Prev = null;
+                    let node2Prev = null;
+                    while(node1 !== null) {
+                         if (node1.data == data1) {
+                              break
+                         }
+                         node1Prev = node1;
+                         node1 = node1.getNextNode
+                    }}}
+updating the preceding nodes pointers
+     the next step is to set node1prev and node2prev next nodes, starting with node1prev. we will start by checking if node1prev is null.
+     if it is, then the node1 is the head of the list, and so we will update the head to be node2. if node1prev isnt null then we set its next node to be node2 
+          {
+               if (node1prev === null) {
+                    return list.head = node2
+               }
+          node1prev.setNextNode(node2);
+          }
+edge cases 
+     if either one is null, return 
+     if the data is equal, return 
+          {
+               if (node1 === null || node2 === null) return
+               if (node1 === node2) return
+          }
+
+two pointer linked list techniques 
+
+two pointers moving in paralel 
+     a function that returns the nth last element of a singly linked list 
+     youll need some way of knowing how far you are from the end of the list, however in a singly linked list, theres no easy way to iterate back through the list when you find the end 
+     one thing that might first come to mind is use an array to store a representation of the linked list, while the approach results in an easy to read implementation, it could use memory and not make sense to use a linked list 
+          an approach like this results in an extra O(n) space being allocated 
+               {
+                    const arrayNthLast = (list, n) => {
+                         const linkedListArray = []
+                         let currentNode = list.removeHead();
+                         while (currenNode) {
+                              linkedListArray.push(currentNode) 
+                              currentNode = currentNode.getNextNode() 
+                         }
+                         return list[list.lenght - n];
+                    }
+               }
+     instead of creating an entire paralel list, you can solve the problem by using two pointers at different positions in the list but moving at the same rate
+          {
+               nthlastNodePointer = null
+               tailPointer = linkedListHead;
+               count = 0;
+
+               while tailPointer 
+                    move tailPointer forward 
+                    if count >= n 
+                         set nthlastNodePointer to head if its still null or move forward 
+                    increment count 
+               return nthlastNodePointer
+          }
+     
+doubly linked lists 
+     the new thing that you have to do is 
+          add nodes to both ends of the list 
+          remove ndes from both ends of the list 
+          find and remove a node from anywhere in the list 
+          traversing through the list 
+
+adding to the list 
+     add to the head 
+          when adding to the head of the doubly linked list, we first need to check if there is a current head ti the list. if there isnt then the list is empty
+          and we can simply make the current head to the list 
+     add to the tail 
+          set the current tails next pointer to the new tail 
+          set the new tails previous pointer to the current tail 
+          set the new tails next pointer to null 
+     removing from the head and tail 
+          due to the extra pointer and tail property, removing the head from a doubly linked list is slightly more complicated than removing the head from a singly linked list, however the previous pointer and tail property make it much simpler to remove the tail of the list
+          as we dont have to traverse the entire list to be able to do it 
+     removing the head 
+          removing the head involves updating the pointer at the beginning of the list. we will set the previous pointer of the new head (element directly after the current head to null) and update the head property of the list. if the ehad was also the tail, the tail removal process will occur aswell 
+     removing the tail 
+          similarly removing the tail involves updating the pointer at the end of the list, we will set the next pointer of the new tail (the element directly before the tail) to null, and update the tail property of the list. if the tail was also the head, the head removal process will occur aswell 
+     removing from the middle of the list 
+          we must set the removed nodes preceding nodes next pointer to its following node 
+          we must set the removed nodes following nodes previous pointer to its preceding node 
+     
+doublyLinkedListExample =
+     {
+          class DoubleLinkedList  {
+               constructor() {
+                    this.head = null;
+                    this.tail = nail
+               }
+          }
+     }
+adding to head 
+     since a doubly linked list has an additional tail property and is built with nodes that each have two pointers, there are a few more steps 
+          start by checking to see if there is a current head to the list 
+          if there is (meaning the list is not empty) then we want to reset the pointers at the head of the list 
+               set the current heads previous node to the new head 
+               set the new heads next node tot he current head 
+          update the head property to be the new head 
+          finally if there isnt a current tail to the list (meaning that the list is empty);
+               update the tail property to be the new head since that node will be both the haed and the tail 
+     {
+          addToHead(data) {
+               const newHead = new Node(data);
+               const currentHead = this.head;
+               if (currentHead) {
+                    currentHead.setPreviousNode(newHead)
+                    newHead.setNextNode(currentHead)
+               }
+               this.head = newHead;
+               this.tail = newHead;
+          }
+     }
+addToTail 
+     check if there is a current tail to the list 
+          if there is (meaning that the list is empty), reset the pointers at the tail of the list 
+               set the current tails next node to the new tail 
+               set the new tails previous node to the current tail 
+          update the tails property to be the new tail 
+          finally if there isnt a current head to the list (meaning that the list was empty)
+               update the head property to be the new tail since that node will be both the head and tail 
+
+due to the added tail property, removing the head of the list in a doubly linked list is more complicated than doing so in a singly linked list 
+     start by checking if theres a current head to the list, if there isnt 
+          the list is empty, so theres nothing to return and the method ends 
+     update the lists head to be the current heads next node
+     if there is still a head to the list (meaning that the head had more than one element than we started)
+          set the heads previous node to null since there should be no node before the head of the list 
+     if the removed head was also the tail of the list (meaning was only one element in the list) call .removeTail to make the necessary changes to the tail of the list 
+     return the old head 
+          {
+               removeHead() {
+                    const removedHead = this.head;
+                    if(!removedHead) return 
+                    this.head = removedHead.getNextNode()
+                    if (this.head) this.head.setPreviousNode(null);
+                    if (this.tail === removedHead) this.removeHead()
+                    return removedTail.data
+               }
+          }
+remove tail 
+     start by checking if there is a current tail, if theres not 
+          the list is empty, so theres nothing to return and the method ends 
+     update the lists tail to be the current tail 
+     if there is still a tail to the list (meaning the list had more than one element when we started)
+          set the tails next node to null ince there should be no node after the tail of the list 
+     if the removed tail was also the head of the list (meaning there was only one element in the list), call removehead to make the necessary changes to the head of the list 
+     return the old tail 
+     {
+          removeTail() {
+               const removedTail = this.tail
+               if (!removedTail) return 
+               this.tail = removedTail.getPreviousNode();
+               if (this.tail) {
+                    this.tail.setNextNode(null)
+               }
+               if (removedTail === this.head) {
+                    this.removeHead()
+               }
+               return removedTail.data
+          }
+     }
+remove by data 
+     in addition to removing the head and the tail of the list, it would also be useful to remove a specific element that could be anywhre in the list, imagine that you have a list of errands to run, you dont have them in order though 
+     when you finish doing your laundry that cuold be somewhere in the middle of the list, you should be able to remove it 
+          iterate through the list to find the matching node
+          if there is no matching element in the list 
+               return null 
+          if there is a matching node, we will then check to see if it is the head or the tail of the list
+               if so, call the corresponding removeHead or removeTail
+          if not that means the node was somewhere in the middle of the list, in that case
+               remove it by resetting the pointers of its previous and next nodes 
+          return the node 
+     
+     {
+          removeByData(data) {
+               let nodeToRemove;
+               let currentNode = this.data;
+               while (currentNode) {
+                    if (currentNode.data == data){
+                         nodeToRemove = currentNode
+                         break
+                    }
+                    currentNode = currentNode.getNextNode()
+               }
+               if (!nodeToRemove) return null
+               if (nodeToRemove === this.head) this.removeHead()
+               else if (nodeToRemove === this.tail) this.removeTail()
+               else {
+                    const nextNode = nodeToRemove.getNextNode()
+                    const previousNode = nodeToRemove.getPreviousNode()
+                    nextNode.setPreviousNode(previousNode);
+                    previousNode.setNextNode(nextNode)
+               }
+               return nodeToRemove
+          }
+     }
+     
