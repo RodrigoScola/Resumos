@@ -1,0 +1,75 @@
+a queue is a linear collection of nodes that exclusively adds nodes to the tail and removes nodes from the head
+they can be implemented using different underlying data structures, but one of the more common methods is to use a singly linked list
+
+queues implementation 
+     they can be implemented using a linked list as the underlying structure the front of the queue is equivalent to the head node of a linked list and the back of the queue is the tail of the list 
+     since operations are only allowed affecting the front or back of the queue any travrsal or modification to other nodes within the linked list is disallowed. since both ends of the queue must be accessible
+     if a queue has a limit on the amount of data that can be placed into it, its considere a bounded queue 
+     similar to stacks, attempting to enqueue data onto an aready full queue will result in a queue overflow, if you attempt to dequeue data from an empty queue, it will result in a queue underflow 
+
+     { 
+          class Queue {
+               constructor () {
+                    this.queue = new LinkedList();
+                    this.size = 0;
+               }
+          }
+     }
+Enqueue 
+     is a fancy way of saying add to a queue 
+     when adding a node to a queue, the new node is always added to the end of the queue, if the queue is empty the node were adding becomes both the head and tail of the queue, if the queue has at least one other node, the added node only becomes the new tail 
+      {
+          enqueue(data) {
+               this.queue.addToTail(data);
+               this.size++
+               console.log(`Added ${data} to queue! the size of the queue is ${this.size}.`);
+          }
+      }
+Dequeue 
+     remove items from the head of the queue 
+          {
+               dequeue() {
+                    const data = this.queue.removeHead() 
+                    if (!data) return null;
+                    this.size--
+                    const message = `Removed ${data}! Queue size is ${this.size}!`,
+                    console.log(message)
+                    return {
+                         message
+                         data
+                    }
+               }
+          }
+bounded queues 
+     some queues require limits on the number of nodes they can have, while other queues dont  
+          maxSize, a property that bounded queues can utilize to limit the total node count 
+          hasRoom returns true if the size is not at maxSize 
+          is empty returns true if the size is 0 
+     {
+          class Queue {
+               constructor(maxSize = Infinity) {
+                    this.size = 0;
+                    this.queue = new LinkedList();
+                    this.maxSize = maxSize
+               }
+               hasRoom() {
+                    return this.size < maxSize 
+               }
+               isEmpty() {
+                    return this.size ? false : true
+               }
+          }
+     }
+avoiding underflow 
+     underflow
+          when we try to remove elements from an already empty queue we cannot remove a node if it doesnt exist
+          underflow affects queues wheter they are bounded or unbounded 
+               {
+                    dequeue() {
+                         if (this.isEmpty()) throw new Error(`queue is empty`)
+                    }
+               }
+avoiding overflow 
+     when we add an element to a queue that does not have room for a new node 
+     this condition affects bounded queues because they have fixed sizes they cannot exceed, for unbounded queues, though they dont have a size restriction, at some point the size of the queue will exceed the available memory we can use to store the queue 
+     
