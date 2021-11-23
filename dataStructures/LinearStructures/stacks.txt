@@ -1,0 +1,56 @@
+stack is a linear collection of nodes that adds data to the head or top, however unlike a queue a stack removes data from the head of the stack 
+     push - adds data to the top of the stack 
+     pop - returns and removes data from the top of the stack 
+     peek - returns data from the top of the stack without removing it 
+each plate has a weight (data), the first plate you add , onto the floor is both the bottom and top of the stack. each weight added becomes the new top of the stack 
+at any point the only weight you can  remove or pop from the stack is the top one 
+you can peek and read the top weight without removing it from the stack 
+
+stacks can be implemented using a linked list as the underlying data structure because its more effient than a list of arrays
+a constraint that may be places on a stack is its size, this is done to limit and quantify the resources the data structure will take up when its full
+attempting to push data onto an already full stack will result in a stack overflow. similarly if you attempt to pop data from an empty stack, it will result in an underflow 
+
+push and pop 
+     {
+          //push 
+               push(value) {
+                    this.head.addToHead(value);
+                    return value
+               }
+          //pop 
+               pop() {
+                    const value = this.stack.removeHead()
+                    return value 
+               }
+     }
+sizing 
+     size matters, you can overfill them with data, since you dont want the stack to overflow, you need to go back and make a few modifications to the methods that help us track and limit the stack size so that you can keep the stack healthy 
+          {
+               class Stack {
+                    constructor(maxSize = Infinity) {
+                         this.stack = new LinkedList();
+                         this.size = 0;
+                         this.maxSize = maxSize;
+                    peek () {
+                         if (this.isEmpty()) return
+                         if (this.isEmpty()) return null 
+                         return this.stack.head.data;
+                    }
+                    isEmpty() {
+                         if (this.size) return false
+                         return true
+                    }
+                    push(value) {
+                         this.stack.addToHead(value)
+                         this.size++
+                         return value
+                    }
+                    pop() {
+                         if (this.isEmpty()) return console.log(`stack is empty')
+                         const value = this.stack.removeHead
+                         this.size--
+                         return value
+                    }
+               }
+          }
+     
