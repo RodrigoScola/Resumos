@@ -63,3 +63,8 @@ selenium browser automation docs
      https://www.selenium.dev/documentation/
 axios 
      https://www.npmjs.com/package/axios#example
+
+HTML TO JSON
+     https://www.convertjson.com/html-table-to-json.htm
+     https://na.finalfantasyxiv.com/jobguide/monk/
+     https://ffxivrotations.com/3bqb

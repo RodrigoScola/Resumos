@@ -1,0 +1,163 @@
+hash maps map keys to their related values, and one of the most efficient data structures when it comes to retrieving stored data
+this is because the key associated with every value added allows for faster retrieval later on
+
+tables 
+     a datas structures main utility is allowing for data to be represented in a way that resembles the way people will use that data 
+     
+maps 
+     being a map means relating two pieces of information
+     in order for a relationship to be a map, every key that is used can only be the key to a single value 
+hash functions 
+     takes a string or some other type of data as input and returns an array index as output. in order for it to return an array index,
+     the hash map implementation needs to know the size of the array. if the array we are saving values into only 4 slots, the hash maps 
+     hashing method should not return an index bigger than that 
+     in order for the hash map implementation to guarantee that it returns an index that fits into the underlying array, the has function
+     will first compute a value using some scoring metric: the hash value 
+     then takes that value mod the size of the array, this guarantees that the value returned by the hash funciton can be used as an index 
+     into the array were using 
+     it is acutally a defining feature of all hash funcitons that they greatly reduce any possible inputs into a much smaller range of 
+     potential outputs 
+collisions 
+     hash functions are designed to compress data from a large number of possible keys to a much smaller range. because of this 
+     compression its likely that the hash function might produce the same hash for two different keys, this is known as a hash collision. 
+     there are several strategies for resolving hash collisions 
+separate chaining 
+     hash maps are frequently employed because looking up a value for a given key is quick. looking up a value in a liked list is much slower
+     than a perfect hash map of the same size. a hash map that uses separate chaining with linked lists but experiences frequent colisions 
+     loses one of its most essential features
+saving keys 
+     a hash colision resolution strategy like separate chaining involves assigning two keys with the same hash to different parts of the underlying
+     data structure. how do we know which values relate back to which keys? if the linked list at the array index given by the hash has multiple elements 
+     they would be indistinguishable to someone with just the key 
+     if you save both the key and the value, then you are able to check against the saved key when were accessing data in a hash map 
+     by saving the key with the value, you can avoid situations in which two keys have the same hash code where we might not be able to distinguish 
+     which value goes with a given key. when you go read or write a value for a key you: calculate the hash for the key, find the appropriate index for 
+     that hash key, begin iterating through the linked list, for each element if the saved key is the same as the key, return the value. otherwise, continue iterating
+     through the list comparing the keys saved in that list with the key 
+
+Linear Probing 
+     another popular hash colision strategy is open addressing, in open addressing we stick to the array as the underlying data structure,
+     but you continue looking for a new index to save the data if the first result of the hash has a different keys data 
+     a common open method of open addressing is called probing, means continuint to find new array indices in a fixed sequence until an empty index is found 
+
+implementing a hash map 
+     the hash map will create an empty array that will hold values. a hashing funciton will return an index in the array wheere the value will be stored
+          {
+               class HashMap {
+                    constructor(size = 0) {
+                         this.HashMap = new Array(size).fill(null);
+                    }
+               }
+          }
+hashing 
+     the hashing function is the secret to efficiently store and retrieve values in a hash map
+     hashing function must always return the same index when given the same key, this is important because we will need to hash the key again to retrieve the stored value 
+     gettin an integer representing an index can be done by summing up each character code of the key (as a numeric value) with the running total of the previously summed character codes 
+      {
+           hash(key) {
+                let hashCode = 0;
+                for(let i = 0; i < key.length; i++) {
+                     hashCode += hashCode + key.charCodeAt(i);
+                }
+                return hashCode;
+           }
+      }
+compression 
+     the current hashing function will return a wide range of integers - some of which are not indices of the hash map array, to fix this we need to use compression 
+     compression means taking some input and returning an output only within a specific range of integers 
+     in the map implementation were going to have the hashing funciton handle compression in addition to hashing, this means well add an additional line of code to compress the hashCode before you return it 
+           {
+                hash(key) {
+                   let hashCode = 0;
+                   for(let i =0; i < key.length; i++) {
+                        hashCode += hashCode + key.charCodeAt(i);
+                   }
+                   return hashCode % this.hashmap.length  
+                }
+           }
+assign 
+     the only thing left to do is assign the value to the index we generated. a method .assign() will handle the logic needed to take in a key and store the value in a particular index 
+          {
+               assign (key, value) {
+                    const arrayIndex = this.hash(key);
+                    this.hashMap[arrayIndex] = value
+               }
+          }
+retrieve 
+     to be a fully functional hash map, you have to be able to retrieve the values we are storing
+     this method will make use of the hash() deterministic nature to find the value were looking for in the hash map 
+          {
+               retrieve (key) {
+                    const arrayIndex = this.hash(key);
+                    return this.hashmap(arrayIndex);
+               }
+               const glossary = new HashMap(3);
+               glossary.assign('semordniplap','words that form different words when reversed');
+               console.log(glossary.retrieve('semordniplap')) // words that form different words when reversed 
+          }
+collisions 
+     we have a hash map implemetation but what happens when two different keys generate the same index? 
+     instead of returning 'hello' and 'there', you retrieve 'there' twice. this is because both key-value pairs are assigned to the same index 0 and the 
+     first value was overwritten 
+
+collisions : assigning 
+     the first step in implemeting a collision strat is update the constructor and assign methods to use linked lists and nodes inside the hashmap array
+     this will allow to store multiple values at the same index by adding new nodes to a linked list instead of overwiting a single value, this strategy 
+     of handling colisions is called separate chaining 
+
+     instead of an empty array, new hash maps will have an internal array filled with empty linked lists 
+          {
+               class HashMap {
+                    constructor(size = 0) {
+                         this.hashMap = new Array(size).fill(null).map(() => new LinkedList())
+                    }
+                    assign(key,value) {
+                         const arrayIndex = this.hash(key);
+                         const linkedList = this.hashmap[arrayIndex]
+                         if (linkedList.head === null) {
+                              return linkedList.addToHead({key, value})
+                         }
+                    }
+               }
+          }
+collisions looping 
+     if there are already values stored nodes at an index, we need to loop over each node in the list in order to determine how to proceed 
+     the two possibilities well encounter while looping are 
+          the key we are looking for and the key of the current node is the same, so we should overwrite the value 
+          no node in the linked list matches the key, so we should add the key-value pair to the list as the tail node 
+          {
+               assign(key,value) {
+                    const arrayIndex = this.hash(key);
+                    const linkedList = this.hashMap(arrayIndex);
+                    if (!linkedList.head) {
+                         return linkedList.addToHead({key,value});
+                    }
+                    let current = linkedList.head;
+                    while(current) {
+                         if (current.data.key === key) {
+                              current.data = {key,value};
+                         }
+                         if (!current.next) {
+                              current.next = new Node({key,value});
+                              break
+                         }
+                         current = current.next
+                    }
+               }
+          }
+collisions retrieving    
+     when we retrieve hash map values we also need to be aware that different keys could point to the same array index leading us to retrieve the wrong value 
+     to avoid this well search through the linked list at an index until we find a node with a matching key, if we find the node with the correct key well return the value otherwise well return null
+     {
+          retrieve(key) {
+               const arrayIndex = this.hash(key);
+               let current = this.hashmap[arrayIndex].head;
+               while(current) {
+                    if (current.data.key === key) {
+                         return current.data.value
+                    }
+                    current = current.next
+               }
+               return null
+          }
+     }
