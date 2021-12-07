@@ -1,0 +1,90 @@
+they are another variation of the tree data structure and are adept at keeping track of the maximum or minimum value held within 
+we can picture min-heaps as binary trees, where each node has at most two children. as we add elements to the heap theyre added from left to right until weve filled the entire level 
+adding an element 
+     sometimes you will add an element to the heap that violates the heaps essential properties 
+     we need to restore the fundamental heap properties. this restoration is known as heapify. adding an element to the bottom of the tree and moving upwards
+     as long as weve violated the heap properties well swap the offending child with its parent until we restore th props or until theres no parent left 
+
+maxHeap
+     for any given element its parents value is greater than or equal to its value 
+minHeap 
+     for any given element its parents value is less than or equal to its value 
+     {
+          class MinHeap {
+               constructor(heap = null, size = 0) {
+                    this.heap = [heap];
+                    this.size = size;
+               }
+          } 
+     }
+add 
+     {
+          add(value) {
+               this.heap.push(value);
+               this.size++
+               return this.bubbleUp();
+          }
+     }
+bubble up 
+     the element at index 1 is the minimum value in the list 
+     every child element in the list must be larger than its parent 
+     {
+          bubbleUp() {
+               let current = this.size;
+               while (current > 1 && this.heap[current] < this.heap[getParent(current)]) {
+                    this.swap(current,getParent(current)) {
+                         current = getParent(current);
+                    }
+               }
+          }
+          getParent(current) {
+               return Math.floor((current / 2 ));
+          }
+          swap (a,b) {
+               [this.heap[a],this.heap[b] = [this.heap[b], this.heap[a]]];
+          }
+     }
+removing the min    
+     minheaps would be less useless if we couldnt retrieve the minimum value
+     the goal is to efficiently remove the minimum element from the heap. youll recall that we always locate the minimum element at index 1 
+          {
+               popMin() {
+                    if (!this.size) return 
+                    this.swap(1,this.size);
+                    const min = this.heap.pop()
+                    this.size--
+                    this.heapify()
+                    return min;
+               }
+          }
+heapify 
+     performs a similar role to bubbleUp, except now were moving down the tree instead of up. the current element is a parent that can have either a left child or two children but not just a right child 
+     {
+          heapify () {
+                   let current = 1;
+    let leftChild = getLeft(current);
+    let rightChild = getRight(current);
+
+    while (this.canSwap(current, leftChild, rightChild)) {
+      while (this.canSwap(current, leftChild, rightChild)) {
+      if (this.exists(leftChild) && this.exists(rightChild)) {
+        if (this.heap[leftChild] < this.heap[rightChild]) {
+          this.swap(current, leftChild);
+          current = leftChild;
+        } else {
+          this.swap(current, rightChild);
+          current = rightChild;
+        }        
+      } else {
+        this.swap(current, leftChild);
+        current = leftChild;
+      }
+      leftChild = getLeft(current);
+      rightChild = getRight(current);
+    }
+      leftChild = getLeft(current);
+      rightChild = getRight(current);
+    }
+  }
+  //absolute abomination 
+  

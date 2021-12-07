@@ -100,19 +100,18 @@ class HashMap {
 		}
 		return null
 	}
-	delete(key) {
+	delete(key, value) {
 		const arrIndex = this.hash(key)
 		const linkedList = this.HashMap[arrIndex]
-
-		while (linkedList.next != null) {
-			if (linkedList.data.key == key) {
-				//&& linkedList.data.value == value) {
-				linkedList = linkedList.removehead()
-				break
+		const current = linkedList.head
+		//use a filter method to delete the value, this is not it, but more of an idea
+		linkedList = linkedList.filter(linkKey => {
+			if (linkKey.data == key) {
+				return true
 			}
-			linkedList.removehead()
-		}
-		console.log(linkedList)
+			return false
+		})
+		return linkedList
 	}
 }
 const had = new HashMap(6)

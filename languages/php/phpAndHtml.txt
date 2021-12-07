@@ -41,3 +41,26 @@ action
           <form method='get' action='filename.php'>
           <input name='first' placeholder='your name here'>
           </form>
+
+loops in html 
+     if you use something in html inside an php loop, that html will be looped 
+
+you can instead of using {} you can use : for the opening bracket and endfor for the ending one 
+<?php 
+for($i = 0; $i < 10; $i++) :
+<p>we sell shoes</p>
+<?php endfor; ?>
+
+loop shorthand 
+     <?php 
+          $i = 0;
+          while ($i <=10) :
+          ?>
+          <p>hello <?=$there?></p>
+          <?php $i++ endwhile; ?>
+sanitizing data 
+     if you want to remove whitespace
+          trim(thing that you want trimmed );
+     make stuff as text 
+          htmlspecialchars(thing);
+     

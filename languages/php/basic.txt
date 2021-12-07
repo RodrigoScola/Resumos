@@ -1,3 +1,5 @@
+to run code in the terminal 
+     php path.php
 how is php used in html 
      its used to build dynamic web pages 
           each visitor gets a customized page that can look different than how the site looks to another visitor 
@@ -93,6 +95,8 @@ create array
      $array = [1,2,3];
 getting the length
      count($newArray);
+counting the length of an string 
+     strlen(string)
 printing arrays     
      if you use the echo, it will print the type 
 to actually print the array 
@@ -128,3 +132,104 @@ remove something
      unset(objname[objthing]);
 joining arrays 
      $new_array = $array1 + $array2;
+
+conditionals :)
+conventional conditionals
+     if (something) {
+          return true;
+     }
+turnary statements 
+     return $age <= 12 ? true : false;
+else if 
+     if (something) {
+          return true;
+     }
+     elseif (something_else) {
+          return false;
+     }
+     return null;
+
+readline()
+     prompts the user to type a string 
+
+xor 
+     exclusive or 
+          takes two different boolean values or expressions and returns a single boolean value 
+          evalues to true if they dont match
+               true xor true // returns false
+               false xor true //returns true
+               true xor false // returns true 
+               false xor false // returns false  
+
+multi-file programs 
+     you can use the include , it will bring the code from a file into the current file and run the code 
+          //one.php 
+          echo "how "
+          //two.php
+          echo "are "
+          //index.php
+          echo "you" // will print how are you;
+foreach loop 
+     if you just want the value 
+          foreach(arrayname as value);
+     if you want the key aswell
+          foreach(arrayname as $key => $value);
+     
+break 
+     can be used to terminate any of the loop types early 
+continue 
+     skips the current cicle and continues to the next 
+
+classes 
+     defining  
+          class Pet {
+
+          }
+     within the curly brackets, we can add props which define the data each obj of the class will contain 
+          class Pet {
+               public $name, $color;
+          }
+     creating a new instance 
+          varname = new Pet();
+     adding values 
+          varname-> props = 'propname'
+     methods 
+          class Pet {
+               public $first, $last;
+               function newFunction() {
+                    return this->first . ' ' . this->last;
+               }
+          }
+          echo $newPet->newFunction();
+     constructor 
+          class pet {
+               public $deserves_love;
+               function __construct($things) {
+                    $this->name = $things;
+               }
+          }
+     inheritance 
+          class ChildClass extends ParentClass {
+               function __construct() {
+                    $this->name = "beverly";
+               }
+          }
+overloading methods 
+     sometimes you want to change how methods behave for subclasses from the original parent definition, this is called overloading a method. to do this, define a new method within the subclass with the same name as the parent method 
+          for example in the pet you might have a type method 
+               class Pet {
+                    function type() {
+                         return 'pet';
+                    }
+               }
+               but in the dog you want to update the message
+               class Dog extends Pet {
+                    function WhatIsThis() {
+                         return 'dog';
+                    }
+               }
+               you can call the parents definition of the method within the subclass using parent:: followed by the method name 
+                    funciton classify() {
+                         echo "this " . parent::type() . ' is of type ' . this->type();
+                    };
+               
