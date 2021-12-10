@@ -1,0 +1,178 @@
+recursion is a strategy for solving problems by defining the problem in terms of itself 
+to sum the elements of a list, we would take the first element and add it to the sum of the remaining elements 
+how would you get that sum of the remaining elements? take the first element of the remaining elements and add it to the thing
+
+is a powerful tool for solving problems that require the execution of a similar action multiple times until a condition is met 
+{
+     const recursiveFactorial = n => {
+          if (n == 0) {
+               return 1
+          }
+          return n * recursiveFactorial(n - 1);
+     }
+}
+first add a base case for the recursion, so it knows when to stop 
+then add and return what you want to do as an recursive thing
+     add something to a list
+     add a number 
+     do a calculation 
+return the argument that you just passed
+findNode Iterativelly 
+     {
+          findNodeIterativelly(data) {
+               let currentNode = this.head;
+               whille(currentNode !== null) {
+                    if (currentNode.data === data) {
+                         return curentNode;
+                    }
+                    currentNode = currentNode.next
+               }
+               return null
+          }
+     }
+findNodeRecursively
+     {
+          findNodeRecursively(data, currentNode = this.head) {
+               if (currentNode == null) return null
+               else if (currentNode.data === data) {
+                    return currentNode
+               }
+               return this.findNodeRecursively(data,currentNode.next);
+          }
+     }
+asymptotic notation ---------------------------------------------------------------------------
+
+when writing programs, its important to make smart programming choices so that code runs most efficiently 
+with asymptotic notation, you calculate a programs runtime by looking at how many instructions the computer has to perform based on 
+the size of the programs input 
+
+how do you measure how fast programs can measure time? 
+     instead of timing a program, through asymptotic notation we can calculate a programs runtime by looking at how many instrunctions 
+     the computer has to perform based on the size of the programs input n 
+the big o 
+     the number of iterations is 1 to 1 meaning 
+          for each value on the list, one "thing" is done 
+common runtimes 
+     o 1 
+          this is constant runtime, when a program will always do the same thing regardless of the input 
+     o log n 
+          logarithimic runtime, you will see this runtime in search algos 
+     o n 
+          linear runtime, when you have to iterate through a dataset 
+     o n * log n 
+          sorting algorithms 
+     o n 2 
+          search through a two-dimensional dataset or nested loops 
+     o 2 n 
+          exponential runtime 
+     o n! 
+          factorial runtime, when you have to generate all of the different permutations of something 
+     
+asymptotic notation to describe the runtime of a program
+use big theta to describe the runtime of the program is the same in every case 
+use big omega to describe the best-case running time of a program 
+use big o to describe the worst case running time of a program 
+when finding the runtime of a program with multiple stepas, you can divide the program into different sections and add the runtimes of the various sections 
+when analyzing the runtime of a program, care about which part of the program is the slowest 
+
+sorting algorithms --------------------------------------------------------------------------------------------------------
+
+bubble sort 
+     it has a list and checks 2 values at a time, if the 2nd value is lower than the first, it will swap then go to the next number 
+          {
+               const bubbleSort = input => {
+                    let swapping = true;
+                    while swapping () {
+                         swapping = false ;
+                         for (let i = 0 ; i < input.length - 1; i++) {
+                              if (input[i] > input[i + 1]) {
+                              const first = arr[i];
+                              const second = arr[i + 1];
+                              const buffer = second;
+                              arr[i] = buffer
+                              arr[i + 1] = first;
+                              swapping = true 
+                              }
+                         }
+                    }
+                    return input 
+               }
+          }
+merge sort     
+     in a divide and conquer algo, the data is continually broken down to smaller elements until sorting them becomes really simple 
+     splitting the input array 
+          the algorithm recursively splits the input array until each element is in its own array. 
+     merging sorted arrays 
+          the algorithm compares and combines the elements of arrays until the input array is sorted 
+     splitting: base case 
+          function mergeSort(arr)
+               if the length of arr equals 1 
+               return arr 
+     splitting: recursive case 
+          {
+               const mergeSort = startArray => {
+                    const length = startArray.length;
+                    if (length == 1) {
+                         return startArray;
+                    }
+                    const mid = length / 2;
+                    const leftArray = startArray.slice(0,mid);
+                    const rightArray = startArray.slice(mid,length);
+                     return merge(mergeSort(leftArray), mergeSort(rightArray))
+               }
+               const merge = (leftArray,rightArray) => {
+                    const sortedArray = [];
+                    while (leftArray.length > 0 && rightArray.length > 0) {
+                         if (leftArray[0] < rightArray[0]) {
+                              sortedArray.push(leftArray[0])
+                              leftArray.shift()
+                         }
+                         else {
+                              sortedArray.push(rightArray[0]);
+                              rightArray.shift()
+                         }
+                    }
+                    return sortedArray.concat(leftArray).concat(rightArray);
+               }
+          }
+quicksort 
+     partitioning 
+          without it , we wouldnt know how to split the unsorted array into useful partitions 
+          this procedure utilizes two internal indices, left index and right index that move in opposite directions. they are used for 
+               computing the pivot element 
+               comparting the elements located at each index with the pivot element
+               determining the pivot index, the desired location of the pivot element in the set after elements have been swapped 
+          the basic idea of partitioning is as follows 
+               start with the middle element 
+               while you havent looked through the whole array (leftIdx is still < rightidx)
+                    move leftIdx up until you find something greater than the pivot 
+                    move rightIdx down until you find something less than the pivot 
+                    swap those elements and move the indices in by one step so to continue checking if swaps are necessary 
+               return the last left element index 
+          {
+               const partition = (array,leftIndex,rightIndex) => {
+                    const pivot = array[Math.floor((rightIndex + leftIndex) / 2)];
+                    while(leftIndex <= rightIndex) {
+                         while(array[leftIndex] < pivot) {
+                              leftIndex++
+                         }
+                         while(array[rightIndex] > pivot) {
+                              rightIndex--
+                         }
+                         if (leftIndex <= rightIndex) {
+                              swap(array,leftIndex,rightIndex);
+                              leftIndex++;
+                              rightIndex--;
+                         }
+                    }
+                    return leftIndex;
+               }
+               const quicksort = (array, leftBound = 0, rightBound = array.length - 1) {
+                    if (leftBound < rightBound) {
+                         const pivotIndex = partition (array, leftIndex,rightIndex) ;
+                         quicksort(array,leftBound,pivotIndex -1 );
+                         quicksort(array,rightBound,pivotIndex);
+                    }
+               }
+          }
+     

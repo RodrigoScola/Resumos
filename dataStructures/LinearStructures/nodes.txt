@@ -1,3 +1,23 @@
+why data structures 
+     they are the way we are able to store and retrieve data. you may already be familiar with lists or arrays
+
+how are data structures used?
+     inputtin information
+     processing information 
+     maintaining information 
+     retrieving information 
+     
+inputting 
+     is largely concerned with how the data is received. what kind of information can be included? will the new data be added to the beginning, end or somewhere in the middle of the existing data? does an existing point of data need to be updated or destroyed?
+processing
+     gets at the way that data is manipulated in the deata structure. this can occur concurrently or as a result of other processes that data structures handle 
+maintaining
+     how the data is organized within the structure. which relashionships need to be maintained between pieces of data?
+
+data structure apis 
+     data structures are all about choosing the right tool for the job
+
+nodes ------------------------------------------------------------------------------------------------------------------------
 what are nodes?
      they are fundimental building blocks of many computer science data structures 
      an individual node contains data and links to other nodes. each data structure adds additional constraints or behavior to these features to create the desired structures 

@@ -1,7 +1,8 @@
-console.time("lol")
-let i = 0
-while (i < 700) {
-	i++
+const recursPushArr = arr => {
+	if (arr.length >= 5) {
+		return arr
+	}
+	arr.push(1)
+	return recursPushArr([...arr, arr])
 }
-
-console.timeEnd("lol")
+console.log(recursPushArr([]))
