@@ -1,0 +1,13 @@
+graph traversals    
+     depth-first search
+          it continues down a path until it reaches the end. its helpfull for determining if a path exists between two vertices 
+          it has many applications, including topological sorting and detecting cycles, but one of the more interesting real-world applications 
+          is taht it can be used to solve problems that have a singular correct answer 
+     breadth-first search 
+          it checks the values of all neighboring vertices before moving into another level of depth. this is an inefficient way to find just any 
+          path between two vertices but is an excelent way to find the shortest way to find the shortest distance between them 
+     dijikstras algorithm 
+          finding the shortest distance from a given point to every other point in a weighted grapth. the algorithm works by keeping track of 
+          all the distances and updating the distances as it conducts a breadth-first search. a common application of this is to find the 
+          quickest route from one destination to another
+          
