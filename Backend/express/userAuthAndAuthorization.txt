@@ -1,0 +1,168 @@
+authentication 
+     verification of who you are. authentication relies on one or more factors to verify identity 
+          knowledge is something you know, like an username or password 
+          possession is something you have, like a security card or mobile device 
+          inherence is something you are, fingerprints 
+     authentication that relies on a single factor, such as username/password is called single-factor authentication
+     auth that requires multiple factors, such as username/password and a code sent to a mobile device, multi-factor auth 
+authorization 
+     is the verification of what you are allowed to do. its respoinsible for everything from preventing users 
+     from modifying each others accounts, to protecting back-end assets from attackers, to granting limited access to external services 
+encryption 
+     one of the core tools for enforcing auth and authorization is encryption. transforms data into a format that is unreadable 
+     unless you have the correct key to decrypt it. encryption comes
+          symmetrical data encrption 
+               uses the same key to encrypt and decrypt data 
+          asymmetric encryption ouses separate keys for encryption and decryption 
+
+username and passwords 
+     they are a very common type of knowledge-based authentication that came into digital use in the early 1960 
+     early computers were expensive and bulky, so it was common to have multiple users share them using separate terminals 
+     because computation time was limited and expensive, the administrators needed a way to know who was using the system and they chose password-based authentication 
+     early password systems stored password in plaintext, but this proved to be a serious vulnerability 
+     password storage has gotten more complex with the advance of cryptography, and the current standard for password 
+     storage is to use salted hashes 
+one time passwords 
+     evolving security requirements mean new methods of authentication. in the 1980, a new auth technology was developed that paved the way for 
+     posession-based authentication: one time password 
+     a security phone thats sent to the phone or the constantly refreshing code on a company security fob are examples of one time passwords
+     
+web sessions 
+     https protocol on its own is stateless, meaning requests and responses are just relaying information back and forth with no knowledge of a specific user 
+     but web developers want to create engaging personalized experiences for users, this means there needs to be a system that associates the requests with a specific user and does in a secure way 
+
+sessions and cookies 
+     its clunky for the client to remember to tack the session id onto every request. because of this, the session id is often kept client-side in the form of session cookies
+     they are tiny pieces of data - text files of max 4kb - the browser stores that are automatically sent with http request to a web application 
+     a session cookie is set with the first http response from the server and persists until the browser is closed or the cookie expires 
+
+what is localStorage 
+     reading cookie data can involve some tedious syntax and relying on cookies to be attached for each http request can affect an websites performance 
+     localStorage is a newer form of client-side storage. these browser files also store data as key-value pairs, and web applications can choose 
+     to store up to 5mb of data in localStorage 
+          it does not interact with the server, but is instead accessed and modified by simple client-side js code 
+          it will persist even after the user exits the browser, and will continue to persist until the browser cache is deleted 
+     sessionStorage uses the same syntax as localStorage, can hold session data. this storage clears once the browser closes, so for many use cases this is more secure 
+     {
+          set item 
+               localStorage.setItem('key','value');
+          get item 
+               localStorage.getItem('key');
+     }
+define session expiry 
+     the shorter the session is, the less time an attacker has to hijack a session. this is usually done by settin an expiry on the session cookie. its also important to implement an automatic session expiration on the backend 
+     a timeout dictates how long a session can stay open. the session timeout after an idle period is a common feature on bank websites, other 
+     enviroments that requrie high security even implement an absolute timeout where an users session regardless of activity 
+make session ids difficult to hack 
+     session ids are just like passwords - the longer and more random the better, according to owasp, they should be at least 128 bits long 
+
+security-related http headers 
+     what is an http security header
+          http responses can contain headers with extra information that tells the client (browser) how to behave.
+          security-related headers are added in server-to-client responses to reflect a policy that the website wants to implement
+          security headers help protech both the web application and the user. they can help prevent web attacks like xss
+
+common security headers 
+     strict-Transportation-Security 
+          lets the server tell the browser that only the https version of the requested site is available, this enforces the use of 
+          https, which is encrypted compared to plain http, ensuring that all communication between the client and the server occurs on a more secure transport layer 
+          this helps stops man-in-the-middle attacks 
+     content-security-policy 
+          defines an allowlist of sources of content. this restricts the assets that the browser can load while theyre con the current website 
+          this can prevent cross site scripting attacks, where scripts from sources outside the site are executed 
+     x-frame-options 
+          stops the current page from being hidden in an <iframe> tag in another sites html. this prevents clickjacking
+               clickjacking is where an attacker loads your page in an iframe, hides the frame using css and trics a user into clicking and sending a request to the webpage 
+
+sessions in express 
+     were going to use the package express session 
+          npm install express-session
+          const session = require('express-session');
+now that we have express-session installed, we can configure the middleware and implement it in app.js 
+     secret - is a key used for signing and encrypting cookies in order to protect the session id 
+     resave - setting it to true will force a session to be saved back to the session data store, even if no data was modified
+     saveUnitialized - boolean, if true, the server will store every new session, even if there is no changes to the session obj 
+     {
+          app.use(
+               session({
+                    secret : 'aosdfijaosidf',
+                    resave : false,
+                    saveUnitialized: false,
+               })
+          )
+     }
+storing session data 
+     now that you can create sessions, lets configure how the middleware saves session data 
+     they are typically stored in three different ways 
+          in memory (default storage)
+          database 
+          memory cache 
+     whenever a user makes a request from the same client with a valid session identifier, the server retrieves the valid session information 
+     express-session provides an  in-memory store called, MemoryStore() if no other store is specified, then this is set as the default storage 
+     {
+          const store = new session.MemoryStore();
+          //once instantiated, we can add it in the configuration of the session 
+          app.use(
+               session({
+                    secret: 'secret-key',
+                    resave: false,
+                    saveUninitialized: false,
+                    store
+               })
+          )
+     }
+
+autentication and sessions : cookies 
+     we have middleware set up to instantiate sessions and store session data server-side. we should make use of client-side storage so that the 
+     users browsers can automatically send over the session identifier with each incoming http request 
+     cookies will have a few default props, but we can specify them using key-value pairs. the maxAge sets the number of miliseconds until the cookie expires 
+     were also providing it with the secure attribute so it only sent to the server via htpps and add a sameSite prop and set it to none in order to allow a cross site cookie through different browsers 
+     {
+          app.use(
+               session({
+               secret: "D53gxl41G",
+               // Add the cookie property below:
+               cookie: {
+                    secure: true,
+                    maxAge: 172800000,
+                    sameSite: 'none'
+               }
+               resave: false,
+               saveUninitialized: false,
+               store
+          })
+     );
+     }
+sessions and auth: logging in 
+     with a session middleware configured, we can now make use of the session and combine it with an auth process 
+     we can do this by first looking up the user in the databse and then verifying that the password is correct
+     once the user is logged in well add the prop authenticated within the session obj and assign it to true. well also set user in the session data and assign 
+     username and password 
+     {
+          //look up user in database, if found, confirm password 
+          if (password == dbUser.password) {
+               //attach an authenticated prop to the session 
+               req.session.authenticated = true ;
+               //attach a user obj to the session 
+               req.session.user = {
+                    username, 
+                    password 
+               }
+          }
+     }
+once the user is logged, their session is created and stored in memory, the props authenticated and user will be accessible and changeable as session data 
+
+accessing session data 
+data in a session is serialized as json when sorted, so were able to store and access data in nested objects
+we can access it by referring to the req.session obj when we need to display the correct number of items, we can also update its value 
+one common use case of session data is to protect specific routes
+     {
+          const userAuthed = (req,res,next) => {
+               if (req.session.authenticated) {
+                    next()
+               }
+               res.send([{
+                    message : "you are not authenticated, idiot"
+               }])
+          }
+     }
