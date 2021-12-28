@@ -1,0 +1,63 @@
+navigate between the pages 
+in next, a page is a react component exported from a file in the pages directory 
+they are associated with a route based on their file name 
+     pages/index.js is associated with the / route
+     pages/posts/first-post.js is asssociated with the /posts/first-post route 
+to create a new page 
+     create a file/folder that you want and the path becomes the url path 
+          
+navigate between pages 
+     in next you use the link component 
+     {
+          import Link from 'next/link'
+            <Link href="/posts/first-post">
+          <a>this page!</a>
+          </Link>
+     }
+
+client side navigation 
+     the link component enables client side navigation between two pages in the same next app 
+
+code splitting and prefetching 
+     it does code splitting automatically, each page only loads what is necessary 
+     for that page. that means when the homepage is rendered, the code for other pages is not served initially 
+     this ensures that the homepage loads quickly even if you have hundreds of pages 
+
+assets, metadata, css 
+     next has built in support for css and sass 
+
+assets 
+     next can serve static assets like images, under the top-level public directory 
+     files inside `public` can be referenced from the root of the application similar to `pages`
+     the `public` is also useful for `robots.txt`
+unoptimized image 
+     with regular html you would add the pfp like this 
+          <img src="/images/profiile.jpg" alt="your profile pic" />
+     however this means you have to manually handle 
+          ensuring the image is responsive on different screen sizes 
+          optimizing the images with a third-party tool or library 
+          only loading images when they enter the viewport 
+     instead, next js provides an Image component to handle this 
+using the image component 
+     instead of optimizing images at build time, next optimizes images on-demand, as users request them 
+     unlike static site generators and static only solutions, build times arent increased 
+     {
+          <Image src="/images/profile.jpg" height:{144} width={144} alt="userImage" />
+     }
+
+metadata 
+     what if you want to modify the metadata of the page, such as the title tag?
+     first you use Head instead of head  
+     you can import Head from the next/head module 
+          {
+               export default function myFirstPost () {
+                    const title = 'myFirstPost'
+                    return <>
+                         <Head>
+                              <title>{title}</title>
+                         <div>
+                              <h1>{title}</h1>
+                         </div>
+                         </>
+               }
+          }
