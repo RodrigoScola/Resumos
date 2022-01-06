@@ -61,3 +61,88 @@ metadata
                          </>
                }
           }
+third-party javascript 
+     refers to any scripts that are added from a third party source. usually they are included in order to introduce newer functionality into a site that does not 
+     need to be written from scratch such as analytics, ads and customer support widgets 
+          import head from next/head and add the script tag inside the Head component
+     although this approach works, including scripts in this manner does not give a clear idea of when it would load with respect to the other javascript code fetched 
+     on the same page. if a particular script is render-blocking and can delay page content from loading, this impacts performance 
+using the script component 
+     next/script is an extension of the html script element and optimizes when additional scripts are fetched and executed 
+          {
+               <Script src="thesrource" strategy='lazyOnload' onload={() => console.log('script loaded)};
+          }
+     notice that a few additional properties have been defined in the script component 
+          strategy - controls when the third party script should load. a value of lazyOnload tells next to load this script lazily during browser idle time 
+          onLoad - is used to run any js code immediately after the script has loaded correctly 
+
+css styling 
+     { <style jsx>{``}</style> }
+     this is a library called styled-jsx. its a css in js library and lets you write css within a react component 
+Layout component
+     lets create a Layout component that will be shared across all pages 
+          {
+               export default const Layout = ({children}) => {return <div>{children}</div>}
+          }
+     then add it to an existing component
+          {
+               import Head from 'next/head'
+               import Layout from '../../Components/Styles/Layout'
+               export default function FirstPost () {
+                    return <> <Layout>
+                         <Head><title>this is the tile</title></Head>
+                         <header>
+                         <h1>this is the title</h1>
+                         </header>
+                         </Layout>
+                    </>
+               }}
+     adding css 
+          now add some styles to the Layout component. to do so well use css modules 
+          create a file called components/layout.module.css 
+               {
+                    .container {
+                         max-width: 36rem;
+                         padding: 0 1rem; 
+                         margin 3rem auto 6rem;
+                    }
+               }
+          to use the container clss inside the components/layout.js you need to 
+               import the css file and assign a name to it 
+               use the styles.container as the className 
+                    {
+                         import styles from './layout.module.css'
+                         export default const Layout = ({children}) => {
+                              return <div className={styles.container}>{children}</div>
+                         }
+                    }
+          
+global styles 
+     css modules are useful for component level styles but if you want some css to be loaded by every page, next js has support for that aswell 
+     to load global css files create a file called _app.js with the following content 
+          { 
+               export default function App ({Component, pageProps}) { 
+                    return <Component {...pageProps} />
+               }
+          }
+     this app compoentn is the top-level component which will be common across all the different pages. you can use this component to keep state when navigating between pages 
+adding global css 
+     in next you can add global css files by importing them from pages/_app.js, you cannot import global css anywhere else 
+     the reason that global css cant be imported outside of pages/_app.js is that global css affects all elements on the page
+     you can place the global css file anywhere and use any name 
+          create a top-level styles directory and create global.css inside 
+     thats it 
+
+prerendering 
+     by default next pre-renders every page, this means that it generates html for each page in advance
+     each generated html is associated with minimal js code necessary for that page. when a page is leaded by the browser, its js runs and makes the page fully interactive 
+
+it has two forms of pre-rendering 
+     static generation - generates html at build time, the html is reused on each request 
+     server side rendering - generated the html on each request 
+per page basis 
+     next lets you choose which pre-rendering form to use for each page, you can create a hybrid next app using static for some pages and server for others
+
+when to use static vs server side
+     its recommended using static generation whenever possible because your page can be built once and served by cdn, wich makes it much faster than having a server render the page on every request 
+     
