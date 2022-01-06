@@ -145,4 +145,133 @@ per page basis
 
 when to use static vs server side
      its recommended using static generation whenever possible because your page can be built once and served by cdn, wich makes it much faster than having a server render the page on every request 
+
+static generation   
+     it can be done with and without data 
+     for some pages, you might not be able to render the html without first fetching some external data      
+
+static generation with data using
+     when you export a page component, ou can export an async function called getStaticProps 
+          runs at build time and you can fetch external data and send it as props to the page
+          {
+               export default function Home(props) {
+                    ...
+               }
+               export async function getStaticProps() {
+                    // get external data from the file system, api, db...
+                    let data = ...
+                    //the value of the props key will be passed to the home component 
+                    return {
+                         props: ...
+                    }
+               }
+          }
+          this allows you to tell next: this page has some data dependencies - when you pre-render this page at build time, make sure to resolve them first 
+     applying 
+          {
+               export async function getStaticProps() {
+                    const data = await fetch('link')    
+                    return {
+                         props: {
+                              data
+                         }
+                    }
+               }
+               export function Home({data}) {
+                    return <>
+                         data.map(value => {
+                              return <h1>{value.title}</h1>
+                         })
+                    </>
+               }    
+          }
+what if i need to fetch data at request time 
+     static generation is not a good idea if you cannot prerender a page ahead of a users request 
+
+fetching data at request time 
+     if you need to fetch data at request time instead of at build time, you can try server side rendering 
+     to use server side rendering, you need to export getServerSideProps instead of getStaticProps from the page 
+
+using getServerSideProps 
+     {
+          export async function getServerSideProps(context) {
+               ...
+          }
+     }
+     because getServerSideProps is called at request time, its parameter context contains request specific params 
+
+swr 
+     is a react hook for data fetching
+     {
+          const Profile = () => {
+               const {data,error } = useSWR('/api/user', fetch)
+               if (error) return <div>failed to load</div>
+               if (!data) return <div>...loading</div>
+               return <div>hello there, {data.name}</div>
+          }
+     }
+     
+dynamic routes ------------------------------------------------------------------------------------------------------------------------------
+     page paths depends on external data 
+     where each path depends on external data, next allows you to statically generate pages with paths that depend on external data. this enables dynamic urls in next 
+
+how to statically generate pages with dynamic routes 
+     create a file called [something].js 
+now export an async function called getStaticPaths  and return a list of possible values 
+     {
+          async function getStaticPaths() {
+               const paths = await getAllIds()
+               return {
+                    paths,
+                    fallback: false
+               }
+          }
+     }
+then export an async function getStaticProps 
+     {
+          const getStaticProps = async({params}) => {
+               const postId = getPost(params.id)
+               return {
+                    props: {
+                         postId
+                    }
+               }
+          }
+     }
+fetch external api or query database 
+     if fallback is false, any paths not returned by getStaticPaths will result in a 404 page 
+     if fallback true, behaviour changes 
+          the paths returned from getStaticPaths will be rendered to html at build time 
+          the paths that have not been generated at build time will not result in a 404 page. instead next will serve a fallback version of the page on the first request to such a path 
+
+catch all routes 
+     dynamic routes can be extended to catch all paths by adding three dots inside brackets 
+          [...id]
+     matches
+          /post/a,post/a/b,post/a/b/c 
+     if you do it in getStaticPaths, you must return an array as the value of the id like so 
+          {
+               return [
+                    params: {
+                         id: ['a','b','c']
+                    }
+               ]
+          }
+404 pages 
+     to create a custom 404 page, create pages/404.js 
+          {
+               export default function Custom404()
+          }
+     
+api routes ------------------------------------------------------------------------------------------------------------------------------------
+
+let you create an api endpoint inside a next app, you can do so by creating a function inside the pages/api 
+     {
+          export default function handler(req,res) {
+               res.status(200).json({text: 'hello'})
+          }
+     }
+
+do not fetch an api route from getStationProps or getStaticPaths
+     it only runs server-side and will never be run on client-side 
      
