@@ -1,0 +1,41 @@
+to create a formik form 
+     import {useFormik} from 'formik';
+     const signUpForm = () => {
+          const formik = useFormik({
+               initialValues: {email : ''},
+               onSubmit: values => {
+                    console.log(values)
+               }
+          })
+     }
+     return (
+          <form onSubmit={formik.handleSubmit}>
+               <label htmlFor='email'>email address</label>
+               <input id='email' name='email' type='email' onChange={formik.handleChange} value={formik.values.email} />
+               <button type='submit'>Submit</button>
+          </form>
+     )
+
+if you have a lot of the same inputs it might look something like this 
+     reuse the same exact change handler function for each input 
+     pass an id and name that matches the prop we defined in initial values 
+     access the fields value using the same name
+
+validation
+     to make every field required
+          {const validate = values => {
+               const errors = {};
+               if (!values.name) {
+                    errors.name = 'required'
+               }
+               //...for every value 
+               return errors
+          }}
+     and on the input field 
+          <input... />
+          {formik.errors.inputName ? <div>{formik.errors.inputName}</div> : null}
+     
+     return <div>
+     <label htmlFor={name}>{name}</label>
+     <input id={name} 
+     </div>
