@@ -1,7 +1,12 @@
-const fib = n => {
-	if (n == 1 || n == 0) {
-		return n
+const getSum = (a, b) => {
+	let lowest = a < b ? a : b
+	let highest = a < b ? b : a
+	let sum = 0
+
+	for (let i = lowest; i <= highest; i++) {
+		sum += i
 	}
-	return fib(n - 1) + fib(n - 2)
+
+	return sum
 }
-console.log(fib(8))
+console.log(getSum(-1, 5))

@@ -14,7 +14,6 @@ how is php code executed
                     <?php 
                          echo "hello world"; //this will also run 
                }
-          
 escape sequences 
      this string will not work because of escape sequences
           "She said "hi"to the dog."

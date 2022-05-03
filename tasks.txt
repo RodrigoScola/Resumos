@@ -1,0 +1,37 @@
+setup 
+     backend testing 
+     frontend testing
+     backend/frontend publishing
+     github
+     database tables
+     orms 
+     database connections
+     error handling
+     state management
+     ui 
+     global component styles 
+     data structures
+     form validation
+     middleware
+     sessions and cookies
+     authentication
+     jwt 
+     data protection and data validation
+
+front end 
+     state management plan - if you are going to have something display on the screen and is not static, have to use state management
+     hooks to save and load props
+     if you are going to render an array, use linked lists 
+     array.
+
+
+
+backend
+     create server and install dependencies
+     database connection 
+     
+
+
+det 4
+ct 3
+dh 5

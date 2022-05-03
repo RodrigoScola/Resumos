@@ -35,7 +35,7 @@ post form handling
 action 
      often times there is no need to present a user with the same form over and over again, it might make sense to move them to a new page or thank them for their submission 
      this is where the action form attribute comes into play, since we have not specified an action, html defaults to submitting the form data back to the same script that defined the form 
-     if you would like to have the user navigate to a new url and handle the form input there you can specify the url you can also enter the name of a php file in the same directory as the current one 
+     if you would like to have the user navigate to a new url an d handle the form input there you can specify the url you can also enter the name of a php file in the same directory as the current one 
           when you submit a form, the values will be stored in the $_GET or post methods 
      if you want to redirect an user when the form is done, use the action on the form 
           <form method='get' action='filename.php'>

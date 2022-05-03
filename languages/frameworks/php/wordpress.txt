@@ -1,0 +1,321 @@
+get website name 
+     <?php bloginfo('name') ?>
+
+the loop  
+     the famous loop is the core of wordpress
+     if you want to loop through a post and get its content, title...
+          {
+               <?php 
+
+               while(have_posts()) {
+                    the_post() ?>
+                    <p><a href="<?php the_permalink()?>"><?php the_title() ?></p>
+                    <?php the_content() ?>
+                    <?php }
+               ?>
+          }
+     you have to do it for everything, even if the posts is only one
+
+if you want to have different stuff for a single post
+     create a file named single.php
+     do the loop
+     add the stuff that you want
+
+if you want to have different stuff for a single page
+     create a file named page.php in the theme folder 
+     do the loop 
+     add the stuff that you want
+
+
+header and footer
+     if you want to have a header
+          create a file in the theme called header.php 
+     if you want to have a footer 
+          create a file in the theme called footer.php 
+
+how to execute scripts 
+     create a file named functions.php 
+     importing a file     
+          function actualFunctionName () {
+               wp_enqueue_style('stylename',get_stylesheet_uri());
+          }
+          add_action('funname','actualFunctionName');
+
+convert static html template into wordpress 
+
+     how to import css 
+          on functions.php 
+               wp_enqueue_style('main',get_theme_file_uri('build/style-index.css'))
+          
+     instead of adding the scripts or packs in the html, use in the wp_head() function
+          wp_enqueue_style('custom-font','external-url');
+
+if you want to get an image from the file system 
+     url : <?php echo get_theme_file_uri('images/library-hero.jpg') ?>
+
+title tag for each screen
+     on functions.php    
+          add_action('after_setup_theme','uniFeatures');
+
+getting the id of a post
+     get_the_ID()
+
+parent and children pages
+     getting the id of a parent post 
+          wp_get_post_parent_id()
+     getting the title 
+          get_the_title($parentId)
+     getting the permalink 
+          get_permalink($parentId)
+
+page menus 
+     to get every page and its associations
+          wp_list_pages();
+
+to work with list pages you need to have associative arrays
+
+associative arrays are like objects 
+     $animalSound = [
+          'cat' => 'meow',
+          'dog' => 'bark',
+     ];
+     echo $animalSound['cat']
+     
+if you want to only list the parent page 
+     wp_list_pages([
+          'title_li' => null,
+          "child_of" => 
+     ])
+
+to create page menus automatically
+     in functions.php 
+          functions menu_functions () {
+               register_nav_menu('program-menu-name','human friendly name');
+          }
+          add_action('after_setup_theme','menu_functions');
+     in the page 
+          <?php wp_nav_menu('program-menu-name')?>
+
+getting the poster author
+     inside the loop 
+          the_author_posts_link()
+     
+pagination
+     echo paginate_links()
+
+custom post pages
+     create new folder in wp-content called mu-plugins
+     create new file 
+
+     function eventTypes()
+{
+     register_post_type('event', [
+          'show_in_rest' => true,
+          'supports' => ['title', 'editor', 'excerpt'],
+          'rerwite' => ['slug' => 'events'],
+          'has_archive' => true,
+          'public' => true,
+          'menu_icon' => 'dashicons-calendar',
+          'labels' => [
+               'name' => 'events',
+               'add_new_item' => 'Add new event',
+               'edit_item' => 'edit Event',
+               'all_items' => 'All Events',
+               'singuler_name' => 'Event',
+          ]
+     ]);
+}
+add_action('init', 'eventTypes');
+
+
+distplay custom posts 
+     $varbane = new WP_Query([
+          'posts_per_page' => 2,
+          'post_type' => 'post name that you gave in the function'   
+     ])
+     when having to click to an custom post archive 
+          <?php echo get_post_type_archive_link('event') ?> 
+     to have a different style for the new post_type
+          create new file called single-eventname.php
+     when you create a new post type, it doesnt support an archive
+          when you just go to the site and /event it says page not found
+     in mu-plugins/post-types.php
+
+
+sometimes you want to have a custom exerpt and not alter the entire website for it 
+     get_the_exerpt() ? the_exerpt() : wp_trim_words(get_the_content, 19);
+     
+custom fields
+     when you want to upload more than title and text 
+          add advanced custom fields(acf) 
+
+custom query 
+     $posts = new WP_Query([
+          'posts_per_page' => 2,
+          'category_name' => 'category',
+          'post_type' => 'page'   
+     ]);
+     while ($posts->have_posts()) {
+          $posts->the_post();    
+     } wp_reset_postdata();
+
+ordering custom queries 
+     $query = new WP_Query([
+          'posts_per_page' => 2,
+          'order_by' => 'title', // post_date rand meta_value
+          'meta_value' => 'event_date',
+          'order' => 'asc'
+     //filtering past events 
+          'meta_query' => [
+               [
+                    'key' => 'event_date',
+                    'compare' => '>=',
+                    'value' => date('Ymd'),
+                    'type' => 'numeric'
+               ]
+               //for more things, nest in an array
+          ]
+     ])
+
+editing default queries
+     instead of having a lot of queries you can just alter default one, that way you can still use a lot of features 
+          in functions.php    
+               funciton funname($query) {
+                    if (!is_admin() && is_post_type_archive('event') && $query->is_main_query()) {
+                             $query->set('posts_per_page', 1);
+                              $query->set('meta_key', 'event_date');
+                              $query->set('order_by', 'meta_value_num');
+                              $query->set('order', 'asc');
+                              $query->set('meta_query', [
+                                   [
+                                        'key' => 'event_date',
+                                        'compare' => ">=",
+                                        'value' => date('Ymd'),
+                                        'type' => 'numeric'
+                                   ]
+                              ]);
+                    }
+               }
+               add_action('pre_get_posts','funname')
+
+pagination with custom queries
+     in the query 
+          $query = new WP_Query([
+               ... query 
+               'paged' => get_query_var('paged',1);
+          ])
+     echo paginate_links([
+          'total' => $query->max_num_pages ,
+
+     ])
+
+     to get information about the url 
+          get_query_var()
+     
+create relashionships between content
+     after creating a new post type, create field group
+     on the field type - relashionship
+          $related_programs = get_field('fieldname');
+          foreach($related_programs as $program) { ?>
+               <h1><a href="<?php get_the_permalink($program) ?>"><?php echo get_the_title($program) ?></a></h1>
+          <?php } ?> 
+           $event_posts = new WP_Query([
+               'post_type' => 'event',
+               'orderby' => 'meta_value',
+               'meta_key' => 'event_date',
+               'order' => "desc",
+               'meta_query' => [
+                    [
+                         'key' => "event_date",
+                         'compare' => '>=',
+                         'value' => date('Ymd'),
+                         'type' => 'numeric'
+                    ],
+                    [
+                         'key' => "related_programs",
+                         'compare' => 'like',
+                         'value' => '"' . get_the_ID() . '"',
+                    ]
+               ]
+          ]);
+
+adding thumbnail features
+     on functions.php 
+          function features() {
+               add_theme_support('post-thumbnails');
+          } // that alone only works with blog posts
+     on mu folder and post type 
+          'supports' => ['editor','title', 'thumbnail']
+     to show the featured image
+          <?php the_post_thubmnail() ?>
+     whenever you upload an image, it actually uploads 5 of them, but on different sizes
+     you can tell to add more with another custom size 
+          in funcitons.php    
+               function features() {
+                    add_theme_support('post-thumbnails);
+                    add_image_size('name',width,height,crop?);
+               }
+          add regenerate thumbnails plugins
+     to display the images 
+          on the template 
+               <?php the_post_thubmnail('image-size-name') ?>
+
+to crop an image from the sides 
+     in funcitons.php
+          add_image_size('name',width,height,'left,right or center','top right or center');
+     however not one thing is good 
+          install manunal image crop tomasz
+     
+page banner dynamic background image
+     is not featured image
+     in wp a post can only have 1 single featured image // why?
+
+REUSABLE COMPONENTS
+     in function.php
+     <?php function page_banner () {
+          ?>
+               <div>
+               ...
+               </div>
+          <?php 
+     } ?>
+
+you can also create another file 
+     get_template_part('/components/filename');
+          normal php code
+     you can add another argument function and make it dinamic 
+     get_template_part('/components/filename', get_post_type()); // this will work with filename-program filename-event and make different components for the same thing
+
+live search
+     ub tge src/index.js
+          import $ from 'jquery';
+               class Search {
+                    constructor() {
+                         this.openButton = $(".js-search-trigger");
+                         this.closeButton = $('.search-overlay__close');
+                         this.searchOverlay = $(".search-overlay");
+                         this.events()
+                    }
+                    events() {
+                         this.openButton.on('click',this.openOverlay.bind(this));
+                         this.closeButton.on('click',this.closeOverlay.bind(this));
+                    }
+                    openOverlay() {
+                         this.searchOverlay.addClass('search-overlay--active');
+                    }
+                    closeOverlay() {
+                         this.searchOverlay.removeClass('search-overlay--active');
+                    }
+               }
+               export default Search;
+
+keyboard shortcuts 
+     $(document).on('keyup',this.funcname.bind(this));
+     funcname(key) {
+          if (key.keyCode == 25) {
+               //do something
+          } 
+     }
+
+managing time in js 
+     

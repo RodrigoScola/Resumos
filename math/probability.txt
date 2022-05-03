@@ -1,0 +1,15 @@
+set theory 
+     its a collection of things 
+          {book, paper, folder, hat, pen, snack}
+     they often are represented with curly braces {}, they also follow two key rules
+          each element in a set is distinct 
+          the elements in a set are in no particular order 
+     therefore we can say 
+          {1,2,3,4,5} = {5,4,3,2,1}
+     when defining a set, we often use a capital letter
+          A = {1,2,3,4,5}
+     sets can also contain subsets. set a is a subset of set b if all the elements in a exist within b 
+          A = {1,2,3} B = {1,2,3,4,5}
+     set a is a subset of b because all elements of a are contained within B
+          
+     

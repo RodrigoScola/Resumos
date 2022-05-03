@@ -1,9 +1,16 @@
 const allWords = require("an-array-of-english-words")
+
 class Word {
 	constructor(size) {
 		this.size = size
 		this.currentWords = allWords
 		this.checkLength()
+	}
+	guessWord() {
+		const words = this.currentWords.filter(word => {
+			return word.match(/[a,e,i,o,u]+/) && !word.match(/[z,x,w,y]/)
+		})
+		console.log(words[Math.floor(Math.random() * words.length)])
 	}
 	checkLength() {
 		this.currentWords = this.currentWords.filter(word => {
@@ -47,19 +54,17 @@ class Word {
 	}
 }
 const word = new Word(5)
-word.addLetter("m")
-word.addLetter("u")
-word.addLetter("s")
-word.addLetter("i")
-word.addLetter("c")
-word.addLetter("a", "yellow", 0)
-word.addLetter("g")
-word.addLetter("e")
-word.addLetter("n")
-word.addLetter("t")
-word.addLetter("f", "green", 0)
-word.addLetter("l")
-word.addLetter("o", "yellow", 2)
-word.addLetter("r", "yellow", 3)
-word.addLetter("a", "yellow", 4)
-word.logAll()
+word.guessWord()
+// word.addLetter("m")
+// word.addLetter("u")
+// word.addLetter("c")
+// word.addLetter("t")
+// word.addLetter("a")
+// word.addLetter("i", "green", 2)
+// word.addLetter("e", "green", 4)
+// word.addLetter("r", "yellow", 0)
+// word.addLetter("s", "green", 0)
+// word.addLetter("n")
+// word.addLetter("p")
+
+// word.logAll()
