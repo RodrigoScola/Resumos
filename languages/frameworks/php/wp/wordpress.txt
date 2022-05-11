@@ -312,10 +312,223 @@ live search
 keyboard shortcuts 
      $(document).on('keyup',this.funcname.bind(this));
      funcname(key) {
-          if (key.keyCode == 25) {
+          if (key.keyCode chrome://flags/#enable-force-dark== 25) {
                //do something
           } 
      }
+to fetch data of all posts
+     http://localhost:10004/wp-json/wp/v2/posts
+to fetch data of all pages
+     http://localhost:10004/wp-json/wp/v2/pages
+adding more information you can add ?per_page=1 // returns 1 number
+to add id 
+     posts/id 
+add search 
+     ?search=something
+doing dynamic search instead of posts or pages 
+     when(req1, req2).then((req1,req2) => {
+          const combined = posts[0].concat(pages[0]);
+               ...
+     })
+adding something to the api request 
+     go to functions.php
+          add_action('rest_api_init', 'uniFeatur');
+          function uniFeatur() {
+               register_rest_field('post','author_name',[
+                    'get_callback' => function () {return get_the_author()}
+               ])
+          }
+custom post type 
+     by default a custom post type would not be included in the post api
+          go to mu-plugins
+               post types 
+                    on the register_post_type 
+                         show_in_rest => true
+importing file to php functions
+     require get_theme_file_path('path')
+creating a new search api 
+     function uniRegisterSearch() {
+          register_rest_route('university/version','search',[
+               'methods' => WP_REST_Server::READABLE
+               'callback' => 'funcname'
+          ]);
+     }
+    function uniSearchRes($reqData)
+{
 
-managing time in js 
-     
+     $mainQuery = new WP_Query([
+          'post_type' => [
+               'post', 'page', 'teacher', 'program', 'event', 'campus'
+          ],
+          's' => sanitize_text_field($reqData['term'])
+     ]);
+     $results = [
+          'generalInfo' => [],
+          'teacher' => [],
+          'program' => [],
+          'event' => [],
+          'campus' => [],
+     ];
+     while ($mainQuery->have_posts()) {
+          $mainQuery->the_post();
+          $type = '';
+          switch (get_post_type()) {
+               case 'teacher':
+                    $type = 'teacher';
+                    break;
+               case "program":
+                    $type = 'program';
+                    break;
+               case "event":
+                    $type = 'event';
+                    break;
+               case 'campus':
+                    $type = 'campus';
+                    break;
+               default:
+                    $type = 'generalInfo';
+                    break;
+          }
+          array_push($results[$type], [
+               'ID' => get_the_ID(),
+               'title' => get_the_title(),
+               'permalink' => get_the_permalink()
+          ]);
+     }
+     return $results['teacher'];
+}
+     add_action('rest_api_init')
+
+search logic thats aware of relashionships
+__its best to create another field for posts 
+the search engine will grab everything in title and in body, meaning if you search for biology and the body has the word math,
+it will also grab math teachers, math events...
+
+     create another query
+
+// reduced bc of space 
+function uniSearchRes($reqData)
+{
+     $mainQuery = new WP_Query([
+          'post_type' => [ 'post', 'page', 'teacher', 'program', 'event', 'campus' ],
+          's' => sanitize_text_field($reqData['term'])
+     ]);
+     $results = [ 'generalInfo' => []];
+     while ($mainQuery->have_posts()) {
+          $mainQuery->the_post();
+          $type = ''; $excerpt = null;
+          $relatedCampuses = null;
+          $event_date = new DateTime(get_field('event_date'));
+          switch (get_post_type()) {
+               case "program":
+                    $type = 'program';
+                    $relatedCampuses = get_field('related_campus');
+                    break;
+               case "event":
+                    $type = 'event';
+                    array_merge($results['event'], [
+                         'month' => $event_date->format('M'),
+                         'day' => $event_date->format('d') ]);
+                    break;
+               case "post":
+                    $type = 'generalInfo';
+                    array_merge($results[$type], [
+                         'author' => get_the_author(),
+                    ]);
+                    break;
+          }
+          if (has_excerpt()) {
+               $excerpt = get_the_excerpt();
+          } else {
+               $excerpt = wp_trim_words(get_the_content(), 18);
+          }
+          if ($relatedCampuses) {
+               foreach ($relatedCampuses as $campus) {
+                    array_push($results['campus'], [
+                         'title' => get_the_title($campus),
+                         'permalink' => get_the_permalink($campus),
+                    ]);
+               }
+          }
+          array_push($results[$type], [
+               ...arr
+          ]);
+     }
+     if ($results['program']) {
+          $programsMeta = [ 'relation' => "OR" ];
+          foreach ($results['program'] as $item) {
+               array_push($programsMeta, [
+                    'key' => 'related_programs',
+                    'compare' => "LIKE",
+                    'value' => '"' . $item['ID'] . '"'
+               ]);
+          }
+          $programRelashionship = new WP_Query([
+               'post_type' => ['event', 'teacher'],'meta_query' => $programsMeta]);
+          while ($programRelashionship->have_posts()) {
+               $programRelashionship->the_post();
+               if (get_post_type() == 'teacher') {
+                    array_push($results['teacher'], [
+                         ...arr
+                    ]);
+               }
+          }
+          //to avoid duplicates
+          $results['teacher'] = array_values(array_unique($results['teacher'], SORT_REGULAR));
+     }
+     return $results;
+}
+making the search page without js
+     create file page-search.php
+     make an form that redirects to /?s=term
+          <form method="GET" action="<?php echo esc_url(site_url('/')) ?>">
+               <input name='s' type="search" />
+               <button type="submit">Submit</button>
+          </form>
+
+managing roles 
+          add ultimate planner roles  
+     create role 
+          go to post-type 
+               register_post_type('event',[
+                    'capability_type' => 'event',
+                    'map_meta_cap' => true,
+               ])
+
+open registration
+     configurations on admin wp site
+          settings - general membership - anyone can register 
+          now users can register 
+create registration page 
+     check if user is signed in 
+          wp_is_user_logged_in()
+     logout user 
+          echo wp_logout_url()
+     to lead to user page 
+          echo wp_login_url();
+          echo wp_registration_url()
+     display users profile image           
+          echo get_avatar(get_current_user_id(),size);
+to redirect users from the dashboard when the sign up/log on
+     functions.php  
+          add_action('admin_init',funcname);
+          function funcname() {
+               $currUser = wp_get_current_user();
+               if (count($currUser->roles) == 1 && $currUser->roles[0] == 'subscriber') {
+                    wp_redirect(site_url('/'))
+                    exit;
+               }
+          }
+to not show admin bar to subscribers 
+     function subscriberFunc()
+     {
+          $currentUser = wp_get_current_user();
+          if (count($currentUser->roles) == 1 && $currentUser->roles[0] == 'subscriber') {
+               show_admin_bar(false);
+          }
+     }
+     add_action("wp_loaded", 'subscriberFunc');
+
+on registration page theres a big wordpress logo that if you 
+click it you are going to be redirect it to wordpress.com 
+to change it to your website 
