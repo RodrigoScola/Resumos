@@ -532,3 +532,28 @@ to not show admin bar to subscribers
 on registration page theres a big wordpress logo that if you 
 click it you are going to be redirect it to wordpress.com 
 to change it to your website 
+     in functions.php
+          function newLoginHeaderUrl() {
+               return esc_url(site_url('/'));
+          }
+     the logo is not an image, its an css background image 
+     if you want to change it 
+          in fucntions.php
+          function newLoginLogo()          {
+               wp_enqueue_style('main', get_theme_file_uri('build/..file'));
+          }
+          add_action('login_enqueue_scripts', 'newLoginLogo');
+
+in the login page the title says powered by wordpress 
+to change that 
+     add_filter('login_headertitle','funcname');
+     function funcname() {
+          return get_bloginfo('name');
+     }
+
+user generated content 
+     register_post_type('note', [
+          'show_in_rest' => true, //you cant work with it if its false
+          'public' => false,
+          'show_ui' => true, //show in admin dashboard
+     ]);
