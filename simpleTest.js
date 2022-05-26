@@ -1,12 +1,13 @@
-const getSum = (a, b) => {
-	let lowest = a < b ? a : b
-	let highest = a < b ? b : a
-	let sum = 0
+// solutions
+// Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
 
-	for (let i = lowest; i <= highest; i++) {
-		sum += i
-	}
+// It should remove all values from list a, which are present in list b keeping their order.
 
-	return sum
+// arrayDiff([1,2],[1]) == [2]
+// If a value is present in b, all of its occurrences must be removed from the other:
+
+// arrayDiff([1,2,2,2,3],[2]) == [1,3]
+
+function arrayDiff(a, b) {
+	return a.filter((i) => b.indexOf(i) == -1)
 }
-console.log(getSum(-1, 5))

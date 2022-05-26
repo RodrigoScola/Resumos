@@ -67,7 +67,6 @@ pointers
 
     char * name = "John";
         Allocates a local (stack) variable called name that ponts to a single character;
-        causes the string 'john' to appear somewhere in the program memory
         initializes the name argument to point to where the J char resides
     if we try to acess the name variable as an array, it will work and will return the ordinal value of the character J, since the name variable actually ponts exactly to the beginning of the string
 

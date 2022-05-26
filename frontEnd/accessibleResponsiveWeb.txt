@@ -12,8 +12,6 @@ real text vs text within images
           users can scale or magnify the text for better legibility without losing image quality
           its less taxing on the browser to load real text versus requesting a large image assets from a server
 
-
-
 head / metadata tags
      head <- machine-readable information (metadata) about the document, like metatags, title, style sheets, scripts...
      link <- specifies relashionships between the current document and an external resource, this element is most commonly used to link css, but can be site icons 

@@ -557,3 +557,176 @@ user generated content
           'public' => false,
           'show_ui' => true, //show in admin dashboard
      ]);
+
+$.ajax({
+     url: url,
+     type: 'req_type',
+     success: function,
+     error: function,
+}) // custom request
+
+if you are not logged in, you will not be able to delete/edit a post 
+
+     in functions.php 
+          wp_localize_script('name','data',[
+               'root_url' => get_site_url(),
+               'nonce' => wp_create_nonce('wp_rest')
+          ])
+     will create a number that is on a session
+     $.ajax({
+			url: universityData.root_url + "wp-json/wp/v2/note/95",
+			beforeSend: (xhr) => {
+				xhr.setRequestHeader('X-WP-Nonce',universityData.nonce)
+			}
+		})
+selecting the parent of an element
+     $(e.target).parent('selector')
+     getting the id 
+     <li data-id="<?php echo get_the_ID ?>">
+     note.data('id')
+
+to make an input read only 
+     <input readonly />
+
+whenever you are fetching a post from the server you need to add new data,
+you need to add some required data 
+     data : {
+          status: 'publish', //not be saved as draft 
+          //if you are adding content to a post type 
+          title: val,
+          content: val,
+     }
+to add new post 
+url /wp-json/wp/v2/${postType}/
+type: 'post'
+
+
+right now every user is not able to add a new note, to fix that 
+     got ot mu-plugins/post-types
+          go to note post type 
+               register_post_type('note',[
+                    'capability_type' => "note",
+                    'map_meta_cap' => true,
+               ])
+
+          go to the subscriber role in the wp-admin 
+     edit_published_notes
+     delete_notes	
+     publish_notes
+     edit_notes
+     delete_published_notes
+
+however this will always show in the rest api
+to fix it 
+     when you have the request to post something
+          var newPost = {
+                    title: $(".new-note-title").val(),
+                    content: $(".new-note-body").val(),
+                    status: "private",
+               }
+     in functions.php 
+          add_filter('wp_insert_post_data', 'makeNotePrivate');
+          function makeNotePrivate($data)
+               {
+                    if ($data['post_type'] == 'note' && $data['post_status'] !== 'trash') {
+                         $data['post_status'] = 'private';
+                    }
+                    return $data;
+               }
+     now the title displays private...
+          to fix it 
+               echo str_replace("Private: ", '', esc_attr(get_the_title())) 
+
+to not let ppl add html 
+        if ($data['post_type'] !== 'note') return null;
+     $data['post_content'] = sanitize_textarea_field($data['post_content']);
+     $data['post_title'] = sanitize_text_field($data['post_title']);
+
+per user post limit 
+     in functions.php make note private
+            if (count_user_posts(get_current_user_id(), 'note') > 4) {
+          die('You have created too many posts');
+     }
+     add_filter('wp_insert_post_data', 'makeNotePrivate', 10,2); //2 is the num of params
+     function makeNotePrivate($data, $postArr)
+{
+     if ($data['post_type'] !== 'note') die();
+     if (count_user_posts(get_current_user_id(), 'note') > 4 && !$postArr['ID']) {
+          die('You have created too many posts');
+     }}
+custom rest 
+when a user deletes a note, the rest sends back a count of how many slots they have left 
+     add_action('rest_api_init', 'uni_custom_rest');
+     function uni_custom_rest()
+{
+     register_rest_field('note', 'user_note_count', [
+          'get_callback' => function () {
+               return count_user_posts(get_current_user_id(), 'note');
+          }
+     ]);
+}
+
+adding likes to profile 
+     user has to be logged in first 
+     user can only add one like
+     user can 'like' again but it removes one 
+     
+     getting all from likes from a specific teacher
+      <?php $likeCount = new WP_Query([
+                              'post_type' => 'like',
+                              'meta_query' => [
+                                   [
+                                        'key' => 'teacher_id',
+                                        'compare' => '=',
+                                        'value' => get_the_ID(),
+                                   ]
+                              ]
+                         ]);
+     getting if user liked already
+       $existsVal = 'no';
+                         $exists = new WP_Query([
+                              'author' => get_current_user_id(),
+
+                              'post_type' => 'like',
+                              'meta_query' => [
+                                   [
+                                        'key' => 'teacher_id',
+                                        'compare' => '=',
+                                        'value' => get_the_ID(),
+                                   ]
+                              ]
+                         ]);
+                         if ($exists->found_posts) {
+                              $existsVal =  'yes';
+                         }
+                         ?>
+programatically create and delete posts 
+     function createPost ($data) {
+          $teacher = $data['teacher_id'];
+          wp_insert_post)[
+               'post_type' => "like",
+               'post_status' => 'publish',
+               'post_title' => 'title",
+               'post_content' => 'content',
+               'meta_input' => [
+                    'teacherid ' => $teacher
+               ]
+          ]
+     }
+     and you send the data with the prop data on the body or data if youre using ajax
+
+you can check users permissions in the php code itself 
+     current_user_can('permission');
+          remember to add a nonce code
+               beforeSend: (xhr) => {
+				xhr.setRequestHeader("X-WP-Nonce", universityData.nonce)
+			},
+fetch an html from an attribute
+				const likeCount = likeBox.find('.like-count').html();
+     
+getting the id of an post 
+     <?php echo $query->posts[0]->ID ?>
+
+
+plugin development 
+
