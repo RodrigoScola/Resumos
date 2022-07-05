@@ -152,4 +152,55 @@ they are the same thing
 
 recursion
     when a function calls itself 
+
+files 
+
+when working with files you declare a pointer of type file 
+    FILE *name
+to open a file 
+    ptf = fopen("path",'mode');
+
+modes 
+    w - write mode, if file doesnt exist in the location, it creates one and opens it 
+    r - has to exists in the location and read in the binary mode
+    w - writing in binary mode 
+    a - append to the end of file 
+    r+ - reading and writing 
+
+add a "b" to the modes to do the binary mode 
+
+closing a file 
+    fclose(ptf) 
+
+reading and writing to a text file 
+    for reading and writing to a text file, fprintf, fscanf 
+
+    write to a text file 
+        {
+            int num; 
+            FILE *file ;
+            file = fopen("filepath","w");
+            scanf("%d",&num);
+            fprintf(file, num);
+        }
+    read from a file 
+        {
+            int num ;
+            FILE *file;
+            file = fopen("filepath","r");
+            fscanf(file, "%d",&num);
+            printf("%d",num);
+        }
+    getting data from fseek 
+        fseek(file, -sizeof(struct), SEEK_END);
+        for(n = 1; n < 5; n++) {
+            fread(&num, sizeof(struct), 1, file);
+            fseek(file, -2*sizeof(struct), SEEK_CUR);
+        }
+the function fscanf returns the num of elems read, if theres no elems left it returns eof so you can make a loop by doing 
+    while(fscanf(arq,"%d", &num)!== EOF){ 
+
+    }
+
+binary data 
     

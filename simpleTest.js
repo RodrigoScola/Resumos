@@ -1,13 +1,29 @@
-// solutions
-// Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
+const fs = require("fs")
+const lineReader = require("line-reader")
 
-// It should remove all values from list a, which are present in list b keeping their order.
+var count = 0
 
-// arrayDiff([1,2],[1]) == [2]
-// If a value is present in b, all of its occurrences must be removed from the other:
-
-// arrayDiff([1,2,2,2,3],[2]) == [1,3]
-
-function arrayDiff(a, b) {
-	return a.filter((i) => b.indexOf(i) == -1)
+const passDir = (path = "") => {
+	if (path.endsWith(".txt")) {
+		lineReader.eachLine(path, function (line) {
+			console.log(line, count++)
+		})
+	} else {
+		fs.readdir(path, (err, data) => {
+			if (data) {
+				data.map((item) => {
+					passDir(`${path}/${item}`)
+				})
+			}
+		})
+	}
 }
+const getDir = () => {
+	return fs.readdirSync("./")
+}
+const dirs = getDir()
+	.slice(3)
+	.filter((item) => item !== "node_modules")
+dirs.forEach((dir) => passDir(`./${dir}`))
+console.log(count)
+// fs.readFile("./tasks.txt", "utf-8", readDataCallback)

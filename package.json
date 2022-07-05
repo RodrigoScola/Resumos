@@ -2,6 +2,7 @@
   "dependencies": {
     "an-array-of-english-words": "^2.0.0",
     "fs": "^0.0.1-security",
+    "line-reader": "^0.4.0",
     "lodash": "^4.17.21",
     "most-common-words-by-language": "^3.0.9",
     "path": "^0.12.7",
