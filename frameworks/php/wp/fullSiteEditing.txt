@@ -195,3 +195,34 @@ when its things that you dont really want customization, you can always  just ad
 header and footer blocks 
      make blank components and add them on pages, copy and paste the php you did 
 
+single page and post templates 
+
+just create a new block and code page away
+
+for individual pages
+     if it doesnt have a template, then it will use the index template, to change that add a page.html file 
+
+if its an hardcoded page like about-us, the template is index.html so it will not work 
+     if you want a custom template for those kinds of pages,
+          create front-page.html and paste your index page there 
+
+if you want a template specific for archives you need to create a template called archived-postType.html
+
+only allow certain block types in certain editor enviroment
+     in functions.php 
+          function allowedBlocks($allowed_block_types, $editor_ctx)
+          {
+
+               // if is on a page/post screen
+               if (!empty($editor_ctx->post)) {
+                    return $allowed_block_types;
+               }
+               return $allowed_block_types;
+          }
+
+
+          add_filter('allowed_block_types_all', 'allowedBlocks', 10, 2);
+
+creating a blank template 
+     when youre creating a page you dont need to create it by scratch, you can create a template that helps you speed up the process 
+     it doesnt "import" the components, but if you add the same component, it alters it

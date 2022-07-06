@@ -730,3 +730,6 @@ getting the id of an post
 
 plugin development 
 
+query vars 
+     https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/learn/lecture/8362044#overview
+     

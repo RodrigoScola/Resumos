@@ -1,0 +1,38 @@
+if you have to check distances, first sort the array, that way the more similar numbers will be clumped togheter and you only need to check once
+     const checkLowestDist = (arr) => {
+          arr = arr.sort((a,b) => a.x - b.x);
+          let lowestdist = {
+               pointA: {x, y},
+               pointB: {x,y},
+               dist: 0.0000
+          }
+          for(let i = 0; i < arr.length; i++) {
+               if (checkDist(arr[i], arr[i +1]) < lowestdist.dist) {
+                    lowestdist = {
+                         pointA: arr[i],
+                         pointB: arr[i + 1],
+                         dist: checkDist(arr[i], arr[i + 1])
+                    }
+               }
+          }
+     }
+
+
+if you need to check for a max of something, sort the array and start by the end and whenever you find the one that is your condition, break the loop
+     const isPalindrome = (n1) => {
+     return n1.toString().split('').reverse().join('') === n1.toString()
+     }
+     function largestPalindromeProduct(n) {
+     let largest = 0;
+     let power = Math.pow(10,n);
+          for (let n1 = power; n1 >0;n1--) {
+               for(let n2 = power; n2 > 0; n2--) {
+                    const res = n1 * n2;
+               if (isPalindrome(res) && largest < res ) {
+                    largest = res
+                    break
+                    }   
+               }
+          }
+          return largest;
+     }
