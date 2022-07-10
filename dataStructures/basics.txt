@@ -47,6 +47,6 @@ stacks are an one way data structure, first in first out
                this.collection = []
           }          
      }
-
-queue is a first in first out 
+priority queue 
+     its a special type of queue in which items may have additional information which specifies the priority 
      

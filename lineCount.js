@@ -1,12 +1,22 @@
 const fs = require("fs")
 const lineReader = require("line-reader")
-
+const util = require("util")
 var count = 0
+var chars = 0
 
 const passDir = (path = "") => {
-	if (path.endsWith(".txt")) {
+	if (path.split("/").slice(-1)[0].includes(".")) {
 		lineReader.eachLine(path, function (line) {
-			console.log(line, count++)
+			const char = line.split(" ").length
+			console.log(
+				line,
+				`This resume has ${count++} lines and ${(chars += char)} words, it would take ${Math.ceil(
+					chars / 60
+				)} minutes, ${Math.ceil(chars / 60 / 60)} hours and ${Math.ceil(
+					chars / 60 / 60 / 24
+				)} days to rewrite it all`
+			)
+			return null
 		})
 	} else {
 		fs.readdir(path, (err, data) => {
@@ -19,11 +29,15 @@ const passDir = (path = "") => {
 	}
 }
 const getDir = () => {
-	return fs.readdirSync("./")
+	return fs
+		.readdirSync("./")
+		.slice(3)
+		.filter((item) => item !== "node_modules")
 }
 const dirs = getDir()
-	.slice(3)
-	.filter((item) => item !== "node_modules")
-dirs.forEach((dir) => passDir(`./${dir}`))
-console.log(count)
+// dirs.map((dir) => passDir(`./${dir}`))
+for (let i = 0; i < dirs.length; i++) {
+	passDir(`./${dirs[i]}`)
+}
+console.log(`This resume has ${count} and ${chars} words, it would take ${chars / 60} minutes to rewrite`)
 // fs.readFile("./tasks.txt", "utf-8", readDataCallback)

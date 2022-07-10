@@ -1,29 +1,40 @@
-const fs = require("fs")
-const lineReader = require("line-reader")
-
-var count = 0
-
-const passDir = (path = "") => {
-	if (path.endsWith(".txt")) {
-		lineReader.eachLine(path, function (line) {
-			console.log(line, count++)
-		})
-	} else {
-		fs.readdir(path, (err, data) => {
-			if (data) {
-				data.map((item) => {
-					passDir(`${path}/${item}`)
-				})
-			}
-		})
+function People() {
+	this.data = []
+	this.pairs = []
+	this.push = (item) => {
+		this.data.push(item)
+	}
+	this.filter = (type) => {
+		return this.data.filter((value) => value.gender == type)
+	}
+	this.sortDT = () => {
+		return this.data.sort((a, b) => a.dt - b.dt)
+	}
+	this.pair = () => {
+		this.data = this.sortDT()
+		for (let i = 0; i < this.data.length; i += 2) {
+			this.pairs[i] = [this.data[i], this.data[i + 1]]
+		}
+		return this.pairs
 	}
 }
-const getDir = () => {
-	return fs.readdirSync("./")
+function Person() {
+	data = {}
+	this.generateData = () => {
+		const height = 1 + Math.random()
+		data = {
+			height,
+			gender: Math.random() > 0.9 ? "femeale" : "male",
+			dt: height / 2.5,
+		}
+		return data
+	}
 }
-const dirs = getDir()
-	.slice(3)
-	.filter((item) => item !== "node_modules")
-dirs.forEach((dir) => passDir(`./${dir}`))
-console.log(count)
-// fs.readFile("./tasks.txt", "utf-8", readDataCallback)
+let people = new People()
+for (let i = 0; i <= 5000; i++) {
+	people.push(new Person().generateData())
+}
+people.filter("femeale")
+people.sortDT()
+console.log(people.data)
+people.pair()
