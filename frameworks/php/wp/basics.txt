@@ -109,7 +109,7 @@ custom post pages
 
      function eventTypes()
 {
-     register_post_type('event', [
+     register_post_type('name', [
           'show_in_rest' => true,
           'supports' => ['title', 'editor', 'excerpt'],
           'rerwite' => ['slug' => 'events'],

@@ -38,3 +38,4 @@ people.filter("femeale")
 people.sortDT()
 console.log(people.data)
 people.pair()
+

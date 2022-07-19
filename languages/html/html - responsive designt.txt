@@ -678,3 +678,104 @@ text
 if you want to make a pop up box on the browser
      window.alert('message');
 
+instead of using display flex for everything 
+      if you want items to be in the same line and they are text you can use 
+            display inline-block
+
+if you want to center a div horizontally
+      selector {
+            margin: auto;
+      }
+instead of adding marginElements or something like that, just add margins to the selector of the items 
+
+when using linear gradient, the gradient is an image, so if you want to have an solid color first use the background prop
+  background: linear-gradient(90deg, rgb(255, 0, 0), rgb(0, 255, 0));
+// just a note, freecodecamp made each parameter their own page, now thats handholding
+
+if you want to have color stops, you can add a % after the color
+
+sometimes when elements have the height more than the parent element, they will disappear, its because the default display prop is block, and when two block elements are next to each other they stack up 
+to position two divs set their display to inline-block
+
+if you want to select the last of something in a type you can use the :last-of-type selector 
+
+if you want to make inline inputs
+      <label>
+            <input type='radio' name='somename' class='inline' /> this is the first name</label>
+            .inline {
+                  width: unset;
+            }
+
+if some elements are too high on the line, you can combat this by using the vertical align to middle 
+      vertical-align: middle 
+
+attribute selection 
+      instead of using the id you can use the selector 
+            input[name='password']
+      you dont need to use name, you can use any data you want
+
+if you want to just round some borders 
+      border-radius: 9px 15%;
+
+if you inspect an element, you will notice that the pixel amount is not what you set if you have padding and margins
+to combat this 
+      * {
+            box-sizing: border-box;
+      }
+
+to select every element that doesnt have an rule you use :not(example)
+      div:not(.classname) {
+
+      }
+
+styling an entire page can be a nightmare, pseudo selectors are here to help 
+      selector[class~='classname'] will select any element that INCLUDES that class name, without it, only selects the classes with the exact classnames
+
+      to make something only for screen readers 
+            span[class~="sr-only"] {
+                  border: 0;
+                  clip: rect(1px, 1px, 1px, 1px);
+                  clip-path: inset(50%);
+                  -webkit-clip-path: inset(50%);
+                  width: 1px;
+                  height: 1px;
+                  }
+
+to select the first element of a type 
+      element:first-of-type
+to select the last element of a type 
+      element:last-of-type
+
+to make an object 
+      $colors : (
+            color: $red,
+      )
+
+to make a for loop 
+      @for $i from 1 trough 12 {
+            .col-#{$i} {
+                  width: 100px
+            }
+      }
+      # is used to interpolate text 
+
+to map keys in object 
+      @each $key, $value in $colors {
+      }
+
+if you want to avoid repetition, you can alter the html with css  
+      p: Before {
+            content: "SOMETHING"
+      }
+
+you dont need to use the flexbox when youre trying to make things in a line 
+you can make the objects with position relative and float left/right
+
+the ::before and ::after selectors
+      will select pseudo elements after the targeted selectors 
+
+if you want to have lazy loading in an image add 
+      <img src='#' alt='#' loading='lazy' />
+
+lazy loading is the process of loading something only when you need it
+
