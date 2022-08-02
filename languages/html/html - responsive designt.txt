@@ -779,3 +779,14 @@ if you want to have lazy loading in an image add
 
 lazy loading is the process of loading something only when you need it
 
+to make 3 columns in grid
+      selector {
+            display: grid;
+            grid-template-columns: size size size;
+      }
+
+the minmax makes the grid more responsive 
+minmax(2rem, 1fr) minmax(min-content, 94rem) minmax(2rem, 1fr);
+
+sometimes you dont know how many elements youre going to have, so its good to be dynamic 
+using the grid-auto-flow takes row or column 
