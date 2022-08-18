@@ -37,3 +37,4 @@ app.post('/books',[check('author').not().isEmpty().isLength({ min: 5, max: 255 }
   ], (req,res) => {
        res.send('good stuff')});
      
+if you dont want other elements being notified of a form submission you can use the event.stopPropagation()

@@ -307,4 +307,18 @@ grid-auto-flow
           column <- specifies the new elements should fill columns from top to bottom and create new columns when there are too many elements 
           dense <- this keyword invokes an algorithm that attempts to fill holes earlier in the grid layout if smaller elements are added 
                you can pair elements togheter (grid-auto-flow: row dense);
-          
+
+the transform-origin is used to set the point around which a css transformation is applied.
+     when performing a rotate, the transform origin determines around which point the element is rotated.
+
+the @keyframes is used to define the flow of a css animation, use % to define key points and a name 
+     @keyframes names {
+          12% {
+               color: green;
+          }
+     }
+the animation-iteration-count sets how many times the animation should repeat
+     if the animation should always run, set it to infinite 
+the animation-timing-function sets how the animation should progress over time
+
+the skew transform function rotates the element but also cuts the excess to keep the element from overflowing

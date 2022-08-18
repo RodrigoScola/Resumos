@@ -12,10 +12,13 @@ const passDir = (path = "") => {
 				line,
 				`This resume has ${count++} lines and ${(chars += char)} words, it would take ${Math.ceil(
 					chars / 60
-				)} minutes, ${Math.ceil(chars / 60 / 60)} hours and ${Math.ceil(
+				)} minutes or ${Math.ceil(chars / 60 / 60)} hours or ${Math.ceil(
 					chars / 60 / 60 / 24
 				)} days to rewrite it all`
 			)
+			if (line) {
+				// fs.appendFile("total.txt", line + "\n", (err) => console.log(err))
+			}
 			return null
 		})
 	} else {
