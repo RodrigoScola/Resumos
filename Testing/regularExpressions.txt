@@ -1,0 +1,4 @@
+to see if the pattern fits 
+     regex.test(string)
+to search for multiple strings
+     /dog|bird|fish/.test('the dog killed the zebra');
