@@ -1,0 +1,28 @@
+is a data structure that stores key-value pairs
+ease to look up stored items based on key values 
+ var Map = function () {
+     this.collection = {};
+     this.add = (key, value) => {
+          return this.collection[key] = value;
+     }
+     this.remove(key) {
+          if (this.has(key)) {
+               delete this.collection[key]
+          }    
+     }
+     this.get = key => {
+          return this.collection[key]
+     }
+     this.has = key => {
+          return this.collection[key] != undefined
+     }
+     this.values = () => {
+          return [...Object.values(this.collection)]
+     }
+     this.clear = () => {
+          this.collection = {}
+     }
+     this.size = () => {
+          return this.values().length
+     }
+ }

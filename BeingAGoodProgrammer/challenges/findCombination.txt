@@ -1,4 +1,5 @@
-if you have to check distances, first sort the array, that way the more similar numbers will be clumped togheter and you only need to check once
+if you need to check something with a lot of data, like every review of a post, for all posts, you can first sort it and check it 
+this example is for distance, next is what i used to check the posts
      const checkLowestDist = (arr) => {
           arr = arr.sort((a,b) => a.x - b.x);
           let lowestdist = {
@@ -16,6 +17,33 @@ if you have to check distances, first sort the array, that way the more similar 
                }
           }
      }
+
+const checkPosts = () => {
+     const posts = new WP_Query({
+          type: 'reviews',
+          orderBy: 'title' //title was the post id
+          order: "ASC",
+     });
+     let postsArr = []
+     posts.forEach(item => {
+          if (postsArr[postsArr.length - 1].id == item.title) { // since its ordered in asc, to match the id it just needs to look at the last index and not all the indexes 
+               postsArr[postsArr.length - 1] = { //could`ve/shouldve created a variable in the project too, wouldve saved a long time writitng the same things
+                    id: item.title,
+                    count: postsArr[postsArr.length - 1] + 1,
+                    score: postsArr[postsArr.length - 1] + item.score,
+               }
+          } else {
+               postsArr[postsArr.length - 1] = {
+                    id: item.title,
+                    count: 1,
+                    score: item.score
+               }
+          }
+     })
+     return postsArr;
+}
+
+
 
 
 if you need to check for a max of something, sort the array and start by the end and whenever you find the one that is your condition, break the loop

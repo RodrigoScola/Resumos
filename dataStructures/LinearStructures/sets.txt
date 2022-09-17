@@ -1,0 +1,69 @@
+sets are an o1 way for you to get/see if an item is in an array/object, the data looks like this 
+     {1: true, 2: true, 3: true,4 : true}
+
+class Set {
+     constructor() {
+          this.dictionary = {};
+          this.length = 0;
+
+     }
+     has(elem) {
+          return this.dictionary[elem] !== undefined //returns true or false
+     }
+     values() {
+          return Object.keys(this.dictionary);
+     }
+     add(elem) {
+          if (!this.has(elem)) {
+               this.dictionary[elem] = true;
+               this.length++
+               return true
+          }
+          return false;
+     }
+     remove(element) {
+          if (this.has(element)) {
+               delete this.dictionary[element];
+               this.length--;
+               return true
+          }
+          return false;
+     }
+     size() {
+          return this.length
+     }
+     union(set) { // doesnt alter the original one, just returns a new one
+          const nset = new Set();
+          // to always use the set with less information to reduce the computing times
+          let largeSet;
+          let smallSet;
+          if (this.size() > set.size()) {
+               largeSet = this;
+               smallSet = set;
+          } else {
+               largeSet = set;
+               smallSet = this
+          }
+          smallSet.values().forEach(item => {
+               if (largeSet.has(item)) {
+                    nset.add(item)
+               }
+          })
+          return nset 
+
+     }
+     difference(set) { // returns the sets differnce to this set 
+     const nset = new Set();
+     this.values().forEach(item => [
+          if (!set.has(item)) {
+               nset.add(value);
+          }
+     ])
+     return nset;
+     }
+     isSubsetOf(set) { //check if the data is the same 
+     return this.values().every(item => set.has(item))
+
+     }
+}
+

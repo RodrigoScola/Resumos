@@ -162,7 +162,7 @@ l.removeAt(1)
 // if the user tries to remove the first one
 l.removeAt(0) // you cant
 
-l.log()
+// l.log()
 
 console.log(
 	l.getElements((arr) => {
@@ -182,3 +182,24 @@ Array.prototype.toList = function () {
 	})
 	return list
 }
+function combinations(possibleNumbers, total) {
+	let combinations = []
+	possibleNumbers.map((num) => {
+		return num % 2 == 0
+			? possibleNumbers.map((num2) => {
+					return possibleNumbers.map((num3) => {
+						const nset = new Set([num, num2, num3])
+						const sums = [...nset].reduce((curr,n) => curr + n) == total
+						if (sums) {
+							combinations.push([...nset])
+						}
+						nset
+						
+					})
+			  })
+			: null
+	})
+	console.log(combinations)
+	return true
+}
+console.log(combinations([1, 2, 3, 4, 5, 6, 7], 12))

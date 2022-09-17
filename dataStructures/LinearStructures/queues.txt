@@ -73,3 +73,40 @@ avoiding overflow
      when we add an element to a queue that does not have room for a new node 
      this condition affects bounded queues because they have fixed sizes they cannot exceed, for unbounded queues, though they dont have a size restriction, at some point the size of the queue will exceed the available memory we can use to store the queue 
      
+circular queue
+     good for overriting old data when new data comes in gradually 
+          class CircularQueue {
+               constructor(size) {
+                    this.queue = [];
+                    this.read = 0;
+                    this.write = 0;
+                    this.max = size - 1;
+
+                    while(size > 0) { // could do with new Array(size).fill(null) but i dont know if that would work out
+                         this.queue.push(null);
+                         size--
+                    }
+               }
+     print() {
+          return this.queue;
+     }
+     enqueue(item) {
+          if (this.queue[this.write] == null ) {
+               this.queue[this.write++] = item;
+               if (this.write > this.max) this.write = 0;
+               return item;
+          }
+          return null
+     }
+     dequeue() {
+          if (this.queue[this.read] !== null) {
+               let item = this.queue[this.read];
+               this.queue[this.read++] = null;
+               if (this.read > this.max) this.read = 0;
+               return item
+          }
+          return null
+     }
+
+
+          }
