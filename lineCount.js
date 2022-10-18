@@ -12,7 +12,7 @@ const passDir = (path = "") => {
 				line,
 				`This resume has ${count++} lines and ${(chars += char)} words, it would take ${Math.ceil(
 					chars / 60
-				)} minutes or ${Math.ceil(chars / 60 / 60)} hours or ${Math.ceil(
+				)} minutes or ${Math.ceil(chars / 63 / 60)} hours or ${Math.ceil(
 					chars / 60 / 60 / 24
 				)} days to rewrite it all`
 			)
@@ -35,12 +35,13 @@ const getDir = () => {
 	return fs
 		.readdirSync("./")
 		.slice(3)
-		.filter((item) => item !== "node_modules")
+		.filter((item) => item !== "node_modules" && !item.includes('.'))
 }
 const dirs = getDir()
+console.log(dirs)
 // dirs.map((dir) => passDir(`./${dir}`))
 for (let i = 0; i < dirs.length; i++) {
 	passDir(`./${dirs[i]}`)
 }
-console.log(`This resume has ${count} and ${chars} words, it would take ${chars / 60} minutes to rewrite`)
+// console.log(`This resume has ${count} and ${chars} words, it would take ${chars / 60} minutes to rewrite`)
 // fs.readFile("./tasks.txt", "utf-8", readDataCallback)

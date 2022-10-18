@@ -1,0 +1,16 @@
+all cards height 100%
+     front page
+     blog cards
+     course cards
+     dashboard cards 
+front page card title 
+     increase size and be in two lines
+     decrease the size and be in one line 
+reduce the excerpt lenght
+fix categories in the search 
+fix the rendering of text in the frontend
+default courses in the search page
+front page mobile 
+
+change language 
+     course
