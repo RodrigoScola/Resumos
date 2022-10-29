@@ -790,3 +790,10 @@ minmax(2rem, 1fr) minmax(min-content, 94rem) minmax(2rem, 1fr);
 
 sometimes you dont know how many elements youre going to have, so its good to be dynamic 
 using the grid-auto-flow takes row or column 
+
+if you want something to be inline, instead of using display flex, use the prop inline 
+      {
+            .class > li { // selects the first element and make everything inline with this element
+                  display: inline
+            }
+      }

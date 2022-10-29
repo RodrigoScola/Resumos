@@ -4,16 +4,21 @@ const util = require("util")
 var count = 0
 var chars = 0
 
+
+const wpm = (chars, typeSpeed = 70) => {
+	return Math.ceil(chars / typeSpeed)
+}
+
 const passDir = (path = "") => {
 	if (path.split("/").slice(-1)[0].includes(".")) {
 		lineReader.eachLine(path, function (line) {
 			const char = line.split(" ").length
 			console.log(
 				line,
-				`This resume has ${count++} lines and ${(chars += char)} words, it would take ${Math.ceil(
-					chars / 60
-				)} minutes or ${Math.ceil(chars / 63 / 60)} hours or ${Math.ceil(
-					chars / 60 / 60 / 24
+				`This resume has ${count++} lines and ${(chars += char)} words, it would take ${wpm(
+					chars
+				)} minutes or ${Math.ceil(wpm(chars) / 60)} hours or ${Math.ceil(
+					wpm(chars) / 60 / 24
 				)} days to rewrite it all`
 			)
 			if (line) {
