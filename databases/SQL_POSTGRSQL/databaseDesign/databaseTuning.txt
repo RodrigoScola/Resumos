@@ -9,4 +9,45 @@ dbms tuning
 
 database maintnance 
      includes backups, column statistics updates and defragmentation of data inside the database files 
-     
+
+constraints 
+     NOT NULL 
+          to add when creating a table 
+               create table table_name (
+                    id integer not null
+               );
+          alter column   
+               sometimes it can already have null values so update it first 
+                    update table_name set column_name = 'value' where column_name is null;
+                    alter table table_name alter column column_name set not null;
+     check constraints 
+          sometimes you want to add a check on something to make it valid, to do so use 
+               to add when creating a table 
+                    create table table_name (
+                         id int primary key,
+                         name varchar(39) not null check(name is not 'hello there')                         
+                    )
+               altering a table 
+                    alter table table_name
+                    add check (len > 0);
+          alter table table_name
+          add check(column_name1 + column_name2 = column_name3);
+     unique 
+          unique value on that column for that table 
+               when creating a table 
+                    create table table_name (
+                         name varchar unique
+                    )
+               altering a table 
+                    alter table table_name 
+                    add unique(column_name)
+     primary key 
+          automatically adds not null and unique
+          when creating a table 
+               create table (
+                    id integer primary key
+               );
+          altering a table    
+               alter table table_name
+               add primary key(column_name)
+               

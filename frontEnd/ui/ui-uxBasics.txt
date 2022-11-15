@@ -129,4 +129,31 @@ the ui and ux career landscape
           information architect - are more focused on the interactive aspects of a design, for example, how does the interface give feedback to a user after an action? how long should an animation within an interface be? what sound should the interface make when theres an error?
           usability tester - is part of evaluative research, which occurs after a design or prototype is completed. they determine pain points within a product and suggest improvements
           ux writer - they focus specifically on product copy, for example error messages, the microcopy that appears on a button, or the onboarding copy for an application
+     hybrid roles in ux 
+          in addition to specialist roles that fall cleanly under the ux desing umbrella, there are specialist roled that hybridize ux and another field or skillset. people from almnost any background can bring a unique perspective to ux and or leapfrog their way to other ux roles.
+          hybrid roles can also be a way for ux professionals to broaden their skillsets
+
+-- wireframes --
+     information architecture - 
+          is the organization prioritization and presentation of information within products, websites and other software applications. effective information architecture is important because it allows users to complete tasks with the least effort required 
+          site map is a high level view representing content hierarchy within a digital interface. site maps define all pages that need to be built 
+     what is a wireframe 
+          is a low-fidelity representation of a digital interface. what determines whether a design is low or high-fidelity comes doen to the amount of detail and the medium it was created in, for example low, fidelity designs might appear more like pen and paper sketching. in contrast we can create high fidelity designs with digital tools to achieve a higher state of quality and detail.
+          wireframes are low-fidelity because there are no interactive features and they are created using low-fidelity elements. These low fidelity elements serve as placeholders for high-fidelity design elements which include, but are not limited to logos, navigation search fields, text buttons, images and videos 
+          decorative interface elemnets such as color palettes, images and typography will be introduced later in the design process. for now, lets focus on building an intuative layout that meets the three main requirements
+               user needs
+               stakeholders goals
+               technical capabilities
+          its important to note that wireframes are distinct from sketches. sketching is used to create quick concepts and to iterate ideas using pen and paper.
+          wireframes are made with digital tools and are low-fidelity representations of digital interfaces 
+     why do you need to wireframe 
+          just like constructing a house, it needs a blueprint, that way everyone that helps it biuld like the construction company, the interior designers... know how it would basically look like
+          in the scope of product development, wireframes are one of the first polished deliverables that can accurately portray the final products structure. wireframes are and excellent resource for designers, developers and stakeholders to understand how the interface is configured and how the interface is configured and how the wireframe meets the design requirements
+          in an architectural blueprint, annotations help define what materials are used and where to use them
+     how do you make a wireframe 
+          when making a wireframe, you can have a better understanding of 
+               user goals and tasks for the application
+               user pain point, behaviours and designers
+               current workflows used to complete these tasks
+          the location of page elements should provide a solution to the design requirements. it is recommended to priorize valuable information in an easy to reach place based on content hierarchy
           
