@@ -81,3 +81,14 @@ icons
      https://chakra-ui.com/docs/media-and-icons/icon
 rem to px conversion 
      https://chakra-ui.com/docs/theming/theme#sizes
+datasets -
+     search for a specific dataset 
+          https://datasetsearch.research.google.com
+     health related topics - World Health Organization (WHO): https://www.who.int/data/gho/
+          mental health - https://www.who.int/health-topics/mental-health#tab=tab_1
+          traffic mortality - https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/road-traffic-mortality
+     general datasets - https://data.fivethirtyeight.com
+          political polls  - https://projects.fivethirtyeight.com/polls/
+          best nba players - https://projects.fivethirtyeight.com/nba-player-ratings/
+     children (??????????)
+          https://data.unicef.org

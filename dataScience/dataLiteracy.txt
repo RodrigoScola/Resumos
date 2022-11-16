@@ -1,0 +1,36 @@
+what is data 
+     organizations are fueled by data, and data scientists and analysts are at the forefront of working with it. but they dont work alone, even the most technically sophisticated data scientist will need to communicate about data 
+
+data literacy 
+     its not about every data that is meaningful and important, its about good data, how do you practice that?
+          do you have sufficient data to answer the question at hand?
+          can my data answer my exact question
+
+data literacy in statistics
+     statistics helps us test the likelihood of an event happening by random chance versus systematically
+     example 
+          showing discrimination in hiring in the workplace
+          1 - if hiring results of subjective interviews are so unlikely that they couldnt have happened by chance
+          2 - if the results couldnt happen by chance, then the alternatice is that they must happen by purposeful exclusion
+          3 - if the employers are aware of the exclusionary effect and they continue to use that same hiring process, then theyre showing a reckless disregard for the rights of individual candidates not to be discriminated against in the hiring pricess
+          4 - once we acknowledge that, the burden shifts to employers to show why their hiring requirements are valid and necessary 
+
+data collection 
+     data ethics and privacy 
+          much of the data available to us comes from individuals and would be considered personally identifiable, we all have an obligation to protect personally identifiable information
+          ethical issues regarding data collection may be divided into the following categories
+               consent - individuals must be informed and give their consent for information to be collected 
+               ownership - anyone collecting data must be aware that individuals have ownership over their information (if the individual doesnt want their information to be used anymore, you have to remove it)
+               intention - individuals must be informed about what information will be taken, how it will be stored and how it will be used
+               privacy - information about individuals must be kept secure 
+     data can come from a lot of places, like research, governments, technology, observation or directly from individuals.
+     we can collect this data in many different ways. one way is to seek out information that doesnt yet exist and measure it directly, this can include activities like surveys, observational studies, or recording the results of an experiment, this kind of data might be considered static, meaning the information is collected and it does not change
+     data can also be ever changing, like apps and websites, unlike static data of more traditional methods, sensors and trackers can also continuously update data to include new information in a live feed
+data sources 
+     datasets are often kept private or can be accessed by a fee
+     see ./links for more information
+
+data types and quality 
+     data can mean a lot of things, but within data science, it typically means a collection of organized observations 
+     there are 2 types of observations 
+          
