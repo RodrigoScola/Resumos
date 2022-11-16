@@ -1,0 +1,8 @@
+what is data 
+     organizations are fueled by data, and data scientists and analysts are at the forefront of working with it. but they dont work alone, even the most technically sophisticated data scientist will need to communicate about data 
+
+data literacy 
+     its not about every data that is meaningful and important, its about good data, how do you practice that?
+          do you have sufficient data to answer the question at hand?
+          can my data answer my exact question
+

@@ -114,4 +114,13 @@ indexes based on expressions
      an index is not limited to just a column reference, it can use the result of a funtion or scalar expression computed from one or more columns
      if you want to ensure the company_name in a manufactures is unique you can add the unique option to make a unique index constraint on the results on your index
           create unique index unique_manufacture_company_name_idx on manufacture(lower(company_name));
+
+partial indexes 
+     sometimes a table will be too big even for an index, and when you want to search through some type of information more than others, you can add a partial index for that
+          create index index_name on table(column_name)
+          where condition
+
+you can order by indexes 
+     to specify the order of an index, you can add on the order you want your index sorted when you create the index, 
+          create index indexname_sorted on table_name(date_time desc, column_name)
      

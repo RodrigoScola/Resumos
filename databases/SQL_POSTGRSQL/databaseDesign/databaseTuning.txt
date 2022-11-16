@@ -50,4 +50,11 @@ constraints
           altering a table    
                alter table table_name
                add primary key(column_name)
-               
+     foreign keys 
+          alter table table_name
+          add foreign key(column_name)
+          references parent_table_name(column_name)
+     foreign keys cascading changes 
+          when you have many tables its hard to keep track, deleting rows and updating them, sql has that covered on [action] cascade
+               on delete cascade will delete every child table 
+          
