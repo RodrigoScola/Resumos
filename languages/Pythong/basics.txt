@@ -138,3 +138,126 @@ statistics
         np.sort(array[:,0]);
 
 
+multiple returns
+    python has multiple returns that you can assign to 
+    {
+        def weather_report(weather_data): 
+            first_day = 'sun'
+            second_day = 'moon'
+            third_day = 'rain'
+            return first_day, second_day, third_day
+        
+        # and use it like this 
+        monday, tuesday, wednesday = weather_report(somedata)
+    }
+
+Booleans in python are True or False, with the capitalization
+if statements doesnt have the ()
+to add and operators, in python its "and" and not "&&"
+to add or operators, in python its "or" and not "||"
+to add not operators, in python its "not" and not "!"
+else if 
+    instead of using else if, use elif
+
+to add to an array 
+    array_name.append(item)
+to remove an item from array 
+    array_name.remove('value') #this only removes the first instance of the value
+
+you can add items in an array using the + 
+    [True, True, True] + [False]
+
+combining arrays
+    it combines the arrays on the same indexes 
+        [
+            [array1_name[0], array2_name[0]],
+            [array1_name[1], array2_name[1]],
+            [array1_name[2], array2_name[2]],
+        ]
+    to use it 
+        temp_arr = zip(array1, array2)
+        converted_list = list(temp_arr);
+    however, the data has been converted into a tuple, an immuptable type of list 
+
+working with lists 
+    count - count occurences of element in list 
+    insert - add item at index
+    pop - remove element at index
+    range - create a sequence of integers 
+    len - get len of obj 
+    sort / sorted - sort a list 
+
+pop -
+    it removes on the index itself and returns the removed element 
+    {
+        removed_elem = array.pop()
+        # array doesnt have that element 
+        print(removed_elem) # the element 
+    }
+
+range - 
+    range doesnt return the actual list, but the "function"
+    # range(0, 10)
+    to transform it into a list 
+    array_name = list(range(10));
+
+    range(start?/end, end, step);
+
+slicing lists 
+    you can slice a list withing the variable attribuition
+        sliced = letters[start_idx:end_idx]
+    if you want to get the first n elements -> arra[:n]
+    if you want to get the last n elements -> arra[-n:]
+    if you want all but n elements -> arra[:-n]
+
+count - letters.count(item)
+
+sort - 
+    to sort in ascending order -> arr.sort()
+    to sort in descending order -> arr.sort(reverse=True)
+sorted - 
+    the function to sort -> sorted(arr)
+
+for loops 
+    for temp_var in collection:
+    using range - for num in range(nums):
+    you can use break in the loop 
+    {
+        for item in items:
+            if item == 'search_item':
+                break
+    }
+
+list comprehension 
+    map but for python
+        {
+            new_list = [item * 2 for item in collection]
+        }
+    conditions in for loop
+        {
+            new_list = [for item in items if condition]
+        }
+    doing it together
+        {
+            new_list = [num * 2 for num in nums if num > 0] #this will filter and do something to the ones that passed
+
+            new_list = [num * 2 if num < 0 else num * 3 for num in numbers] # this will do something to every number
+        }
+    you can separate the variables 
+        xy = [[1,2],[2,3],[3,4]]
+        z = [x * y for (x,y) in xy]
+
+make an api request in python
+    impor requrests
+    r = requests.get(url);
+    r.json();
+convert json to csv 
+    make the data in tabular form 
+    {
+        import csv 
+        with open('census.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(r.json);
+    }
+    # it writes things to a file 
+    

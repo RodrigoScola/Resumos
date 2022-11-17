@@ -89,6 +89,12 @@ datasets -
           traffic mortality - https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/road-traffic-mortality
      general datasets - https://data.fivethirtyeight.com
           political polls  - https://projects.fivethirtyeight.com/polls/
+          https://www.kaggle.com
           best nba players - https://projects.fivethirtyeight.com/nba-player-ratings/
+          https://www.kdnuggets.com
+          https://www.data.gov
      children (??????????)
           https://data.unicef.org
+     browser data api
+          https://www.census.gov/content/dam/Census/data/developers/api-user-guide/api-guide.pdf
+          
