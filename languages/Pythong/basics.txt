@@ -260,4 +260,28 @@ convert json to csv
         writer.writerows(r.json);
     }
     # it writes things to a file 
-    
+
+simulating binomial distribuition   
+    they are very useful for modeling different types of data, they have 2 possible outcomes, success and failure
+    {
+        numpy.random.binomial(attempts, success_probability,times)
+    }
+
+strings are immuptable, meaning if you want to change a string you need to change the whole thing
+
+string methods 
+    formatting methods ex - Hello wOrld
+        .lower - returns all lowercase characters - hello world
+        .upper - returns all uppercase characters - HELLO WORLD
+        .title - returns in title case - Hello World
+        .split - splits the string from delimiter
+        .join - delimiter.join(string) 
+        .strip - removes the content from the start of the string and the end, defaults to white space, but you can add delimiters 
+        .replace - str.replace(search, replace) #replaces all instances 
+        .find - finds the index at what the element is at 
+        .format - include variables in strings, "this is a normal string {}".format(term)" # this is a normal string and this was added by a variable
+                you can specify which variable goes where 
+                {
+                    def favor_song(song, artist):
+                        return "my favourite artist is {artist} and my favourite song is {song}".format(artist=artist, song=song)
+                }
