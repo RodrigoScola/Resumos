@@ -1,9 +1,0 @@
-create a dataframe obj 
-     {
-          import pandas
-          census_df = pandas.read_csv('filename');
-     }
-showing in the console 
-     print(census_df.head())
-renaming the columns     
-     census_df.columns = ['names'...];

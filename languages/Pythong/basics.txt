@@ -285,3 +285,122 @@ string methods
                     def favor_song(song, artist):
                         return "my favourite artist is {artist} and my favourite song is {song}".format(artist=artist, song=song)
                 }
+
+dictionaries 
+    dic_ex = {
+        "animal": 2
+    }
+    add one key 
+        dic_ex['ex'] = 3
+    add multiple keys 
+        dic_ex.update({
+            'one': 'two',
+            'three': 'fourn'
+        })
+    dict comprehensions 
+        {
+            names = ['jenny','alexus','sam','grace'];
+            heights = [61,12,15,16,17]
+
+            students {
+                key:value for key,value in zip(names,heights)
+            }
+        }
+    get an invalid key 
+        if the key doesnt exist in the dictionary yet, one way to check is {
+            key_to_check = 'some_key'
+            if key_to_check in obj:
+                print(obj[key_to_check])
+        }
+        another way is the try except
+        {
+            check_key = "Zomboid airforce 21";
+            try:
+                print(building_things[check_key]);
+            except KeyError:
+                print("that key doesnt exists")
+        }
+    safely get a key 
+        object.get(key, return if not found)
+    delete a key 
+        obj.pop(keyname, default if not found) #returns the obj value
+    get all keys    
+        obj.keys()
+    if you want to loop it 
+        for student in students.keys()
+    get all values    
+        obj.values()
+    if you want to loop it 
+        for student in students.values()
+    get all terms 
+        obj.items()
+    if you want to loop it  
+        for key,value in obj.items()
+
+files 
+    read a file 
+        with open(filename.txt) as var_name:
+            contents = var_name.read()
+        print(contents)
+    read a line 
+        with open(filename) as var_name:
+            for line in var_name.readlines()
+    assinging variables to lines
+        with open(filename) as var_name:
+            first_line = var_name.readline()
+            #pointer moves 
+            second_line = var_name.readline()
+    write to a file 
+        with open(filename, mode) as var_name:
+        # w - write normal text 
+        # r - read text
+        # a - append to a file 
+    reading a csv file 
+    its  different from a normal file, even though we can read these lines as text without a problem, there are ways to access the data in a format better suited for programmin purposes 
+    we can convert that data into a dictionary using the csv library DictReader
+    {
+        import csv 
+        list_of_adresses = [];
+        with open('users.csv' newline='') as users_csv:
+            user_reader = csv.DictReader(users_csv)
+            for row in user_reader:
+                list_of_adresses.append(row["Email"])
+    }
+    different types of csv files
+    csv are usually comma separated files, however there are other ways for you to separate them, for you to separate them  you use the delimiter property on the DictReader 
+    {
+        with open('filename', newline='') as file_var:
+            a_r = csv.DictReader(file_var, delimiter=';')
+            for row in a_r:
+                print(row['Address'])
+    }           
+    writing to a csv file 
+    {
+        import csv 
+        with open ('output.csv','w' as) output_csv:
+        fields = ['name','userid','is_admin']
+        output_writer = csv.DictWriter(output_csv, fieldnames=fields)
+        output_writer.writeheader();
+        for item in someList:
+            output_writer.writerow(item)
+    }
+    read jsonfile 
+    {
+        import json
+        with open('filename.json') as json_json:
+            json_var = json.load(json_json);
+            
+            print(json_var)
+    }
+    write jsonfile
+    {
+        import json
+        with open('string','w') as json_file:
+            json.dump(tur)
+    }
+    lambda functions 
+     is a one-line shorthand for function, a simple lambda might look like this
+     {
+          add_two = lamda input : my_input + 2
+     }
+     they are good because you dont always want a lot of functions, makes the code messy and hard to read, and if the function is simple enough is a great thing to add
