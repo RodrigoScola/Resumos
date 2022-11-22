@@ -1,0 +1,249 @@
+pandas - 
+     is a very popular library for working with data. 
+     pandas are helpful functions for handling missing data, performing operations on columns and rows and transforming data 
+
+numpy - 
+     is an open-source python library that facilitates efficient numerical operations on large quantities of data 
+arrays - 
+     they are more flexible than normal python lists 
+     they can have any number of dimendions, they hold a collection of items of any one data type and can be either a vecor or a matrix
+     to convert a normal array to an np array {
+          import numpy as np 
+          list1 = [1,2,3,4];
+          array1 = np.array(list1)
+     }
+mathematical operations can be performed on all values in a ndarray at one time rather than having to loop through values
+{
+     toyprices = np.array([1,2,3,4,5])
+     print(toyprices - 2);
+     # [-1 0 1 2 3]
+}
+pandas series and dataframes 
+     series is the core object of the pandas library 
+     allows values in the series to be indexed using labels 
+     {
+          agrs = np.array(1,2,3)
+          series1 = pd.Series(ages)
+          print(series1)
+          # 0 | 1
+          # 1 | 2
+          # 2 | 3 
+     }
+     
+creating a dataframe 
+     is an object that stores data as rows and columns, is like a spreadsheet or a sql table 
+     you can pass in a dictionary to pd.DataFrame()
+     {
+          df1 = pd.DataFrame({
+               "name": [],
+               "address" : [],
+               "age": []
+          })
+     }
+     or you can pass columns as a different variable entirely
+     {
+          df2 = pd.DataFrame([
+               ['John Smith', '123 Main St.', 34],
+               ['Jane Doe', '456 Maple Ave.', 28],
+               ['Joe Schmo', '789 Broadway', 51]
+               ],
+               columns=['name', 'address', 'age'])
+     }
+     loading and saving csv
+     {
+          #loading 
+          pd.read_csv('filename.csv')
+          #saving
+          df.to_csv('new_filename.csv')
+
+     }
+     you can see the dataframe by using print however if its a larger DataFrame, it might not be viable, thats why you should use the .head method, which will display the first 5 rows, and if you want to have more rows, you can add a number value which will increase the records 
+     if you want to have more information about the file, you can use df.info
+     you will see data columns and their type, 
+     memory usage 
+     and more statistics
+select collumn
+     {
+          #use . and the column name 
+          df = pd.DataFrame([
+               ...data
+          ],
+          columns=[
+               'month','day'
+          ])
+          day_values = df.day
+     }
+select multiple columns 
+     {
+          day_month_values = df[['day','month']]
+
+     }
+select row
+     {
+          df.iloc[row]
+     }
+select multiple rows 
+     {
+          df.icoc[3:8]
+     }
+select rows with logic 
+     {
+          #select all rows where the age is a number 
+          df[df.age == num]
+          #greater than
+          df[df.age > num]
+          #lesser than than
+          df[df.age < num]
+          #doesnt equal to
+          df[df.name !== 'name']
+
+          # using operators
+          # or 
+          df[(age < 3) | (df.name == 'Jones')]
+          # and 
+          df[(age < 3) & (df.name == 'Jones')]    
+          # value is in array 
+          df[df.name.isin([...names])]    
+     }
+setting indices 
+     when we select a subset of datafreame using logic, their index are the same as they are in the table,
+     that means that instead of having an 0,1,2,3 index, we might have an 0, 3,98,391 index
+     {
+          df = pd.DataFrame(...data)
+          df2 = df.reset_index(inplace=True,drop=True)
+     }
+
+adding a column
+     df['column_name'] = [...column_values] 
+if the column value is the same for every record 
+     df['column_name'] = column_value
+you can also perform calculations in adding a column value
+     df['column_name'] = value * 0.83
+     # to have the current row value 
+     df['column_name'] = df.Price * value 
+
+performing column operations 
+     you can use the df.column_name.apply(function) to apply that function to every value in that column
+     {
+          df["name"] = df.Name.apply(str.upper)
+     }
+applying lambda to a column 
+     {
+          df['Email Provider'] = df.Email.apply(
+               lamda: x : x.split('@)[-1]
+          )
+     }
+applying lambda to a row
+     {
+          df['Price with tax'] = df.apply(lambda row:
+          row["Price"] * 1075
+          if row['Is Taxed?'] == 'Yes'
+          else row['Price'],
+          axis=1
+          )
+     }
+rename columns 
+     {
+          df.columns = [...new_column_names]
+     }
+if you just want to rename specific columns and not the whole thing
+     {
+          df.rename(columns {
+               "name":"First Name",
+               'age': "Age"
+          },inplace=True)
+     }
+
+pandas aggregates
+     aggregate statistic is a way of creating a single number that describes a group of numbers. common aggregate statistics include mean, median and standard deviation 
+
+calculating column statistics 
+     the median age 
+          tablename.age.median()
+     how many different records are there 
+          tablename.state.nunique()
+     to get the value of the unique record 
+          tablename.color.unique()
+     common commands are 
+          mean - average of all values in column
+          std - standard deviation
+          median - the median
+          max - the maximum value in column
+          min - the minimum value in column
+          count - the number of values in column
+          unique - list of unique values in column
+you can group items 
+     df.groupby('column_name')
+and perform operations on them     
+     df.groupby('column_name').column2.measurement().reset_index();
+you can group items on more than one column
+     df.groupby(['column1_name','column2_name']).id.count().reset_index();
+pivot tables
+     when we performa a groupby across multiple columns, we often want to change how our data is stored, adding or removing columns, changing how we see them...
+     reorganizing a table in this way is called pivoting, the new table is called a pivot table 
+     {
+          df.pivot(columns='columntopivot',
+                              index='columntoberows',
+                              values='columntobevalues')
+     }
+     and an example of that would look like this 
+     {
+          grouped = df.groupby([
+               'location','Day of Week'
+          ]).['Total Sales'].mean().reset_index()
+          pivoted = grouped.pivot(
+               columns='day of Week',  
+               index='Location', #the main column
+               values='Total Sales' 
+          ).reset_index()
+     }
+
+multiple data frames
+     inner merge 
+          merged_table = pd.merge(orders, customers)
+     or 
+          new_merged_table = pd.merge(orders).merge(products)               
+     you can only merge 2 tables at a time, if you want to do more, you need to chain them 
+          all_data = pd.merge(table1, table2).merge(table3)
+
+merge on specific columns     
+     what if tables have the same column_name? one way to address that is to use the rename property
+     {
+          all_data = pd.merge(orders, products.rename({
+               id: 'product_id'
+          }))
+     }
+     but what if we dont want to do that? well pandas has us covered 
+     we could use the keywords left_on , right_on to specify which columns we want to perform the merge on 
+          all_data = pd.merge(
+               orders, customers ,
+               left_on="customer_id",
+               right_on="id"
+          )
+     however well end up with two columns called id, one from the first table and one from the second, pandas wont let you have two columns with the same name, so it will change them to be id_x and id_y
+     to change that behaviour we could add the suffixes keyword
+     it will change the _x and _y to be the suffixes values 
+          {
+               all_data = pd.merge(
+                    orders, customers,
+                    left_on='customer_id'
+                    right_on='id',
+                    suffixes=['_order','_customer']
+               )
+          }
+mismatched merges 
+     outer merge
+          when we merge two dataframes whose rows dont match perfectly, we lose the unmatched rows
+          the inner merge will only include the matching rows, filtering out the unmatching ones in the process
+          if you dont want that behaviour, use the how keyword and the outer value 
+               pd.merge(thing1, thing2, how='outer')
+          this will join where it can and have nan as a value where its missing
+     left merge
+          includes all rows from the left table, but only includes the rows on the second table that match the values from the first
+          { pd.merge(list1, list2, how='left')}
+     right merge
+          includes all rows from the right table, but only includes the rows on the second table that match the values from the first
+          { pd.merge(list1, list2, how='right')}
+
+concat dataframes
+     

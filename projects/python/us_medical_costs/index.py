@@ -95,4 +95,3 @@ def get_top_by(item = 'age', count = 1):
 
 
 
-print(get_top_by('bmi'))

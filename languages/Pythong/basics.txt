@@ -404,3 +404,310 @@ files
           add_two = lamda input : my_input + 2
      }
      they are good because you dont always want a lot of functions, makes the code messy and hard to read, and if the function is simple enough is a great thing to add
+    
+    random 
+    {
+        import random
+        random.randint(0,100);
+    }
+
+    random {
+        random.choice() # returns a random item from list
+        random.randint(start, end) # returns a random int in range of those numbers
+
+    }
+
+
+export functions
+    no need to do anything 
+
+import functions
+    from filename import functionname
+    {
+        from library import always_three
+    }
+
+classes
+
+    defining 
+        class Classname:
+            pass # says to python that this was left blank and not cause an error 
+    instantiation 
+        collinstance = Classname()
+    class variables 
+    {
+        class Musician:
+            title = 'Rockstar'
+
+        drummer = Musician()
+        print(drummer.title) # Rockstar   
+    }
+    class methods 
+    {
+        class Dog:
+            dog_time_dilation = 7
+            def time_explanation(self):
+                print("Dogs experience {} years for every 1 human year".format(self.dog_time_dilation))
+    } 
+    methods with arguments 
+    instead of using self in the code, you pass self in the function params to say that you are using the instance property
+
+    constructors 
+    use the __init__ function 
+    {
+        class Shouter:
+            def init(self, phrase):
+                if type(phrase) == str:
+                    print(phrase.upper())
+    }
+    attribute functions 
+        what if a class doesnt have the attribute or function?
+        {
+            hasattr(instancename,'fake_attribute')
+            returns False
+        }
+        get the atribute 
+        {
+            getattr(instance, 'other_fake_attribute',defaultvalueiffalse)
+            returns defaultvalueiffalse
+        }
+    __repr__
+    what the string representation of the class to be 
+    has to return a string 
+        {
+            class Employee:
+                def __init__(self,name):
+                self.name = name
+                # without the representation would print:  
+                    # "<__main__.Employee object at 0x103e88390>"
+                # with the representation
+                def __repr__(self):
+                    return self.name
+        }
+    mutable default arguments 
+    sometimes when you do things to variables they tend to app and add to one another 
+    {
+        def update_order(new_item, current_order=[]):
+        current_order.append(new_item)
+        return current_order
+        
+        order1 = update_order({'item': 'burger', 'cost': '3.50'})
+        
+        order2 = update_order({'item': 'soda', 'cost': '1.50'})
+        
+        #prints 
+        # [{ "item" : 'burguer', 'cost': '3.50'},{'item': 'soda', 'cost': '1.50'}]
+    }
+    one way to resolve this is using the none keyword
+    {
+        def createStudent(name, age, grades=None):
+        if grades is None:
+            grades = []
+        return {
+            'name': name,
+            'age',age,
+            'grades':grades
+        }
+        def addGrade(student,grade):
+        student['grades'].append(grade);
+    }
+    if you dont know how many args will be there, you can use the *args 
+    {
+        def my_function(*args):
+            print(args)
+        my_function('Arg1', 245, False) # prints ('Arg1', 245, False)
+    }
+    you can loop through them using for in 
+unlimited keyword arguments 
+    using ** you can also transform it into a dict, and use keyword arguments
+    def some_func(**args):
+        print(args.get('something'))
+
+function call unpacking & beyond 
+    lets say that we want to sum all numbers togheter and the function is like this 
+        sum (sum1, sum2, sum3)
+    it isnt a big deal if its just those 3 numbers but what if we want to use a list like this [1,2,3];
+    we could use the unpacking when we call it 
+        def sum(num1, num2,num3):
+            print(num1 + num2 + num3)
+        
+        sum(*sumlist)
+
+    you can also use  with dict 
+    {
+        numbers = {
+            "num1" : 1,
+            "num2" : 2,
+            "num3" : 3,
+        }
+        def sum(num1, num2,num3):
+            return num1 + num2 + num3
+        
+        sum(**numbers)
+    }
+    unpacking parts of an iterable 
+    {
+        a, *b ,c = [1,2,3,4,5,6]
+        #a = 1
+        # b = [2,3,4,5]
+        #c = [6]   
+    }
+
+namespace 
+    is a collection of names and the objects that they reference, python will host a dictionary where the keys are the names that have been defined and the mapped values are the objects that they reference 
+
+    builtin namespaces 
+        namespaces that came with python, that includes the python keywords like for, all, dir...
+    global namespaces 
+        function names, variable names...
+        has a lifespan of until the interpreter terminates, or when the program finishes running
+    local namespaces
+        function names, variable names that are inside that function 
+
+    if you want to use a var on another scope use nonlocal 
+    {
+        def calc_pain_amount(wall_measurements):
+            square_feet = 0;
+
+            def calc_square_feet():
+                nonlocal square_feet 
+                for width, height in wall_measurements:
+                    square_feet += width * height #this would be reassigned but with the nonlocal, it just increases 
+
+
+            def calc_gallons():
+                return square_feet / 400;
+
+            calc_square_feet();
+
+            return calc_gallons();
+    }
+
+    global 
+        similar to the nonlocal statement, python provides the global sttement to allow the modification of global names from a local scope 
+        {
+            global_var = 10;
+
+            def some_function():
+                global global_var;
+                global_var = 20;
+
+            some_function();
+
+            print(global_var) #20
+            
+        }
+{
+    class Employee:
+        new_id = 1 #this is the "global" id variable, accessible by all instances 
+        def __init__(self):
+            self.id = Employee.new_id;
+            Employee.new_id += 1;
+            # now we have an incremental id system
+}
+inheritance
+
+to make so child classes can inherit certain things, you can use () in the class definition
+
+class ChildClass(ParentClass)
+
+to override methods, just add another method with the same name
+
+super()
+
+is the parent class, you can access methods from it
+
+another form of multiple inhertance involves a subclass that inherits directly from two classes and can use the attributes and methods of both 
+{
+    class Animal:
+        def __init__(self,name):
+        self.name = name;
+
+    class Dog(Animal):
+        def action(self):
+            print("{} wags tail.".format(self.name))
+    
+    class Wolf(Animal):
+        def action(self):
+            print("{} bites.".format(self.name))
+    
+    class Hybrid(Dog, Wolf):
+        def __init__(self):
+            Wolf.__init__(self)
+
+
+        def action(self):
+            super().action()
+            Wolf.action(self);
+            #doesnt do any errors, has the same methods and all
+}
+
+dunder methods 
+    Double UNDERscores 
+
+    def __add__(self, another_animal):
+        return Animal(self.name + another_animal.name)
+    def __len__(self):
+        return len(self.somethingelse)
+    
+    example 
+    {
+        e1 = Employee()
+        e2 = Employee()
+        e3 = Employee()
+
+        class Meeting:
+            def __init__(self):
+                self.attendees= [];
+
+            def __add__(self, employee):
+                self.attendees.append(employee);
+
+            def __len__(self):
+                return len(self.attendees)
+
+        m1 = Meeting()
+
+        m1 + e1
+        m1 + e2
+        m1 + e3
+
+        # it doesnt cause an error, just adds them to the meeting attendees 
+
+        print(len(m1)) #returns the len of the attendees 
+    }
+
+abstraction
+    a lot of times classes inherit methods that they shouldnt use but others do 
+    {
+        class Animal():
+            def __init(self, name):
+                self.name = name
+            
+            @abstractmethod
+            def make_noise(self):
+                pass
+    }
+    now you cant call in the animal class but you can instantiate it in the other animals 
+
+getters and setters 
+    {
+        class Animal:
+            def__init__(self, name):
+                self_name = name;
+                self._age = None;
+
+            def get_age(self):
+                return self._age;
+            
+            def set_age(self, new_age):
+                if isinstance(new_age,int):
+                    self._age = new_age
+                else:
+                    raise TypeError
+            
+            def delete_age(self):
+                print('age deleted')
+                del self.age
+                
+    }

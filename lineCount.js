@@ -9,10 +9,10 @@ const wpm = (chars, typeSpeed = 70) => {
 }
 
 const passDir = (path = "") => {
-	if (path.split("/").slice(-1)[0].includes(".")) {
+	if (path.split("/").slice(-1)[0].includes(".") && !path.split("/").slice(-1)[0].endsWith("csv")) {
 		lineReader.eachLine(path, function (line) {
 			const char = line.split(" ").length
-			
+
 			if (line !== "") {
 				console.log(
 					line,
@@ -22,7 +22,7 @@ const passDir = (path = "") => {
 						wpm(chars) / 60 / 24
 					)} days to rewrite it all`
 				)
-				// fs.appendFile("total.txt", line + "\n", (err) => console.log(err))
+				// fs.appendFile("total.txt", line + '\n', (err) => console.log(err))
 			}
 			return null
 		})

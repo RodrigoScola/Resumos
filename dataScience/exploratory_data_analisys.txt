@@ -1,0 +1,41 @@
+is all about getting curious about your data - finding out what is there, what patterns you can find, and what relationships exist. eda is the important first step towards analysis and model building. 
+the mais goals of eda are generally 
+     uncover the data structure and determine how it is coded 
+     inspect and get to know the data by summarizing and visualizing it
+     detecting outliers, missing data and other anomalies and decide how/whether to address these issues 
+     find new avenues for analysis and further research 
+data inspection 
+     what kind of data is in the dataset 
+     what types of variables are there 
+numerical summarization
+     a way to condense the information we have into a more reasonable amount of space, 
+
+acessing variable types 
+     there are two ways to get data, numerical and categorical 
+     every observation is classified according to its characteristics in flat file formats, the observations are the rows, the variables are the columns, and the values are at the intersection
+     here are some example of variables and what we can assume of them 
+          price - describes how much the cereal costs. we dont know if thats how much the consumer pays or the grocer pays
+          brand - brands are categories, therefore its a categorical variable 
+     if we were downloading this from a data repository, we would expect a data dictionary to define these variables and validate or invalidate our assumptions
+
+categorical variables 
+     they come in 3 types 
+          nominal variables - they describe something 
+          ordinal variables - ranking something
+          binary variables - true or false
+     
+     nominal variables 
+          when we want to describe something about the world, we need a nominal variable, they usually are words but they can also be numbers (zip codes, user ids...)
+          they describe things with a lot of variation, a lot of times is used the other 'keyword'
+     
+     ordinal variables 
+          when the categories have an inherent order, they usually are described by numbers like 1st, 2nd, 3rd
+          even though they are numbers, it doesnt make sense to do math on them 
+     
+     binary variables
+          when there are only two logically possible variations, we need a binary variable, if there is any possibility of a third option. its not a binary variable 
+
+quantitative variables 
+     continuous variables 
+          must be infinitely smaller units of measurement between one unit and the next unit 
+          
