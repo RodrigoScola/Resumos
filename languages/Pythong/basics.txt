@@ -709,5 +709,21 @@ getters and setters
             def delete_age(self):
                 print('age deleted')
                 del self.age
-                
     }
+    the @proprty 
+    instead of get_ set_ you can use the @property decorator 
+    {
+        weight = property(getweight, setweight,delweight, docstring for the weight prop)
+        or 
+        @property
+        def weight(self):
+            return self.__weight
+        
+        @weight.setter
+        def weight(self, new_weight)
+            if new_weight >= 0:
+                self.__weight = new_weight
+    }
+
+exceptions 
+    as opposed to a syntax error, an exception is a different kind of error that can occur with syntactically correct code, 

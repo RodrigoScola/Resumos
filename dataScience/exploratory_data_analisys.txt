@@ -38,4 +38,52 @@ categorical variables
 quantitative variables 
      continuous variables 
           must be infinitely smaller units of measurement between one unit and the next unit 
-          
+          some examples are length, time, temperature. they all increase continuously
+     discrete variables 
+          come from counting, for a variable to be discrete, there must be gaps between the smallest possible units
+          some examples are people, cars and dogs
+     some variables depend on context to determine if they are continuous or discrete
+
+summary statistics 
+     they allow a data analyst to condense a large amount of information into a small set of numbers that can be easily interpreted. in order to decide what kind of summary statistic to use, its important to consider two things
+          the question (and how many variables that question involves)
+          the data (quantitative or categorical) 
+     
+     unvariate statistics 
+          summary statistics that focus on a single variable are called unvariate
+          useful for answering questions about a single feature in tabular data 
+          they help us answer questions like 
+               how much does a certain thing appear
+               what proportion of things are a certain way
+               how old is the oldest thing
+          quantitative variables 
+               central location
+                    communicate the typical value of a variable 
+                         mean
+                         median
+                         mode 
+                         trimmed mean
+               spread 
+                    variability within a feature, provides context for measures of central location
+                         range 
+                         inter-quartile
+                         variance 
+                         standard deviation
+                         mean absolute deviation
+          categorical variables    
+               a common thing for nominal or categorical variables is the frequency or proportion of observations in each category
+               if we want to know what kind of fuel listed cars tend to use.
+               we could calculate the frequency of each fuel type 
+                    cars.fuel.value_counts()
+               converting these frquencies to proportions can help compare more easily 
+                    cars.fuel.value_counts(normalize=True)
+          bivariate statistics
+               summarize the relashionship between two variables
+               one quantitative variable and one categorical variable 
+                    we can use a mean or median difference
+                         calculate that the median price of automatic transmission cars is 100000 ruppees higher than for manual transmission cars 
+               two quantitative variables 
+                    we can use the pearson correlation
+               two categorical variables 
+                    if we want to know whether automatic transmission cars are more likely to be sold by individuals or dealers, we are interested in the relationship between transmission and seller_type 
+                    we can explore this relationship using a contingency table and the chi square statistics

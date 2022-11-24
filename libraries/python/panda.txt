@@ -245,5 +245,85 @@ mismatched merges
           includes all rows from the right table, but only includes the rows on the second table that match the values from the first
           { pd.merge(list1, list2, how='right')}
 
-concat dataframes
+changing numerical variable datatypes 
+     how to know the datatypes of the columns in the dataFrame with the dtypes attribute 
+
+     print cereal.dtypes 
+
+     continuous (numerical) variables should usually be stored as the float datatype because they allow us to store decimal values 
+     discrete (numerical) variables should be stored as the int datatype to represent mathematically that they are discrete 
+
+     changing a variable type 
      
+     movies['row_name'].astype(new_type).fillna(0,inplace= True)
+
+changing categorical variable data types 
+     nominal variables are often represented by the object datatype, columns in the object data type can contain any combination of values, including strings integers booleans...
+     ordinal variables should be represented as objects, but pandas often guesses int since they are often encoded as whole numbers 
+     binary variables can be represented as bool but pandas often guesses int or object data types 
+
+the pandas category datatype 
+     for ordinal categorical variables, we often want to store two different pieces of information, category labels and their order. none of the data types weve covered so far can store both of these at once
+          print(cereal['shelf'].unique()) # [top, mid , bottom]
+     at this point python does not know that these categories have an inherent order
+     there is a specific data type for categorical variables in pandas called category to address this problem, the pandas .Categorical() method can be used to store data as type category and indicate the order of the categories 
+          cereal['shelf'] = pd.Categorical(cereal['shelf'], ['bottom','mid','top'], ordered=True)
+     now not only does python recognize that the shelf column is an ordinal variable,it understands that top > mid     
+
+one hot encoding
+     sometimes we we need a different approach because 
+          we have a nominal categorical variable so it doesnt make sense to assign numbers like 0,1,2,3,4,5 as an order is not present 
+          we have an ordinal categorical variable but we dont want to assume that theres equal spacing between categories
+     another way of encoding categorical variables is called one hot encoding 
+          create a new binary variable for each of the categories within our original variable, this technique is useful when managing nominal variables because it encodes the variable without creating an order among the categories 
+     to perform ohe on a variable within a pandas dataframe, we can use the pandas .get_summies() which creates a binary or dummy variable for each category. we can assign the columns to be encoded in the columns parameter, and set the data parameter to the dataset we intend to alter
+     when we use pd.get_dummies() we are effectively creating a new dataframe that contains a different set of variables to the original dataframe 
+          titanic = pd.get_dummies(data=titanic, columns=['embarked'])
+          {
+          Survived	Pclass	Name	SibSp	Parch	Fare	Cabin	Embarked_C	Embarked_Q	Embarked_S
+          1	1	1	Cumings, Mrs. John Bradley (Florence Briggs Th…	1	0	71.2833	C85	1	0	0
+          3	1	1	Futrelle, Mrs. Jacques Heath (Lily May Peel)	1	0	53.1000	C123	0	0	1
+          6	0	1	McCarthy, Mr. Timothy J	0	0	51.8625	E46	0	0	1
+          10	1	3	Sandstrom, Miss. Marguerite Rut	1	1	16.7000	G6	0	0	1
+          11	1	1	Bonnell, Miss. Elizabeth	0	0	26.5500	C103	0	0	1
+          }
+     this just expands the columns with ones and zeros, the expanded variables are then added to the original dataframe
+
+     to display a summary statistic view of the data 
+          print(rentals.describe(include='all'))
+     
+central tendency for quantitative data 
+     mean 
+          rentals.rent.mean()
+     median
+          rentals.rent.median()
+     mode 
+          rentals.rent.mode()
+     trimmed mean 
+          from scipy.stats import trim_mean
+          trim_mean(rentals.rent, proportiontocut=0.1)
+
+spread for quantitative data 
+     range 
+          rentals.rent.max() - rentals.rent.min()
+     interquartile range 
+          rentals.rent.quantile(0.75) - rentals.rent.quantile(0.25)
+     variance 
+          rentals.rent.var()
+     standard deviation 
+          rentals.rent.std()
+     mean absolute deviation  
+          rentals.rent.mad()
+
+visualizing quantitative variables 
+     while summary statistics are certainly helpful for exploring and quantifying a feature, we might find it hard to wrap our minds around a bunch of numbers
+     for quantitative variables, boxplots and histograms are two common visualizations. they are useful because they simultaneously communicate information about minimum and maximum values
+
+value counts for categorical data 
+     the measures of central tendency and spread that worked for describing numerical variables, like mean and standard deviation, generally becomes unsuitable when were dealing with discrete values
+     unlike numbers, categorical values are not continuous and oftentimes do not have an intrinsic ordering
+     a good way to summarize categorical variables is to generate a frequency table containing the count of each distinct value
+     to see how many times a categorical value appeared 
+          movies.category.value_counts()
+     value proportions for categorical data 
+          
