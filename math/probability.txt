@@ -4,12 +4,62 @@ set theory
      they often are represented with curly braces {}, they also follow two key rules
           each element in a set is distinct 
           the elements in a set are in no particular order 
-     therefore we can say 
-          {1,2,3,4,5} = {5,4,3,2,1}
+               {1,2,3,4,5} = {5,4,3,2,1}
      when defining a set, we often use a capital letter
           A = {1,2,3,4,5}
      sets can also contain subsets. set a is a subset of set b if all the elements in a exist within b 
           A = {1,2,3} B = {1,2,3,4,5}
      set a is a subset of b because all elements of a are contained within B
-          
+experiments 
+     something that produces observations with some level of uncertainty. a 
+          sample point is a single possible outcome of an experiment 
+          sample space is the set of all possible sample points for an experiment 
+     example
+          {
+               flippin 2 coins and record whether we get heads or tails 
+               the sample space would be 
+
+               S = {HH, TT, HT, TH}
+
+               event - the probability of a single outcome
+               
+               getting 2 heads 
+                    A = {HH}
+               getting two tails 
+                    B = {TT}
+               getting both heads and tails
+                    C = {HT, TH}
+               to calculate the estimated probability of one outcome we use the formula 
+                    P (event) = number of times the event occurred  / total number of trials
+          }
+
+law of large numbers 
+     we cant repeat a random experiment an infinite amount of times, but we can do it a large amount of times. However as we do the experiment, the more times we run it, the more "stable" the results become, meaning that the proportion of times each event occurs will converge to its true probability
+
+the rules of probability 
+     union - any element that exists in either one or both of the sets 
+          A = {1,2,3,5}
+          B = {2,50,532,32}
+               A U B = { 1 , 2 , 3 , 5 , 50 , 532 , 32 }
      
+     intersection  - any element that exists in both sets at the same time 
+          A = {1,2,3,5}
+          B = {2,50,532,32}
+               I = { 2 }
+     compliement - any element that is not apart of the set in question 
+          A = {1,2,3,5}
+          B = {2,50,532,32}
+          
+          CA - { 50 , 532 , 32 }
+          CB - { 1 , 3 ,5 }
+
+independence and dependence 
+     independence - the result of previous test does not affect the next results ( flipping a coin )
+     dependence - the result of previous test does affect the next results (grabbing a blue marble and taking it out of the bag, whats the probability of grabbing another blue marble)
+
+mutually exclusive events 
+     two events are considered mutually exclusive if they cannot occur at the same time
+          in a single flip, the event tails and heads are mutually exclusive because we cannot get both tails and heads on a single flip 
+     non mutually exlcusive events is events that can occur at the same time like, event a is rolling an odd number and event b is rolling a number greater than two.
+
+the addition rule 

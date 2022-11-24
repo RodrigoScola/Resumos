@@ -315,15 +315,3 @@ spread for quantitative data
      mean absolute deviation  
           rentals.rent.mad()
 
-visualizing quantitative variables 
-     while summary statistics are certainly helpful for exploring and quantifying a feature, we might find it hard to wrap our minds around a bunch of numbers
-     for quantitative variables, boxplots and histograms are two common visualizations. they are useful because they simultaneously communicate information about minimum and maximum values
-
-value counts for categorical data 
-     the measures of central tendency and spread that worked for describing numerical variables, like mean and standard deviation, generally becomes unsuitable when were dealing with discrete values
-     unlike numbers, categorical values are not continuous and oftentimes do not have an intrinsic ordering
-     a good way to summarize categorical variables is to generate a frequency table containing the count of each distinct value
-     to see how many times a categorical value appeared 
-          movies.category.value_counts()
-     value proportions for categorical data 
-          

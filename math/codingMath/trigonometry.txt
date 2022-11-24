@@ -1,8 +1,0 @@
-when talking about triangles we have 3 sides from the starting point that you want 
-     hypothenuse = longest side in the triangle 
-     adjacent = the closest side form the starting point
-     opposite = the furthest side from the starting point
-
-sinA = opposite / hypothenuse
-cosA = adjacent / hypothenuse
-tanA = opposite / adjacent
