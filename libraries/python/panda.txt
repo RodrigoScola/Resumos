@@ -175,7 +175,7 @@ calculating column statistics
 you can group items 
      df.groupby('column_name')
 and perform operations on them     
-     df.groupby('column_name').column2.measurement().reset_index();
+df.groupby('column_name').column2.measurement().reset_index();
 you can group items on more than one column
      df.groupby(['column1_name','column2_name']).id.count().reset_index();
 pivot tables

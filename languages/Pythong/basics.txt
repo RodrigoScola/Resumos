@@ -92,7 +92,7 @@ dictionaries or Objcects
     to add data to the object 
         world[key] = value
         
-
+    a.intersection(b) - returns the elements that are on the two sets
 
 packages
        import numpy
@@ -727,3 +727,4 @@ getters and setters
 
 exceptions 
     as opposed to a syntax error, an exception is a different kind of error that can occur with syntactically correct code, 
+

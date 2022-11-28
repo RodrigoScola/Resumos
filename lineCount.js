@@ -9,7 +9,12 @@ const wpm = (chars, typeSpeed = 70) => {
 }
 
 const passDir = (path = "") => {
-	if (path.split("/").slice(-1)[0].includes(".") && !path.split("/").slice(-1)[0].endsWith("csv")) {
+	const filename = path.split("/").slice(-1)[0]
+	if (
+		path.split("/").slice(-1)[0].includes(".") &&
+		filename !== "total.txt" &&
+		!path.split("/").slice(-1)[0].endsWith("csv")
+	) {
 		lineReader.eachLine(path, function (line) {
 			const char = line.split(" ").length
 
@@ -22,7 +27,9 @@ const passDir = (path = "") => {
 						wpm(chars) / 60 / 24
 					)} days to rewrite it all`
 				)
-				// fs.appendFile("total.txt", line + '\n', (err) => console.log(err))
+				if (line) {
+					// fs.appendFile("total.txt", line + "\n", (err) => console.log(err))
+				}
 			}
 			return null
 		})
@@ -40,7 +47,7 @@ const getDir = () => {
 	return fs
 		.readdirSync("./")
 		.slice(3)
-		.filter((item) => item !== "node_modules" && !item.includes("."))
+		.filter((item) => item !== "node_modules" && item !== "total.txt" && !item.includes("."))
 }
 const dirs = getDir()
 console.log(dirs)

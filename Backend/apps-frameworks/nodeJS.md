@@ -1,44 +1,54 @@
-REPL = read-eval-print-loop.
-     read state
-     eveal stateprint state
-when you install node, it comes with a biult in javascript repl, you  can access the repl by typing the command node into the terminal and hitting enter
-by default you send the input is ready for eval when you hit enter, if you want to type multiple lines you can type .editor and when you want to send the command you cntrl+d 
+`REPL = read-eval-print-loop.`
+*read state eveal stateprint state*
+
+> when you install node, it comes with a biult in javascript repl
+ 
+> You can access the repl by typing the command node into the terminal and hitting `enter`
+by default you send the input is ready for eval when you hit `enter`, if you want to type multiple lines you can type `.editor` and when you want to send the command you cntrl+d 
 each session of the repl. each session of the repl has a single shared memory, you can access any variables or functions you define until you exit the repl 
 
-accessing the process object
-     node has a global process object with useful methods and information about the current process
-     thr process.env property is an object which stores and controls information about the enviroment which the process is currently running. 
-     so basically what i understood is like,
-          you can make a .env file that you can access information that will be ignored by the github or something like that, but it you can access by
-               process.env.variableName;
-     if you can see the memoryUsage, you can use 
-          process.memoryUsage()
-     the process.argv holds an array of command line values provided when the current process was initiated. the first element in the array is the absolute path to node
-     if you want to use the command line to access variables for example
-          if you initialize the program with 
-               node file.js commandName 
-          you can grab the commandName from the command line and run that by doing:
-               process.arv[2];
+### Accessing the process object
 
-event driven architecture
-     in traditional imperative programming, we give the computer a series of instructions to execute in a pre-defined order. in contrast when we write web applications, we often 
-          need to write logic to handle situations without knowing when theyll occur.
-     Node provides an EventEmitter class which we can access by requiring events in the file
-          const event = require('events');
-          let myEmmiter = new event.EventEmitter();
-     each event emmiter instance has an .on() which assigns a listener callback function to a named event and a callback function
-     each event instance also has an .emit() which announces a named event has occured the .emit() takes as its first argument the name of the 
-     event as a string and a callback function
-          so what i understood from that was 
-               you first create a new emmiter by the new events.EventEmmiter();
-               then you add an on to make that if the first string on an emit event matches the one on an on event, then the parameter on the function on the second argument will be the string on the emit argument
+node has a `Global process object` with useful methods and information about the current process
+the `process.env` property is an object which stores and controls information about the enviroment which the process is currently running. 
 
-user input/output
-     you can accept input by using 
-          process.stdin.on('data', userInput => {
-               let input = userInput.toString()
-               console.log(input);
-          })
+> ### So basically what i understood is like,
+> #### You can make a .env file that you can access information that will be ignored by the github or something like that, but it you can access by
+          
+     process.env.variableName;
+
+if you can see the memoryUsage, you can use 
+     process.memoryUsage()
+the process.argv holds an array of command line values provided when the current process was initiated. the first element in the array is the absolute path to node
+if you want to use the command line to access variables for example
+     if you initialize the program with 
+          node file.js commandName 
+     you can grab the commandName from the command line and run that by doing:
+          process.arv[2];
+
+## event driven architecture
+In traditional imperative programming, we give the computer a series of instructions to execute in a pre-defined order. in contrast when we write web applications, we often 
+- need to write logic to handle situations without knowing when theyll occur.
+Node provides an EventEmitter class which we can access by requiring events in the file
+```javascript 
+const event = require('events');
+let myEmmiter = new event.EventEmitter();
+```
+each event emmiter instance has an .on() which assigns a listener callback function to a named event and a callback function
+each event instance also has an .emit() which announces a named event has occured the .emit() takes as its first argument the name of the 
+event as a string and a callback function
+     so what i understood from that was 
+          you first create a new emmiter by the new events.EventEmmiter();
+          then you add an on to make that if the first string on an emit event matches the one on an on event, then the parameter on the function on the second argument will be the string on the emit argument
+
+### user input/output
+you can accept input by using 
+```javascript
+process.stdin.on('data', userInput => {
+     let input = userInput.toString()
+     console.log(input);
+})
+```
 
 fileSystem
      all of the data on a computer is organized and accessed through a filesystem. when running javascript code on a browser its important for a script to have only limited access to a users filesystem. this technique of isolating some applications from other is known as sandboxing. 
@@ -66,7 +76,10 @@ fileSystem
      readable streams 
           streaming data is often preferable since you dont need enought ram to process all the data at once or you need to have all the data on hand to begin processing it
           one of the simplest uses of streams is reading and writing to files line-by-line. to read them we can use the .createInterface() from the readline core module. createInterface() returns an eventEmitter set up to emit line events 
-               {
+
+```js 
+
+{
                     const readline = require('readline');
                     const fs = require('fs');
                     
@@ -78,23 +91,25 @@ fileSystem
                          console.log(`the line read: ${fileLine}`);
                     })
                }
-          walking through the code
-               require readline and fs core modules
-               assing myInterface from the value returned from readline.createInterface() with an object containing our designated input
-               set the input to fs.createReadStream('text.txt') which will create a srteam from the text.txt file
-               next we assign a listener callback to execute when line events are emmited. a line event will be emmited after each line from the file is read
-               the listener callback will log to the console the line read
-     writable streams
-          to write in a document you first need to create a stream, and then using the .write on it
-               {
-                    const fs = require('fs');
-                    const fileStream = fs.createWriteStream('filepath');
+```
+walking through the code
+     require readline and fs core modules
+     assing myInterface from the value returned from readline.createInterface() with an object containing our designated input
+     set the input to fs.createReadStream('text.txt') which will create a srteam from the text.txt file
+     next we assign a listener callback to execute when line events are emmited. a line event will be emmited after each line from the file is read
+     the listener callback will log to the console the line read
+writable streams
+to write in a document you first need to create a stream, and then using the .write on it
 
-                    fileStream.write('something that you want to write);
-                    fileStream.end();
-               }
-          we used the fs.createWriteStream to create a writing thing then we used the .write to write stuff to it line by line
-          then when we dont have any more data to put in, we use the .end notation 
+```js               
+const fs = require('fs');
+const fileStream = fs.createWriteStream('filepath');
+
+fileStream.write('something that you want to write);
+fileStream.end();
+```
+we used the fs.createWriteStream to create a writing thing then we used the .write to write stuff to it line by line
+then when we dont have any more data to put in, we use the .end notation 
 
 create an http server
      the http.createServer() retuyrns an instance of an http.server an http server has a method .listen() which causes the server to listen for incoming connections. when we run http.createServer() we pass in a custom callback gucntion (requestListener). this callback fucntion will be triggered once the server is listening and a request is received
@@ -115,7 +130,7 @@ create an http server
                then we created the server with the value of http.createServer and a port number as a parameter;
                within the requestListener we make changes to the response obj, res, so that it can send the appropriate information to the client sending the request, the status code of 200 means that no errors were encountered
 if you want to create a more complicated request where you write html instead of writing a sentence
-{
+```javascript
      const http = require('http');
      const fs = require('fs');  
 
@@ -134,10 +149,12 @@ if you want to create a more complicated request where you write html instead of
      }
      const server = http.createServer(requestListener);
      server.listen(portNum)
-}
-routing in nodeJS
-     you have to manually do that {
-          const http = require('http');
+```
+
+### Routing in nodeJS
+
+```js
+  const http = require('http');
           const fs = require('fs');
           
           const readFile = (path) => {
@@ -169,18 +186,26 @@ routing in nodeJS
                          res.end()
                }
           }
-     }
-     the .parse takes a url as argument and breaks into protocol, host, path and queryString
-     https://www.website.com/about?name=Victor
-     https:// = protocol
-     www.website.com = host
-     about? = path
-     name=Victor = queryString
+     
+```
+
+the `.parse` takes a url as argument and breaks into protocol, host, path and queryString
+https://www.website.com/about?name=Victor
+
+> https:// = protocol
+
+> www.website.com = host
+
+> about? = path
+
+> name=Victor = queryString
 
 learnyounode is a node package that contains a series of workshop lessons which will teach you the basics of writing node applications
      https://github.com/workshopper/learnyounode
 
 the express application generates an express application "skeleton" 
+
      npm install express-generator -g 
 to create an express app with the default settings
+
      express helloworld
