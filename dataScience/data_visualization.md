@@ -221,3 +221,72 @@ the result will be something like this
 #### Stacked bars
 
 for the second bar use the `bottom` keyword and the value will be the `dataset`
+
+```python
+plt.bar(range(len(item1)), item1)
+plt.bar(range(len(item1)), item2, bottom=item1)
+```
+
+## Error Bars 
+
+if you are uncertain about a particular value, you can use the `yerr` keyword and an integer or a list as the value, matplotlib will signify it on the chart 
+
+<img src='https://content.codecademy.com/courses/matplotlib/variable_error.png'>
+
+> You can add the caps by using the `capsize` keyword
+
+## Fill Between 
+
+this is a way to display error in a line chart in a more pleasing way
+
+<img src='https://content.codecademy.com/courses/matplotlib/fill_between.png'>
+
+     plt.fill_between(x_values,y_lower, y_upper, alpha=0.2)
+     plt.plot(x_values, y_values)
+
+we can calculate the `y_lower` and `y_upper` but we can calculate it using a `list comprehension`
+
+## Pie Chart
+
+     plt.pie([500,1000,750,300,100])
+
+##### it will result in something like this
+
+<img src='https://content.codecademy.com/courses/matplotlib/budget_skew.png'>
+
+##### if you dont want the chart to be tilted you can set the `plt.axis('equal)`
+
+```python
+     plt.pie([500,1000,750,300,100])
+     plt.axis('equal')
+```
+
+##### it will result in something like this 
+
+<img src='https://content.codecademy.com/courses/matplotlib/budget_chart.png'>
+
+### Labeling
+
+#### method 1 - Normal labeling 
+
+```python
+budget_data = []
+budget_categories = []
+
+plt.pie(budget_data)
+plt.legend(budget_categories)
+```
+
+<img src='https://content.codecademy.com/courses/matplotlib/pie_legend.png'>
+
+
+##### Method 2 - In Pie labeling 
+
+```python
+budget_data = []
+budget_categories = []
+
+plt.pie(budget_data, labels=budget_categories)
+```
+
+<img src='https://content.codecademy.com/courses/matplotlib/pie_labels.png'>
