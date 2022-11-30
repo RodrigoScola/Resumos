@@ -135,4 +135,3 @@ def rate_items(item_name = 'deaths', levels = []):
 
 rating = rate_items('deaths',[0, 100,500,1000,10000])
 print(rating)
-

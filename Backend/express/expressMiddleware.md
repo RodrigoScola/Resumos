@@ -1,22 +1,30 @@
-DRY 
-     Dont 
-     Repeat
-     Yourself
-DRYing with app.use()
-     if you create a function and call it all over the app, it wouldnt be better than not making it a function at all
-     how do you get code to run everytime on an expressRoute? you use middleware
-     middleware is a function that can perform logic on the request and response obj, sending the response back to the user
-          app.use((req,res,next) => {
-               console.log('message received');
-          })
+# Express Middleware
 
-next();
-     next() is what you might think it is, it makes the function go forward
-     like a switch statement, if you want to keep going, you dont use a break or return 
+### DRY 
+**D**ont 
+**R**epeat
+**Y**ourself
+
+## DRYing with app.use()
+
+if you create a function and call it all over the app, it wouldnt be better than not making it a function at all
+how do you get code to run everytime on an expressRoute? you use `middleware`
+> *Middleware* is a function that can perform logic on the request and response obj, sending the response back to the user
+   
+```js
+app.use((req,res,next) => {
+     console.log('message received');
+})
+```
+## next();
+
+is what you might think it is, it makes the function go forward
+like a switch statement, if you want to keep going, you dont use a break or return 
 
 express routes also have the option of sending a response body and status code and closing the connection.
 
-Route-Level app.use() - single path
+### Route-Level app.use() - single path
+    
      app.use function signature 
           app.use([path,] callback[,callback])
      in the documentation for many programming language, optional arguments for functions are placed in [], meaning that we can write middleware that will run for every request at a specific path

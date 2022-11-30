@@ -45,3 +45,10 @@ h1, h2, h3, h4, h5, h6 {
 img {
      max-width: 600px !important;
 }
+
+blockquote {
+     padding: 20px;
+     
+     margin: 1em;
+     border-color: rgb(255, 190, 71) !important;
+}

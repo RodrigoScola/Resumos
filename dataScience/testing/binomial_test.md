@@ -41,7 +41,7 @@ If we flip a coin 10 times, we would expect about 5 of them to be heads and 5 to
 
 ---
 
-##### simulating the visitors behaviour:
+## simulating the visitors behaviour:
 
 ```python
      import numpy as np
@@ -53,7 +53,7 @@ If we flip a coin 10 times, we would expect about 5 of them to be heads and 5 to
 # ['n' 'n' 'y' 'y' 'n' ...]
 
 ```
-##### simulating the null distribution
+## simulating the null distribution
 
 the first step in runnin a hypothesis test is to form a *null hypothesis*. 
 For this website the true probability of a visitor making a purchase was exactly `10%`, but by random chance only `8.2%` actually made a purchase.
@@ -79,5 +79,81 @@ null_min = np.sum(null_outcomes);
 null_max = np.sum(null_outcomes);
 ```
 
+## confidence intervals 
 
+By reporting an interval covering `95%` of the values instead of the full range, we can say that *we are 95% confident that, if each visitor has a 10% chance of making a purchase, a random sample of 500 gisitors will make between 37 and 63 purchases*
 
+we can use the `np.percentile()` to calculate this `95%` interval
+
+     np.percentile(outcomes, [start_perc,end_perc])
+
+it will return the min and max value inside the interval.
+
+###### before 
+
+     We are 100% confident that a customer will make between 25 to 75 purchases
+
+###### after
+
+     We are 90% confident that a customer will make between 37 to 63 purchases
+
+## Calculating a one sided p-value 
+they depend on the alternative hypothesis of a test, a description of the difference from expectation that we are interested in.
+
+Suppose that we flipped a coin 10 times and observed only 2 heads. we might run a hypothesis test with the following null and alternative hypotheses:
+
+* *Null:* The probability of heads is `0.5`
+
+* *Alternative:* The Probability of heads is **less than** `0.5`
+
+if the probability of heads is `0.5` whats the probability of observing `2` or fewer heads among a single sample of `10` coin flips?
+
+     p_value = np.sum(np.array(outcomes) <= expected ) / len(outcomes)
+
+## Calculating a Two-Sided P-Value
+
+If the null hypotheiss is true, the two sided test focuses on the number of heads being **different** from expectation, rather than just **less than**. The hypothesis test now asks the following question:
+
+> Suppose that the true porbability of heads is 50%. What is the probability of observing **either** two or fewer heads OR eight or more heads?
+
+<img src='https://content.codecademy.com/courses/Hypothesis_Testing/two_sided_coin_flip.svg'>
+
+we can calculate that in python as follows:
+
+     outcomes = np.array(outcomes)
+     p_value = np.sum((outcomes <= 2) | (outcomes >= 8)) / len(outcomes)
+
+### writing a binomial test function 
+
+```python
+import numpy as np
+import pandas as pd
+from scipy.stats import binom_test
+
+def simulation_binomial_test(observed_success, sample_size, success_prob):
+     outcomes = [];
+
+     for i in range(10000):
+          result = np.random.choice(['y','n'], size=sample_size, p=[success_prob, 1 - abs(success_prob)])
+          num_success = np.sum(result == 'y');
+          outcomes.append(num_success);
+     
+     outcomes = np.array(outcomes);
+
+     result = np.sum(outcomes <= observed_success) / len(outcomes)
+
+     return result
+```
+
+#### Binomial testing with SciPy
+
+scipy has a function called `binom_test()`, which performs a **two-sided** binomial testing 
+If you want to perform an one-sided testyou can use the `alternative` keyword and a value of `"less"`
+```python
+     # two sided
+     binom_test(expected, sample_size,success_prob);
+     # one sided
+     binom_test(expected,sample_size, success_prob, alternative='less');
+```
+
+this tells us that **IF** the true probability of heads is 0.5, t

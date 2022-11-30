@@ -1,5 +1,6 @@
 {
 	"markdown.styles": ["md_styles.css"],
 	"markdown.occurrencesHighlight.enabled": true,
-	"markdown.preview.breaks": true
+	"markdown.preview.breaks": true,
+	"editor.fontFamily": "Fira code"
 }
