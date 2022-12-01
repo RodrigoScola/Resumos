@@ -1,5 +1,7 @@
 # Data Visualization
 
+##### *Preparing, Visualizing, Styling*
+
 ```python
 from matplotlib import pyplot as plt
 ```
@@ -181,7 +183,12 @@ To change the size we can use the keyword `figzize` and `width`, `height` to cha
 
 ## Charts
 
-### Simple bar chart 
+### bar chart 
+
+* They have lengths that are proportional to the counts they represent
+
+* Each bars width in the bar chart is the same, meaning each bars area is also proportional the the counts they represent
+
 
 allows you to create simple bar charts to compare multiple categories of data 
 
@@ -235,6 +242,51 @@ if you are uncertain about a particular value, you can use the `yerr` keyword an
 
 > You can add the caps by using the `capsize` keyword
 
+### Vertical vs Horizontal Bar charts 
+
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/barcharts_piecharts_lesson/horizontal_vertical_charts.png'>
+
+### Bar charts vs histograms
+
+differences between charts and histograms 
+
+* Bar charts are used for categorical variables, and histograms are used for quantitative data
+
+* Histograms must always be arranged in a specific order, because they represent a range of numerical values 
+
+
+### Bar chart ordering 
+
+#### nominal data 
+
+Nominal data has labels with no specific order. But you have some ways to order it if you want
+
+* ascending 
+     ```python
+          sns.countplot(dataset['itemname'], 
+          order=dataset['itemname'].value_counts(ascending=True).index)
+     ```
+     and the result might look something like this
+     <img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/barcharts_piecharts_lesson/ordered_graph1.png'>
+
+* descending
+```python
+sns.countplot(dataset['itemname'], 
+order=dataset['itemname'].value_counts(ascending=True).index)
+```
+
+
+#### Ordinal data 
+
+If we are working with ordinal data, we should plot the data according to our categorical variables.
+
+we can order categorical values by categories like so 
+
+     sns.countplot(dataset['itemname'], order=['first_item','second_item','third_item'])
+
+
+
 ## Fill Between 
 
 this is a way to display error in a line chart in a more pleasing way
@@ -246,7 +298,15 @@ this is a way to display error in a line chart in a more pleasing way
 
 we can calculate the `y_lower` and `y_upper` but we can calculate it using a `list comprehension`
 
+```python
+y_lower_bound = [
+     element - (element * error_in_decimal) for element in original_list
+]
+```
+
 ## Pie Chart
+
+useful for when you want o visualize a table of proportions
 
      plt.pie([500,1000,750,300,100])
 
@@ -290,3 +350,154 @@ plt.pie(budget_data, labels=budget_categories)
 ```
 
 <img src='https://content.codecademy.com/courses/matplotlib/pie_labels.png'>
+
+you can format numbers by using the `autopct` keyword
+
+* `0.2f` - 2 decimal places
+
+* `0.2f%%` - 2 decimal places but with a % sign at the end 
+
+* `%d%%` - rounded to the nearest int
+
+using a full call to `plt.pie()` might look like this 
+
+```python
+plt.pie(data, labels=data_labels, autopct='%0.1f%%')
+```
+and the result might look something like this:
+
+<img src='https://content.codecademy.com/courses/matplotlib/budget_chart_full.png'>
+
+### Pitfalls of pie charts 
+
+#### Comparing category sizes
+
+Slices on a pie chart are tough to compare as the human eye has difficulty comparing areas 
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/barcharts_piecharts_lesson/bad_pie_charts.jpeg'>
+
+if those same values were in a bar chart, it would be **much** easier to compare 
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/barcharts_piecharts_lesson/good_bar_graphs.jpeg'>
+
+### What do you do when you have too many slices?
+
+whith too many slices, trying to decipher the visual becomes cumbersome 
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/barcharts_piecharts_lesson/college_major.png'>
+
+what can you do? 
+
+1. you can aggregate your slices to create fewer while still showing an informative story 
+
+2. you can see if a bar chart does a more effective job at portraing the information.
+
+## Histogram
+
+How many values in a dataset fall between different sets of numbers.
+
+*How many numbers fall between 0 and 10? between 10 and 20? between 20 and 30?*
+
+all bins in a histogram are always the same size. The width of each bin is the distance betwen the minimum and maximum values of each bin.
+
+<img src='https://content.codecademy.com/courses/matplotlib/histogram.png'>
+
+**`plt.hist()` finds the minimum and the maximum values in the dataset and creates 10 equally-spaced bins between those values**
+
+if we want more than 10 bins, we can use the keyword `bins` to set how many bins we want to divide the data into. The keword `range` selects the minimum and maximum values to plot within that range
+
+
+### Multiple Histograms 
+
+- `alpha` - to change the opacity of a histogram 
+
+     <img src='https://content.codecademy.com/courses/matplotlib/alpha_histograms.png'>
+
+- `histtype` - to change the design (to show just the outline use `step`)
+
+- `normed` - if your histogram have different numbers or samples, making one much bigger than the other, *use `True`* to make so you can compare the difference more clearly
+
+##### before
+
+<img src='https://content.codecademy.com/courses/matplotlib/different_hist.png'>
+
+##### after
+
+<img src='https://content.codecademy.com/courses/matplotlib/normalized_hist.png'>
+
+---
+
+## How to select a meaningful visualization
+
+when planning out a visualization, youll usually have an idea of what questions youll want to explore. During the brainstorming phase, consider
+
+* The focusing question you want to answer with your chart
+
+* the type of data that you want to visualize
+
+<img src='https://content.codecademy.com/programs/dataviz-python/unit-3/pickachart.svg?sanitize=true'>
+
+## Chart Categories
+
+### Composition Charts 
+
+*what are the parts of some whole? What is the data made of?*
+
+They illustrate the different data components and their percentages as part of a whole. Datasets that work well
+
+- data pertaining probabilities
+
+- Proportions and percentages 
+
+### Distribution charts
+
+A commonly seen distribution is a bell curve.
+
+datasets that work well 
+
+- Data in large quantities
+
+### Relationship Charts
+
+*How do variables relate to eachother*
+
+datasets that work well
+
+- Data with two or more variables 
+
+- datasets that illustrate a *correlation* between two or more variables
+
+### Comparison Charts
+
+*How do variables compare to eachother*
+
+datasets that work well
+
+- Data must have multiple variables, and the visualizations in this category allow readers to compare those items against the others
+
+
+## Seaborn 
+
+     import seaborn as sns 
+
+### Bar Charts
+
+to have a countplot
+
+     sns.countplot(dataset['itemName'])
+
+and the result might look something like this 
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/barcharts_piecharts_lesson/flu_bar_chart.png'>
+
+other methods that builds bar charts
+
+* `barplot` - can use any function to determine the hight of bars
+
+
+
+
+
+## Learn more 
+
+* [Data visualization Catalogue](https://datavizcatalogue.com/search.html)

@@ -380,8 +380,9 @@ they are very useful for modeling different types of data, they have 2 possible 
     numpy.random.binomial(attempts, success_probability,times)
     
 
+## Strings 
 
-### string methods 
+### methods 
 > strings are immutable, meaning if you want to change a string you need to change the whole thing
 
 formatting methods ex - Hello wOrld
@@ -410,6 +411,30 @@ normal string and this was added by a variable
 def favor_song(song, artist):
     return "my favourite artist is {artist} and my favourite song is {song}".format(artist=artist, song=song)
 ```
+
+### string Formatting 
+
+#### adding variables to strings
+
+##### method 1 
+
+    strconcat = str1 + " " + variable
+
+##### method 2
+
+    strconcat = "This is my string and the string name is {}".format(var_name)
+
+you can add params to specify where a variable goes
+
+    strconcat = "This is my string and the string name is {string_name}".format(string_name=var_name)
+
+##### method 3
+
+if the pathname is equal to the variable name you can add it in the string
+
+    f"This is my string and the string name is {string_name}"
+
+> For more string formatting you can see [here](https://docs.python.org/2/library/stdtypes.html#string-formatting)
 
 ## dictionaries 
 
