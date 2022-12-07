@@ -494,6 +494,61 @@ other methods that builds bar charts
 
 * `barplot` - can use any function to determine the hight of bars
 
+## Best Practices 
+
+In general your visuals should include clearly labeled axes that are evenly spaced. Legends and colors should be used when plotting data across multiple groups
+
+### Color 
+
+- best to avoid complementary colors
+
+- Use the build-in color palettes in visualization libraries [seaborn color palette](http://seaborn.pydata.org/tutorial/color_palettes.html)
+
+### Bar Charts 
+
+- Use them when you want the reader to understand relative differences accross groups 
+
+- If you want to look at averages across groups, that might be better communicated using a scatter plot with error bars 
+
+### Line charts 
+
+line charts are helpful when the x-axis reflects a quantitative variable. They emphasize the rate of change
+
+#### Y-axis 
+
+- we should consider whether we include or exclude zero on the y-axis
+
+<img src='https://static-assets.codecademy.com/Paths/data-science-career-path/data-visualizations-best-practices/twitter_image.png'>
+
+## What to avoid
+
+### Pie charts 
+
+- using too many categories
+
+- lacking order
+
+- using 3d without labels, percentages...
+
+<img src='https://static-assets.codecademy.com/Paths/data-science-career-path/data-visualizations-best-practices/pie_chart_3d.png'>
+
+### Stacked bar charts
+
+- Difficult to compare categories across groups
+
+<img src='https://static-assets.codecademy.com/Paths/data-science-career-path/data-visualizations-best-practices/stacked_bar.png'>
+
+> they are categorized by year, but its difficult to gauge an increase and decrease across groups, look at *general* for example
+>
+> This is what it would look like in a line chart
+> <img src='https://static-assets.codecademy.com/Paths/data-science-career-path/data-visualizations-best-practices/book_plot.png'>
+
+### Stacked area charts 
+
+- difficult to gauge increase and decrease
+     <img src='https://static-assets.codecademy.com/Paths/data-science-career-path/data-visualizations-best-practices/stacked_area_plots.png'>
+
+### visualization in python
 
 
 
@@ -501,3 +556,5 @@ other methods that builds bar charts
 ## Learn more 
 
 * [Data visualization Catalogue](https://datavizcatalogue.com/search.html)
+
+* [Color palettes](http://seaborn.pydata.org/tutorial/color_palettes.html)

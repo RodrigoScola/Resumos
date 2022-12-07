@@ -15,6 +15,8 @@ jp_data.rename(columns={
 }, inplace=True)
 
 
+#%%
+
 
 def in_question(data,category, words):
      has_word = lambda x: all( word in x for word in words)
@@ -27,5 +29,4 @@ filtered = in_question(jp_data, 'question', [
 ])
 
 jp_data['value'] = float( jp_data[jp_data['value']])
-
 print(jp_data.head())

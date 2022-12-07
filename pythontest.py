@@ -25,13 +25,8 @@ class WordHandler:
           self.all_words = words
           self.word_counts = {}
           self.count_words()
-
      def get_word(self, word):
           return self.word_counts.get(word, '')
-
-     
-
-
      def count_words(self):
           for word in self.all_words:
                if self.word_counts.get(word):

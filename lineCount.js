@@ -4,7 +4,7 @@ const util = require("util")
 var count = 0
 var chars = 0
 
-const wpm = (chars, typeSpeed = 70) => {
+const wpm = (chars, typeSpeed = 75) => {
 	return Math.ceil(chars / typeSpeed)
 }
 

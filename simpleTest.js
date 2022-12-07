@@ -22,3 +22,8 @@ const range = (start, end, step = 1) => {
 for (const i of range(0, 20)) {
 	console.log(i)
 }
+
+
+const returnStri = (string = "") => {
+	const nstring = string.toUpperCase()
+}

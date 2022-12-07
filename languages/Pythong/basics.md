@@ -934,6 +934,89 @@ def weight(self, new_weight)
         self.__weight = new_weight
 ```
 
-### exceptions 
+## Error Handling    
 
 as opposed to a syntax error, an exception is a different kind of error that can occur with syntactically correct code, 
+
+### try Catch
+
+if any error in the code happens, the except code runs
+
+```python
+try:
+    print(location)
+except:
+    print(`Location is not defined`)
+```
+
+#### Catching specific exceptions
+
+```python
+try:
+    print(location)
+except NameError:
+    print(`Location is not defined`)
+```
+
+###### we can also have the object 
+
+```python
+try:
+    print(location)
+except NameError as errObj:
+    print(`Location is not defined`)
+    print(errObj)
+```
+
+##### handling multiple exceptions
+
+if we want to catch more than one but not all we can wrap the exceptions in a parenthesis block
+
+```python
+try:
+    print(location)
+except (NameError, keyError, Exception) as errObj:
+    print(`Location is not defined`)
+    print(errObj)
+```
+
+if we want to have a separate handling for each one we can use multiple except cases
+
+```python
+try:
+    print(location)
+except ValueError:
+    print('location value was not found')
+exept KeyError:
+    print('location was not found')
+except NameError:
+    print(`Location is not defined`)
+```
+
+### Else
+
+it activates if theres no error
+
+```python
+try:
+    check_password();
+except ValueError:
+    print("Wrong Password, Try Again")
+else:
+    login_user()
+```
+
+### Finally
+
+activates if there is or there is not an error, executes after the else clause 
+
+```python
+try:
+    check_password();
+except ValueError:
+    print("Uh OH Spagettios")
+else: 
+    log_in_user()
+finally:
+    load_footer()
+```
