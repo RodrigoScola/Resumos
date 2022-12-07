@@ -199,3 +199,39 @@ computer code used to obtain results
 * **Different Cultures** - Be aware that people with other cultures might not understand the expressions you use
 
 * **Other demographic characteristics** - age groups, type of residence, gender...
+
+#### Audience Adaptation
+
+* **Add Inforamtion readers need to understand the document** - check if key information is missing. Important background that helps beginners understand the main discussion
+
+* **Omit information that your readers do not need** - Unnecessary information can confuse and frustrate readers.
+
+* **Change the level of the information you currently have** - pitch the idea at the level of knowledge of the audience
+
+* **Change the level of your examples** - make the examples relate to the readers experience 
+
+* **Change the organization of your information** - you can have all the right information but arrange it in a wrong way. There can be too much background information up front or too little such that certain readers get lost. Sometimes backgorund information needs to be consolidated into the main information - *For example* in the instructions its sometimes better to feed in chunks of background at the points where they are immediately needed
+
+* **Strengthen Transitions** - May be difficult for non specialist to see the connection, you should make it smoother and make it easy to understand the correlations
+
+* **Write stronger introductions** - They seem to read withh more confidence and undertanding when they have the "big picture" 
+
+* **Create topic sentences** - it can help readers immensely to give them an idea of the topic and purpose of a section if they have a "tagline" that explains it in one sentence 
+
+* **Cange sentence style and length** - How you can write can make a difference. Personalizing your writing style and making it more relaxed and informal can make it more accessible and understandable 
+
+* **Clarity and Economy** - Writing style can be so wordy that is hard to read. 
+
+* **Use different graphics** - Its a way to keep nonspecialists, or people uninstered in the topic, to keep them paying attention. They are called "decorative" graphics - ones that are attractive but serve no strict informative or persuasive purpose at all
+
+* **Break text into meaningful chunks** - Condense information into a 6-8 lines paragraph
+
+* **Cross references to important information** - Callbacks to previous graphics. Make the reader feel cool by paying attention
+
+* **Headings and lists** - Use them, nice to summarize information
+
+## Know your audience: How to write data analysis reports
+
+### Who
+
+Audience is often defined by the role a reader plays relative to the report
