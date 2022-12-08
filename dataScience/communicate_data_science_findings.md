@@ -232,6 +232,74 @@ computer code used to obtain results
 
 ## Know your audience: How to write data analysis reports
 
-### Who
+#### Who
 
-Audience is often defined by the role a reader plays relative to the report
+Are they the decision makers, stakeholders, reviewers or generally interested individuals?
+
+#### What 
+
+types of audiences you might encounter
+
+* **Mathphobes** - fear numbers but may listen to concepts.
+     
+     * Dont use statistical jargon
+     * Dont show formulas
+     * Use numbers sparingly
+
+* **Bypassers** - Understand some but have little interest 
+
+     * Dont worry about them  
+     * Make the summary pithy and highlight the most important finding 
+
+* **Tourists** - Understand some and are interested
+
+     * Use only essential jargon
+     * Can use numbers but not too many
+     * Round off values so you are not implying false precision
+
+* **Hot Dogs** - Know less than they think and want to show it
+
+     * Using jargon is fine so long as you define what you mean
+     * Using numbers, statistics and formulas is fine as long as you explain their meanings
+
+* **Associates** - analysts who understand the basic jargon
+
+     * Anything is fine if you explain the meaning
+
+* **Peers** - Analysts who understand all the jargon
+
+     * Anything goes
+
+#### Why 
+
+**Be honest with yourself, Why would anyone be interested in reading your report?**
+
+#### Where 
+
+Is the report aimed at a finite confined group or will anyone be able to read it? 
+
+Is the report aimed at the upper levels of the organization or the bottom? 
+
+Are there any concerns for security or confidentiality, on the individual or organizational levels?
+
+#### When 
+
+when does the population need to see your report?
+
+how much time does this leave you to write the report?
+
+will you be outraged when the time taken to review your report is twice as long as the time you took to write it?
+
+**NEVER, NEVER, NEVER, submit a draft report for review that isnt your fully complete, edited masterpiece.**
+
+#### How
+
+* **Package** - will your findings be a short letter report, a comprehensive report, a blog or an internet article?
+
+* **Format** - will our report be distributed as an eletronic file or a paper document? 
+
+* **Appearance** - will the report be limited to black and white or there wil be color?
+
+* **Speciality items** - will you need to provide files, analysis scripts or ptrograms codes?
+
+* **Acessibility** - Do you need to follow the guidelines of Section 508 of the Rehabilitation Act of 1973, which may affect your use of headings, tables, graphic objects, and special characters? Should you account for common forms of color blindness in your color graphics?

@@ -186,3 +186,5 @@ df = df.fillna(value={
      "num_guests":df.num_guests.mean()
 })
 ```
+
+## Centering and scaling

@@ -17,7 +17,6 @@ jp_data.rename(columns={
 
 #%%
 
-
 def in_question(data,category, words):
      has_word = lambda x: all( word in x for word in words)
 
