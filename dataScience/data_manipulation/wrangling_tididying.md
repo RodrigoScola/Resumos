@@ -188,3 +188,169 @@ df = df.fillna(value={
 ```
 
 ## Centering and scaling
+
+### Centering
+
+means subtracting the mean from each point so the new mean is 0
+
+it tells us how far the point is from the new mean. It gives additional insight that we cant get just by looking at the initial dataset
+
+### Scaling
+
+what happens if you want to compare values in different scales?
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/center-scaling/scaling.png'>
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/center-scaling/unnormalized.png'>
+
+#### Min-max normalization
+
+> One of the most simple and common ways to scale data
+
+for every feature in a dataset, the minimum value of that data is transformed into 0, the maximum value is transformed into 1
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/center-scaling/normalized.png'>
+
+one downside is that it doesnt handle outliers very well
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/center-scaling/outlier.png'>
+
+you can use standardization when you have that crazy of an outlier
+
+
+#### Standardization
+
+subtracting the mean of each observation and dividing by the standard deviation
+
+#### When to normalize vs standardize
+
+when you have outliers you should use standardization
+
+#### Python implementation
+
+
+##### Normalize
+```python
+from sklearn.preprocessing import MinMaxScaler
+
+import pandas as pd
+
+data = pd.read_csv('data.csv')
+scaler = MinMaxScaler()
+
+normalized_data = scaler.fit_transform(data)
+```
+
+###### Standardization
+```python
+from sklearn.preprocessing import StandardScaler
+
+import pandas as pd 
+data = pd.read_csv('data.csv')
+
+scaler = StandardScaler()
+
+standardized_data = scaler.fit_transform(data)
+```
+
+### Binning data
+
+is the process of groupint items in different categories
+
+#### Why
+
+to create more appealing visualizations, to organize data, to improve a machine learning model
+
+#### binnin in python
+
+```python
+import pandas as pd
+
+df = pd.read_csv('data.csv')
+
+df['binned_age'] = pd.cut(df['Age'], bin_number)
+
+#  binned_age  Age
+# 0   (20, 30]   23
+# 1   (20, 30]   28
+# 2   (40, 50]   45
+# 3   (60, 70]   63
+# 4   (30, 40]   35
+
+```
+we can now plot it 
+
+     df['binned_age'].value_counts().plot(kind='bar')
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/discretizing-data/dance_class_dist.png'>
+
+### Combining categorical data
+
+sometimes you have a lot of values that genreally could be grouped up
+
+like the other in category types
+
+we can create a mask 
+
+```python
+mask = election_data.isin(votes[votes < 200].index)
+
+election_data[mask] = 'Other'
+
+# Liliana    1067
+# John        998
+# William     494
+# Other       210
+# Name: Vote, dtype: int64
+```
+
+## Transforming skewed data
+
+### Log transformation
+
+transfroms each variable `x` with `log(x)` 
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/advanced-data-transformations/logtransform.jpeg'>
+
+```python
+import numpy as np
+
+data = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4]
+
+log_data = np.log(data)
+
+# 0, 0, 0, 0, 0.693, 0.693, 0.693, 1.098, 1.098, 1.386, 1.386
+```
+
+you should a more powerful library like `sklearn` to do it for you, it will give better results and have tons of tools that you can and should use
+
+```python
+from sklearn.preprocessing import PowerTransformer
+
+log_transform = Powertransformer()
+log_transform.fit_transform(data)
+```
+
+#### Applying it with real world data
+
+
+```python
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+home_data = pd.read_csv('home_data.csv')
+home_prices = home_data['SalePrice']
+
+sns.distplot(home_prices)
+```
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/advanced-data-transformations/skewed.jpeg'>
+
+> You can see if there is a skew by using the .skew()
+> here the output is 1.88 meaning there is a skew
+
+```python
+log_home_prices = np.log(home_prices)
+```
+
+<img src='https://static-assets.codecademy.com/Paths/data-analyst-career-path/advanced-data-transformations/normalized.jpeg'>
