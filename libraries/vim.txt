@@ -27,5 +27,3 @@ I = takes you to the beginning of the line & puts you in insert mode
 r = replaces a letter
 q + keys = creates a macro and assign that macro to the key
 @ + keys = replays that macro
-
-

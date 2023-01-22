@@ -1,29 +1,18 @@
-const range = (start, end, step = 1) => {
-	return {
-		[Symbol.iterator]() {
-			return this
-		},
-		next() {
-			if (start < end) {
-				start += step
-				return {
-					value: start,
-					done: false,
-				}
-			}
-			return {
-				done: true,
-				value: end,
-			}
-		},
-	}
-}
-
-for (const i of range(0, 20)) {
-	console.log(i)
-}
-
-
-const returnStri = (string = "") => {
-	const nstring = string.toUpperCase()
-}
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var Post = {
+    id: 9,
+    name: "snuffy",
+    type: "posts"
+};
+var PostExtended = __assign(__assign({}, Post), { Karma: 9 });
+console.log(PostExtended);
