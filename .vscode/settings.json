@@ -2,7 +2,7 @@
 	"markdown.styles": ["md_styles.css"],
 	"markdown.occurrencesHighlight.enabled": true,
 	"markdown.preview.breaks": true,
-	"editor.fontFamily": "Fira code",
+	"editor.fontFamily": "Fira Code",
 	"editor.suggest.matchOnWordStartOnly": true,
 	"editor.suggest.shareSuggestSelections": true,
 	"editor.suggest.preview": true,

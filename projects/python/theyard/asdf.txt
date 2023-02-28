@@ -1,0 +1,44 @@
+1 - snuffywastaken
+2 - Rio grande do sul, brasil
+3 - 22 anos
+4 - desenvolvedor fullstack
+5 - mais ou menos, ja trabalhei com video mas nunca fui muito atras
+6 - nao, sou bem de boas com isso, mas zoo de volta no chating
+7 - so chamo de cheater na brincadeira, nao levo muito pro pessoal o resultado
+8 - acabei de perder uma 15-0 pro frostmoon
+9 - 0 no momento, mas quanto lancar a startup ai rest backend desruptivo que faz apis e crud, ai vai aumentar
+10 -
+```
+const MergeSort = (left: any[], right = null)  => {
+     if (!right) right = left.slice(0, Math.floor(left.length));
+     let sorted = []
+     
+     while(right.length && left.length) {
+     if ( left[0] < right[0]) {
+     sorted.push(left.shift())
+     } else {
+     sorted.push(right.shift())
+     }
+     return [...sorted, ...left, ...right]
+}
+
+```
+```
+const getNumber = (node: TreeNode, data: number) => {
+     if (node === null) return null;
+     
+     if (data < node.data) return getNumber(node.left, data);
+     
+     else if (data > node.data) return getNumber(node.right, data)
+     
+     return node
+}
+```
+
+11 - _rordigo (mas eu nn posto muito)
+12 - ainda nao sei muito mas o jogo parece legal
+13 - acho que cada pessoa tem liberdade de fazer o que quiser e expor tais pressoes em cada individuo nao deve ser nossa aspiracao como humanos
+14 - vejo bastante disso na real/irmao trabalha fazendo jogos
+15 - nunca ouvi falar de dbt mas significa Dandus Bandus Tantus new
+16 - so se ambos colocarem seu valor como seres humanos em uma corporacao que nao sabe que a gente existe nem liga para nossa opniao, apenas nos veem como sacolas de dinheiro. e eu realmente acho que a logitech faz as vidas dos koalas melhores do que a nvidia, mas eh so minha opniao
+17 - daqui a pouco vo ter q comprar um pc novo mas agora o meu setup pode ser resumido a , porque vc ta fazendo isso consigo mesmo

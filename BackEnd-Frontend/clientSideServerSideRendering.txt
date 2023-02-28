@@ -1,4 +1,4 @@
-what is client side rendering?
+what is client sid        e rendering?
      its rendering on the client side, not on the server side
      its what happens on the users browser and not on the server
      user can alter stuff and cant be seen by others

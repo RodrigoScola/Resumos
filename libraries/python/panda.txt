@@ -146,7 +146,7 @@ rename columns
      {
           df.columns = [...new_column_names]
      }
-if you just want to rename specific columns and not the whole thing
+if you just want to rename speciwc columns and not the whole thing
      {
           df.rename(columns {
                "name":"First Name",
@@ -314,4 +314,3 @@ spread for quantitative data
           rentals.rent.std()
      mean absolute deviation  
           rentals.rent.mad()
-

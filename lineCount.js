@@ -1,22 +1,50 @@
-const fs = require("fs")
-const lineReader = require("line-reader")
-const util = require("util")
-var count = 0
-var chars = 0
+const fs = require("fs");
+const lineReader = require("line-reader");
+const util = require("util");
+var count = 0;
+var chars = 0;
 
-const wpm = (chars, typeSpeed = 75) => {
-	return Math.ceil(chars / typeSpeed)
-}
+const wpm = (chars, typeSpeed = 86) => {
+	return Math.ceil(chars / typeSpeed);
+};
+const total = [];
+
+const bannedFiles = [
+	"package.json",
+	".env.local",
+	"next.config.js",
+	"node_modules",
+	".vscode",
+	"base_data",
+	"base_data.json",
+	"basedata.json",
+	"word_count.csv",
+	"redundant.txt",
+	"package-lock.json",
+	".gitignore",
+	"package-lock.json",
+	"total.txt",
+	"public",
+	"image",
+	"dist",
+	"example_data",
+	".gitconfig",
+	".next",
+	"nodemon.json",
+];
 
 const passDir = (path = "") => {
-	const filename = path.split("/").slice(-1)[0]
+	const filename = path.split("/").slice(-1)[0];
+
 	if (
-		path.split("/").slice(-1)[0].includes(".") &&
-		filename !== "total.txt" &&
-		!path.split("/").slice(-1)[0].endsWith("csv")
+		filename.includes(".") &&
+		!filename.endsWith("csv") &&
+		!filename.startsWith(".") &&
+		!bannedFiles.includes(filename)
 	) {
+		console.log(path);
 		lineReader.eachLine(path, function (line) {
-			const char = line.split(" ").length
+			const char = line.split(" ").length;
 
 			if (line !== "") {
 				console.log(
@@ -26,34 +54,36 @@ const passDir = (path = "") => {
 					)} minutes or ${Math.ceil(wpm(chars) / 60)} hours or ${Math.ceil(
 						wpm(chars) / 60 / 24
 					)} days to rewrite it all`
-				)
-				if (line) {
-					// fs.appendFile("total.txt", line + "\n", (err) => console.log(err))
-				}
+				);
+				total.push(line);
 			}
-			return null
-		})
+			return null;
+		});
 	} else {
 		fs.readdir(path, (err, data) => {
 			if (data) {
 				data.map((item) => {
-					passDir(`${path}/${item}`)
-				})
+					passDir(`${path}/${item}`);
+				});
 			}
-		})
+		});
 	}
-}
-const getDir = () => {
+};
+
+const getDir = (dir = "") => {
 	return fs
-		.readdirSync("./")
+		.readdirSync(dir)
 		.slice(3)
-		.filter((item) => item !== "node_modules" && item !== "total.txt" && !item.includes("."))
-}
-const dirs = getDir()
-console.log(dirs)
-// dirs.map((dir) => passDir(`./${dir}`))
-for (let i = 0; i < dirs.length; i++) {
-	passDir(`./${dirs[i]}`)
-}
-// console.log(`This resume has ${count} and ${chars} words, it would take ${chars / 60} minutes to rewrite`)
-// fs.readFile("./tasks.txt", "utf-8", readDataCallback)
+		.filter((item) => !bannedFiles.includes(item));
+};
+const countWords = (dir) => {
+	let basePath = dir;
+	const dirs = getDir(dir);
+	dirs.forEach((folder) => {
+		passDir(`${basePath}/${folder}`);
+	});
+};
+
+// countWords("../overflow2/web")
+// countWords("../overflow2/server")
+countWords("./");
