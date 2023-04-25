@@ -16,8 +16,10 @@ const bannedFiles = [
 	"node_modules",
 	".vscode",
 	"base_data",
+	"rs",
 	"base_data.json",
 	"basedata.json",
+	"tsconfig.json",
 	"word_count.csv",
 	"redundant.txt",
 	"package-lock.json",
@@ -79,11 +81,10 @@ const getDir = (dir = "") => {
 const countWords = (dir) => {
 	let basePath = dir;
 	const dirs = getDir(dir);
+	console.log(dirs)
 	dirs.forEach((folder) => {
 		passDir(`${basePath}/${folder}`);
 	});
 };
 
-// countWords("../overflow2/web")
-// countWords("../overflow2/server")
 countWords("./");
