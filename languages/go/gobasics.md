@@ -604,3 +604,200 @@ func main() {
 ```
 
 ### Slice defaults
+
+the default is zero for the low bound and the length of the slice for the high bound
+
+these slice expressions are equivalent:
+
+```go
+a[0:10]
+a[0:]
+a[:]
+```
+
+### creating slice with `make`
+
+this i how you create dynamically sized arrays. The `make` function allocates a zeroed array and returns a slice that refers to that array
+
+```go
+a := make([]int, 5) // len(a) = 5
+```
+
+### Appending to a slice
+
+use the `append` function
+
+```go
+func append(s []T , vs ...T) []T
+```
+
+### Range
+
+the `range` form of the `for` loop iterates over a slice or map
+
+when ranging over a slice, two values are returned for each iteration. The first is the index, and the second is a copy of the element at that index
+
+```go
+for i ,v := range pow {
+	fmt.Printf("2**%d = %d\n", i, v)
+}
+```
+
+> you can skip the variable assignment by using `_`
+
+### Maps
+
+a map maps keys to values
+
+the zero value of a map is `nil`. a nil map has no keys nor can keys be added
+
+the `make` function returns a map of the given type.
+
+```go
+    type Vertex struct {
+        Lat, Long float64
+    }
+    var m map[string]Vertex
+
+    func main() {
+        m = make(map[string]Vertex)
+        m["Bell Labs"] = Vertex{
+            40.0234, -12301,32
+        }
+        fmt.Println(m["Bell Labs"])
+    }
+```
+
+#### Map Literals
+
+they are like struct literals, but the keys are required
+
+```go
+var m = map[string]Vertex{
+    "Bell Labs": Vertex {
+            40.0234, -12301,32
+    },
+    "Google": Vertex {
+            1.34, -93.123
+    },
+}
+```
+
+if the top-level is just a type name, you can omit it from the elements of the literal
+
+```go
+var m = map[string]Vertex{
+    "Bell Labs": {40.0234, -12301,32},
+    "Google": {1.34, -93.123},
+}
+```
+
+how to insert or update and element in map `m`
+
+```go
+m[key] = elem
+```
+
+how to retrieve an element in a map
+
+```go
+elem = m[key]
+```
+
+how to delete an element in a map
+
+```go
+delete(m, key)
+```
+
+how to test that a key is present with a two value assignment
+
+```go
+elem, ok := m[key]
+```
+
+## Function values
+
+function are values too. they can be passed around just like other values
+
+function values may be used as function arguments and return values
+
+```go
+func compute(fn func(float64, float64) float64) float64 {
+    return fn(3,4)
+}
+func main() {
+    hypot := func (x, y float64) float64 {
+        return math.Sqrt(x * x + y * y)
+    }
+    fmt.Println(hypot(5,12))
+    fmt.Println(compute(hypot))
+    fmt.Println(compute(Math.Pow))
+    // 13
+    // 5
+    // 81
+}
+```
+
+### function closures
+
+go functions may be closures. A closure is a function value that references variables from outside its body. The return function may access and ssign to the referenced variables; in this sense the function is "bound" to the variables
+
+in this example, the added function returns a closure. Each closure is bound to its own `sum` variable
+
+## methods
+
+go does not have classes. However you can define methods on types.
+
+a method is a function with a special receiver argument. The receiver appears in its own argument list between the `func` keyword and the method name.
+
+In this example, the `Abs` method has a receiver of type `Vertex` named `v`
+
+```go
+type Vertex struct {
+    x,y float64
+}
+func (v Vertex) Abs() float64 {
+    return Math.Sqrt(v.x * v.x + v.Y * v.y)
+}
+func main() {
+    v := Vertex{3, 4}
+    fmt.Println(v.Abs())
+}
+```
+
+Methods are functions with a receiver argument
+
+```go
+type Vertex struct {
+    x,y float64
+}
+func  Abs(v Vertex) float64 {
+    return Math.Sqrt(v.x * v.x + v.Y * v.y)
+}
+func main() {
+    v := Vertex{3, 4}
+    fmt.Println(Abs(v))
+}
+```
+
+you can declare a method on non-struct types too
+
+```go
+type MyFloat float64;
+
+func (f MyFloat) Abs() float64 {
+    if f< 0 {
+        return float64(-f)
+    }
+    return float64(f)
+}
+func main() {
+    f := MyFloat(-math.sqrt2)
+    fmt.Println(f.Abs())
+}
+```
+
+### Methods on Pointer receivers
+
+the
