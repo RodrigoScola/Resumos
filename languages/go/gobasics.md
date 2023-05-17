@@ -800,4 +800,406 @@ func main() {
 
 ### Methods on Pointer receivers
 
-the
+methods with pointer receivers can modify the value to which the receiver points. Since methods ohten need to modify their receiver, pointer receivers are more common than value receivers;
+
+With a value receiver the method operates on a copy of the original value. The function must have a pointer receiver to change the value declared before
+
+go interprets the statement `v.Scale(5)` as `(&v).Scale(5)` since the `Scale` method has a pointer receiver
+
+functions that take a value argument must take a value of that specific type
+
+```go
+var v Vertex
+fmt.Println(AbsFunc(v))  // OK
+fmt.Println(AbsFunc(&v)) // Compile error!
+```
+
+while methods with value receivers take either a value or a ponter as the receiver when they are called
+
+```go
+var v Vertex
+fmt.Println(v.Abs()) // OK
+p := &v
+fmt.Println(p.Abs()) // OK
+```
+
+the equivalent thing happens in the reverse direction. Functions that take a value argument must take a value of that specific type
+
+```go
+var v Vertex
+fmt.Println(AbsFunc(v)) //ok
+fmt.Println( AbsFunc(&v)) // compile error
+```
+
+#### Choosing a value or pointer receiver
+
+- the method can modify the value that its receiver points to
+
+- to avoid copying the calue on each method call
+
+### Interfaces
+
+an interface type is defined as a set of method signatures. A value of interface can hold any value that implements those methods
+
+```go
+type Abser interface {
+    Abs() float64
+}
+func main() {
+    var a Abser
+    f := MyFloat(-math.sqrt2)
+    v := Vertex{3,4}
+    a = f // a MyFloat implements Abser
+    a = &v // a *Vertex implements Abser
+}
+```
+
+#### interfaces are implemented implicitly
+
+a type implements an interface by implementing its methods. There is not "implements" keyword.
+
+```go
+type I interface {
+    M()
+}
+type T struct {
+    S string
+}
+func (t *T) M() {
+    fmt.Println(t.S)
+}
+type F float64
+
+func (f F ) M() {
+    fmt.Println(f)
+}
+func main() {
+    var i I = &T{"hello"}
+    describe(i)
+    i.M()
+}
+```
+
+### interface values
+
+under the hood, interface values can be thought of as a tuple of a value and a concrete type
+
+```go
+(value, type)
+```
+
+an interface value hold a value of a specific underlying concrete type
+
+#### interface values with nil underlying values
+
+if the concrete value inside the interface itself is nil, the method will be called with a nil receiver
+
+```go
+func (t *T) M() {
+    if t == nil {
+        fmt.Println("nil value on method M")
+    return
+    }
+    fmt.Println(t.S)
+
+}
+```
+
+## Type assertons
+
+a type assertion provides access to an interface values underlying concrete value
+
+```go
+t := i.(T)
+```
+
+htis statement asserts that the interface value `i` holds the concrete type `T` and assigns the underlying `T` value to the variable `t`
+
+if `i` does not hold a `T`, the statement will trigger a panic
+
+to test whether an interfava value holds a specific type, a type assertion can return two values, the underlying value and a boolean value that reports whether the assertion succeeded.
+
+```go
+t, ok := i.(T)
+```
+
+### Type switches
+
+its a construct that permits several type assertions in series. A type switch is like a regular switch statement, but the cases in a type switch specify types (not values), and those values are compared against the type of the value held by the given interface value
+
+```go
+switch v := i.(type) {
+    case T:
+        fmt.Println("This is the T type")
+    case S:
+        fmt.Println("This is the S type")
+    default:
+        fmt.Println("this is the default, no match")
+}
+```
+
+### Stringers
+
+its what it shows when you print it to the console
+
+```go
+type PersonStringer {
+    Name string
+    Age int
+}
+func (p PersonStringer ) String() string {
+    return fmt.Sprintf("the name is %v and the age is %v years", p.Name, p.Age);
+}
+
+type Person {
+    Name string
+    Age int
+}
+
+func main() {
+    a := PersonStringer {
+        "rodrigo" 22
+    }
+    p := PersonStringer {
+        "rodrigo" 22
+    }
+    fmt.Println(a) // the name is rodrigo and the age is 22 years
+    fmt.Println(p) // {rodrigo 22}
+}
+```
+
+## Strings
+
+to loop through a string
+
+```go
+import ("strconv")
+
+for i,val := range(str) {
+    char := strconv.Itoa(int(val))
+    fmt.Println(char)
+}
+```
+
+if you want to join a string
+
+```go
+import (
+    "strings"
+"strconv")
+
+res := make([]string, len(str))
+for i, val := range str {
+    res[i] = strconv.Itoa(int(val))
+}
+fmt.Println(strings.Join(res, ","))
+```
+
+### Errors
+
+go programs express error state with `error` values
+
+the `error` typ is a built-in interface similar to `fmt.Stringer`
+
+```go
+type error interface {
+    Error() string
+}
+```
+
+as with `fmt.Stringer`, the `fmt` package looks for the `error` interface when printing values
+
+functions often return an `error` value, and calling code should handle errors by testing whether the error equals `nil`
+
+```go
+i, err := strconv.Atoi("42");
+if err != nil {
+    fmt.Println("couldnt convert number")
+    return
+}
+fmt.Println("Converted integer: ", i);
+```
+
+## Readers
+
+the `io` package speficies the `io.Reader` interface, which represents the read end of a stream of data.
+
+the `io.Reader` has a `Read` method
+
+```go
+func (T) Read(b []byte) (n int, err Error)
+```
+
+`Read` populates the given byte slice with data and returns the number of bytes populated and error value. It returns an `io.EOF` error when the stream ends
+
+## Type parameters
+
+they are the generics of typescript. The type parameters of a function appear between brackets, before the functions arguments
+
+```go
+func Index[T comparable](s []T, x T) int
+```
+
+this declaration means that `s` is a lice of any type `T` that fullfills the built-in constraint `comparable`. `x` is also a value of the same type
+
+#### Comparable
+
+`comparable` is a useful constraint that makes it possible to use the `==` and `!=` operators on values of the type. In this example, we use it to compare a value to all slice elements until a match is found
+
+```go
+func Index[T comparable](s []T, x T) int {
+    for i,v := range s {
+        // v and x are type T, which has the comparable constraint, so we can use == here
+        if v == x {
+            return i
+        }
+    }
+    return -1
+}
+func main (){
+    // Index works on a slice of ints
+    si := []int{10,20,15,-10}
+    fmt.Println( Index( si, 15))
+
+    // Index also works on a slice of strings
+    ss := []string{"foo", "bar","baz"}
+
+    fmt.Println( Index( ss, "hello"))
+}
+```
+
+### generics
+
+a type can be parameterized with a type parameter, which can be useful for implementing data structures
+
+```go
+type List[T any] struct {
+    val T
+    next *List[T]
+}
+```
+
+## Goroutines
+
+its a way to do concurrent code
+
+its a ligtweight thread managed by the go runtime
+
+```go
+go f(x,y,z)
+```
+
+starts a new goroutine running
+
+the evaluation of `f`,`x`,`z` happens in the current goroutine and the execution of `f` happens in the new goroutine
+
+### Channels
+
+they are a typed conduit through which you can send and receive values with the channel operator `<-`
+
+```go
+ch <-
+```
+
+like maps and slices, channels must be created before use
+
+```go
+ch := make(chan int)
+```
+
+the example code sums the numbers in a slice, distrubuting the work between two goroutines. Once both goroutines hav completed their computation, it calculates the final result
+
+```go
+func sum (s []int, c chan int  ) {
+    sum := 0;
+    for _, v := range s {
+        sum += v
+    }
+    c <- sum
+}
+
+func main () {
+    s := []int{7,2,8,-9,0}
+
+    c := make(chan int)
+
+    go sum(s[:len(s)/2],c)
+    go sum(s[len(s)/2:],c)
+
+    x,y := <-c ,<-c
+
+    fmt.Println( x, y, x + y)
+}
+```
+
+### Buffered channels
+
+how many instances do you want to run
+
+channels can be buffered, add the buffer length as the second argument to `make` to initialize a buffered channel
+
+```go
+ch := make(chan int, 1)
+```
+
+### range and close
+
+a sender can `close` a channel to indicate that no more values will be sent. receivers can test whether a channel has been closed by assigning a second parameter to receive the expression: after
+
+```go
+v, ok := <-ch
+```
+
+ok is `false` and there are no more values to receive and the channel is closed.
+
+the loop `for i := range c` receives values from the channel repeatedly until is closed
+
+```go
+func fibonacci(n int, c chan int) {
+    x,y := 0,1
+    for i:=0 ;i < n;i++ {
+        c <- x;
+        x,y = y , x + y
+    }
+    close(c)
+}
+func main() {
+    c := make(chan int, 10)
+    go fibonacci(cap(c),c)
+    for i := range c {
+        fmt.Println(i)
+    }
+}
+```
+
+### Select
+
+the `select` statement lets a goroutine wait on multiple communication operations
+
+a `select` blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready
+
+```go
+func fibonacci(c , quit chan int) {
+    x,y := 0,1
+    for {
+        select {
+            case c <- x:
+                x,y = y, x+y;
+            case <-quit:
+                fmt.Println("quit")
+                return
+        }
+    }
+}
+func main () {
+    c := make(chan int)
+    quit := make(chan int)
+    go func() {
+        for i := 0; i < 10; i++ {
+            fmt.Println(<-c)
+        }
+        quit <- 0
+    }()
+    fibonacci(c, quit)
+}
+```

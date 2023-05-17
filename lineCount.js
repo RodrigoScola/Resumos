@@ -55,7 +55,7 @@ const passDir = (path = "") => {
 						chars
 					)} minutes or ${Math.ceil(wpm(chars) / 60)} hours or ${Math.ceil(
 						wpm(chars) / 60 / 24
-					)} days to rewrite it all`
+					)} days to rewrite it all at 86 words per minute`
 				);
 				total.push(line);
 			}
