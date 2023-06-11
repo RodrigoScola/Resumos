@@ -26,5 +26,3 @@ for item in items:
      if (item >= level and item < next_lvl ) or level == item :
           breakpoints[level].append(item)
           continue
-     
-     

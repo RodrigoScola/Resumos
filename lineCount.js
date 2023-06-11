@@ -53,7 +53,7 @@ const passDir = (path = "") => {
           line,
           `This resume has ${count++} lines and ${(chars +=
             char)} words, it would take ${wpm(chars)} minutes or ${Math.ceil(
-            wpm(chars) / 86
+            wpm(chars) / 60
           )} hours or ${Math.ceil(
             wpm(chars) / 60 / 24
           )} days to rewrite it all at 86 words per minute`
