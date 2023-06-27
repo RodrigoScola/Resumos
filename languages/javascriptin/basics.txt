@@ -19,9 +19,9 @@ escape sequences in strings
     \b = word boundary
     \f = form feed
 you can ise different variables to append
-    myStr:"nice";
-    MyName:"it is";
-    MyName += myStr;
+    const myStr="nice";
+    MyName +="it is";
+    MyName += myStrconcurrent;
 .length = the number that contains in an variable
     str = "myname"
     str.length = 6;
