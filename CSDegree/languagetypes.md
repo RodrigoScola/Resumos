@@ -16,7 +16,7 @@ The difference between simbolic languages and high level languages is their abst
 
 in high level languages there is a lot of abstraction in the code that you write, you dont need to worry about system calls and control transfer...
 
-high level language -> simbolic language -> machine code
+     high level language -> simbolic language -> machine code
 
 ## High level languages
 
