@@ -1,3 +1,4 @@
+#python 
 # Python 
 
 ### The language 
@@ -399,7 +400,7 @@ formatting methods ex - Hello wOrld
 
 `.strip` - removes the content from the start of the string and the end, defaults to white `space,` but you can add delimiters 
 
-`.replace` - str.replace(search, replace) #replaces all instances 
+`.replace` - str.replace(search, replace) replaces all instances 
 
 `.find` - finds the index at what the element is at 
 

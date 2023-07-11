@@ -1,3 +1,4 @@
+#whatILearned 
 # Stack Organizer
 
 -    dont rush a feature, try to think of something that fits in the whole thing

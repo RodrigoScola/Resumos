@@ -1,3 +1,4 @@
+#research 
 Sistemas de arquivos
 O sistema de arquivos do Linux funciona diferente dos outros sistemas operacionais. Enquanto existe diferença entre arquivos e diretórios no Windows, no Linux tudo é um arquivo. Diretórios são apenas "organizadores".
 

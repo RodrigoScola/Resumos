@@ -1,5 +1,7 @@
 # Bubble Sort
 
+#algorithms 
+
 it is an inplace sorting algorithm
 
 ```js

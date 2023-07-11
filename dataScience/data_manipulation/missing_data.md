@@ -1,17 +1,19 @@
+#dataScience 
 # Handling Missing Data
 
-> A lot of data analytics type work is solving mysteries, and *The Mystery of the Missing Data* is one of the best sellers
+ > [!note]
+ A lot of data analytics type work is solving mysteries, and *The Mystery of the Missing Data* is one of the best sellers
 
 
-#### What to do about "nothing"
+# What to do about "nothing"
 
 ## Why its important to handle missing data
 
-if we dont handle missing data properly, then any results or insights we get could be significantly wrong.
+if we don't handle missing data properly, then any results or insights we get could be significantly wrong.
 
 missing data means that there are potentially big gaps in the data and what we can learn from it. Since datasets often describe a population, forgetting missing data means we will have a _lower statistical power_ (the hability to accept or reject an hypothesis)
 
-when we have complete data, we also minimize the risk of making inaccurate conclusions from our dataset.
+When we have complete data, we also minimize the risk of making inaccurate conclusions from our dataset.
 
 ## Why Data might be missing
 
@@ -80,11 +82,11 @@ If the likelihook of missingness is different for different groups, but equally 
 
 ### **Missing not at random**
 
-> #### There is some reason why the data is missing
+> [!TIP] There is some reason why the data is missing
 
-##### Example
-
+> [!Example]
 Participants in our study have been assigned to alocal clinic to get a health reading. they get blood pressure, height and weight measured, and the clinican will enter notes after an interview. But a portion of the weight measurements are missing. Participants werent responsible for self-reporting so this is unexpected. We might assume that they didnt want to be weighed. But after a deeper dive we might get a different picture. We can try the following groupings
+
 
 1. Last reported weight to see if data is missing from higher or lower bmi groups
 

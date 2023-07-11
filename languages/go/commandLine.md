@@ -1,3 +1,4 @@
+#go 
 # The go command line
 
 ## Flags library

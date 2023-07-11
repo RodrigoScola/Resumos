@@ -1,3 +1,4 @@
+#database #sql 
 # Advanced Sql For data science
 
 ## Window functions 

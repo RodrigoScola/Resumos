@@ -1,3 +1,4 @@
+#go 
 # How to write go Code
 
 ## Code organization

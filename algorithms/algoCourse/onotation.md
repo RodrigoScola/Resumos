@@ -1,5 +1,9 @@
 # O notation
 
+
+#algorithms
+
+
 As your input grows, how fast does computation or mamory grow?
 
 Why/How to favor one algorithm to another one?

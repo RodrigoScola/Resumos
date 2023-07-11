@@ -1,3 +1,4 @@
+#rust
 # Rust
 
 ## Setting Up A New Project

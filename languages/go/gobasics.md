@@ -1,3 +1,4 @@
+#go 
 # GO
 
 ## Compiling and running files

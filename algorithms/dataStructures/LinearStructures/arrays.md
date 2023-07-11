@@ -1,6 +1,9 @@
 # Arrays
 
+#algorithms  #datastructures 
+
 > const a = [] is not an array
+
 
 ### what is an array?
 

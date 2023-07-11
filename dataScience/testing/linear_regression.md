@@ -1,3 +1,4 @@
+#dataScience #math #statistics 
 # Linear Regression 
 
 ### Understand the relationship between a quantitative variable and one or more other variables. It can help us answer questions like 

@@ -1,3 +1,4 @@
+#database 
 # Knex & Faker
 
 ##### If you want to populate a test application with users, this is an library to create new information without having to create thousands of users

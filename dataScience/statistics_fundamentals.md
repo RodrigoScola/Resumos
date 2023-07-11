@@ -1,12 +1,15 @@
+#statistics #dataScience #math
+
+
 # Sampling Distributions for Data Science
 
-## sampling from a population
+## Sampling from a population
 
-since collecting data for an entire population is often impossible, researchers may use a smaller sample of data to try to answer their questions
+Since collecting data for an entire population is often impossible, researchers may use a smaller sample of data to try to answer their questions
 
-## sampling distributions 
+## Sampling distributions 
 
-each time we sample from a population, we will get a slightly different sample mean, in order to understand how much variation we can expect in those sample means, we should 
+Each time we sample from a population, we will get a slightly different sample mean, in order to understand how much variation we can expect in those sample means, we should 
 
 - take a lot of random samples
 
@@ -14,15 +17,16 @@ each time we sample from a population, we will get a slightly different sample m
 
 - plot a histogram of all the sample means
 
-> the distribution of the mean is normally distributed as long as the population is not too skewed or the sample size is large enough
+> [!Info]
+> The distribution of the mean is normally distributed as long as the population is not too skewed or the sample size is large enough
 
 [skewed image of salmon weight](https://static-assets.codecademy.com/skillpaths/master-stats-ii/sampling-distributions/pop_distribution.svg)
 
-shows the population distribution. the tail of the distribution is longer on the right than the left 
+The image shows the population distribution. the tail of the distribution is longer on the right than the left 
 
-## central limit theorem 
+## Central limit theorem 
 
-the sampling distribution of the mean is normally distributed as long as the population is not too skewed or the sample size is enough
+The sampling distribution of the mean is normally distributed as long as the population is not too skewed or the sample size is enough
 
 *the sampling distribution is normally distributed as long as the population is not too skewed or the sample size is large enough*
 

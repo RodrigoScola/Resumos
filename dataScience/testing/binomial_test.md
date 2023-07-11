@@ -1,3 +1,4 @@
+#dataScience #statistics 
 # Simulating a binomial test
 
 > They are useful for comparing the frequency of some outcome in a sample to the expected probability of that outcome 

@@ -1,3 +1,4 @@
+#regex
 # Regular Expressions 
 
 ## Basic Concepts 
@@ -109,7 +110,7 @@ the monkey ate a (rotten )? banana - will match `the monkey ate a rotten banana`
 
 - `$` match text at the end of the string
 
-the regex `^Monkeys: my mortal enemy$` will completelly match `Monkeys: my mortal enemy` but not match `Spider Monkeys: my mortal enemy in the wild` or `Squirrel Monkeys: my mortal enemy in the wild` 
+the regex `^Monkeys: my mortal enemy$` will completely match `Monkeys: my mortal enemy` but not match `Spider Monkeys: my mortal enemy in the wild` or `Squirrel Monkeys: my mortal enemy in the wild` 
 
 the `^` ensures that the matched text begins with `Monkeys` and the `$` ensures that the matched text begins with `enemy`.
 
