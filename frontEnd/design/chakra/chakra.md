@@ -1,3 +1,7 @@
+#chakra-ui 
+
+
+
 install 
      npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^5
 
@@ -188,10 +192,20 @@ single part and multipart components
      multipart component is a component that has multiple parts and require these parts to work correctly 
           Tabs component consists of TabList, Tab, TabPanes and TabPanel
 
-Components 
-     Aspectratio - image or video in a certain Aspectratio
-          maxW - the maxWidth 
-          ratio - the ratio that you want
-     Box 
-          as - you can change the render to make it a button if you want 
-     
+## Components 
+
+## AspectRatio
+image or video in a certain [[AspectRatio]]
+- `maxW` - the max width of the component 
+- `ratio` - the ratio that you want
+## Box 
+The Chakra-ui equivalent of the `div` element. [[Box]]
+`as` - you can change the render to make it a button if you want 
+
+## Icon
+The [[icon]] container
+
+## Center Child
+
+[[CenterChild]]
+

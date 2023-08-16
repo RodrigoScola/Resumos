@@ -1,4 +1,5 @@
 #javascript 
+
 var sum = variable that adds (+)
 var difference = variable that subtracts (-)
 var product = var that multiplies (*)
@@ -875,6 +876,7 @@ the third is the array upon which the map method was called
     ['John','Amy','camperCat']
 using the .map function it returns an array, but you can filter the messages that you want on that array
   for example in this exercise
+  ```js
   var watchList = [
    {
      "Title": "Inception",
@@ -898,6 +900,7 @@ using the .map function it returns an array, but you can filter the messages tha
      "Type": "movie",
      "Response": "True"
     },
+```
 theres a ton of information that we dont need so lets add the info that we need into an array
 first we need to make the map function
   const ratings = watchList.map(item => ({
@@ -1077,15 +1080,15 @@ INTERMEDIATE ALGORITHM SCRIPTING
 
 to discover the min and max of two numbers use the Math.min && Math.max notation
   to discover the sum of an array 
-    function sumAll(arr) {
-      let min = math.min(arr[0],arr[1]);
-      let max = math.min(arr[0],arr[1]);
-      let array = 0;
-    
-      for(let i 0; i <= max; i++) {
+  ```js
+function sumAll(arr) {
+	let min = math.min(arr[0],arr[1]);
+	let max = math.min(arr[0],arr[1]);
+	let array = 0;
+	for(let i 0; i <= max; i++) {
         array += i;
-      }
-    }
+}
+```
 on this exercise we have to compare two arrays and return a new array with any items only found in one of the two arrays, but not both. in 
 other words, return the symmetric difference of the two arrays
     function diffArray(arr1, arr2) {

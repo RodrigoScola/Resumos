@@ -1,6 +1,6 @@
 #algorithms #datastructures
 
-[[tags-basic]]
+
 
 They are the perfect data structure for modeling networks
 composed of nodes or vertices which hold data and edges, which are a connection between two vertices

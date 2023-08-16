@@ -46,12 +46,12 @@ backtracking
 what is a markdown
      is a text to html converter
      example
-          #what is a markdown?
+          what is a markdown?
           **List of tips**
           1. **Two asterisk emphasize**
           2. *One asterisk Italicizes*
      big text heading 
-          #heading 
+          heading 
      medium size text 
           ##heaidng
      small heading 

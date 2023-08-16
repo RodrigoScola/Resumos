@@ -4,7 +4,7 @@ const util = require("util")
 var count = 0
 var chars = 0
 
-const wpm = (chars, typeSpeed = 86) => {
+const wpm = (chars, typeSpeed = 91) => {
   return Math.ceil(chars / typeSpeed)
 }
 const total = []
@@ -49,7 +49,6 @@ const passDir = (path = "") => {
       const char = line.split(" ").length
 
       if (line !== "") {
-        console.log(path)
         console.log(
           line,
           `\n This resume has ${count++} lines and ${(chars +=
