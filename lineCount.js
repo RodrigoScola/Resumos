@@ -35,6 +35,7 @@ const bannedFiles = [
   "nodemon.json",
 ]
 
+let paths = []
 const passDir = (path = "") => {
   const filename = path.split("/").slice(-1)[0]
 
