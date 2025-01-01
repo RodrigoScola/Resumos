@@ -1,0 +1,13 @@
+ Made this extension to edit text faster, kinda like vim but for people that dont want to use vim/vim users that want a faster experience (imo). it supports at least 15 "motions" and 13 languages and select, delete, copy, go to blocks of code. So a lot of combinations and quantity of things that you can do.
+
+Every idea can and will be as complex as you want. You dont need to create a small version of a product like twitter or facebook or something to build something complex. In the project i just did it started out with only the langugages that i used and 5 motions, but every time i worked on it the rabbit hole got bigger and bigger.
+
+If you want to learn, start as small of a scope as you can. The smaller the scope, the more you can focus on the little details, that when you go to bigger projects, you will already have that experience and it will make the project so much nicer to work on. Like, how are you configuring what you are making, how are you testing, what are the philosofies that you are bringing with you. how is state manipulated in your project.
+
+An example of that was that if you want to use vim in my extension, the user would have to put it in their configuration file and so i could not make people have to re configure their keybinds more than once. So i had to think a lot about how it would look and having that experience taught me so much about the longevity of the things that i build.
+
+Have philosophies about what you write. It is really nice when you adopt a mentality in a project from beginning to end. it makes it so much easier to think about the code you are going to write when you know how you want it to look like.
+
+Make it as easy as possible to do things the right way. Because there will be times that you will have to cut corners, cannot refactor to make it "nice" or you just dont care that day. You still want a system that is easy to do those things and not mess up the rest of the program, like automated testing, assertions throughout your program... Test your things, preferably automated. One of the things that killed my drive was bugs that i fixed and they came back.... having a mentality of, if this is done, bug is fixed and i wont get people asking me to fix it again is a nice feeling.
+
+Have a list of things that, when done you will launch and be serious about it. That was a big help because i just kept adding things that i wanted to do, but that way scope was just increasing and without an end date. keep crossing things on that list and be careful about scope creep. 
